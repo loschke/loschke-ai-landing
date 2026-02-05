@@ -1,0 +1,21 @@
+---
+import FrameLayout from "@layouts/FrameLayout.astro";
+import { SITE } from "@/config";
+import Hero from "@components/sections/manifest/Hero.astro";
+import Intro from "@components/sections/manifest/Intro.astro";
+import Principles from "@components/sections/manifest/Principles.astro";
+import CTA from "@components/sections/CTA.astro";
+---
+
+<FrameLayout
+  title="Manifest – Wofür ich stehe"
+  description="7 Grundsätze für die Arbeit mit KI. Keine Hacks, keine Marketing-Versprechen — sondern klares Denken, ehrliche Einschätzungen und praktische Umsetzung."
+>
+  <Hero />
+  <Intro />
+  <Principles />
+  <CTA
+    headline="Klingt gut?\nLass uns reden"
+    text="Du teilst diese Haltung? Du willst wissen, wie wir zusammenarbeiten können? Oder du hast einfach eine Frage? Schreib mir."
+  />
+</FrameLayout>

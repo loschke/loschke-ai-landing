@@ -1,0 +1,125 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+import { PrincipleCard } from "@components/ui/PrincipleCard";
+---
+
+<section
+  id="grundsaetze"
+  class="py-12 md:py-16 lg:py-[60px] px-6 sm:px-10 md:px-16 lg:px-20"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+  >
+    <!-- Left Label -->
+    <Reveal client:load>
+      <p
+        class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase md:sticky md:top-[98px]"
+      >
+        7 Grundsätze
+      </p>
+    </Reveal>
+
+    <!-- Right Content: Principle Cards -->
+    <div>
+      <PrincipleCard
+        client:load
+        num="I"
+        title="Ergebnis zählt, nicht Anstrengung"
+        core="Wert liegt im Output"
+        delay={0}
+      >
+        Wir haben gelernt, Arbeit über Mühe zu definieren. KI nimmt uns einen
+        Teil dieser Arbeit ab. Das kann sich komisch anfühlen, weil wir stolz
+        auf unseren Fleiß waren. Aber der Wert unserer Arbeit liegt im Ergebnis,
+        nicht im Schweiß. Das bedeutet nicht, dass Anstrengung nichts wert ist –
+        es bedeutet, dass wir sie für die Dinge aufsparen können, die wirklich
+        zählen: Denken, Entscheiden, Gestalten.
+      </PrincipleCard>
+
+      <PrincipleCard
+        client:load
+        num="II"
+        title="Generalisten haben Zukunft"
+        core="Breite + Tiefe"
+        delay={0.06}
+      >
+        KI senkt die Kosten für Kompetenz. Ein Texter kann heute brauchbaren
+        Code schreiben. Ein Stratege kann einen funktionierenden Prototyp
+        bauen. Ich nenne das den AI Augmented Generalist – Menschen, die ihre
+        Kernkompetenz haben, aber mit KI-Unterstützung in Nachbardisziplinen
+        handlungsfähig werden. Das ist kein Ersatz für echte Expertise. Aber es
+        ist eine Erweiterung dessen, was möglich ist.
+      </PrincipleCard>
+
+      <PrincipleCard
+        client:load
+        num="III"
+        title="Führung kann nicht delegiert werden"
+        core="Verstehen, um zu führen"
+        delay={0.12}
+      >
+        KI-Kompetenz lässt sich nicht an eine Taskforce auslagern. Wer führt,
+        muss verstehen. Nicht jedes technische Detail. Aber genug, um gute
+        Fragen zu stellen, realistische Erwartungen zu haben und das Team
+        sinnvoll zu unterstützen. Das ist unbequem. Es kostet Zeit. Aber es ist
+        der einzige Weg, Veränderung glaubwürdig zu führen.
+      </PrincipleCard>
+
+      <PrincipleCard
+        client:load
+        num="IV"
+        title="Prinzipien vor Tricks"
+        core="Denken lernen, nicht kopieren"
+        delay={0.18}
+      >
+        Der Markt ist voll von Prompt-Hacks und KI-Tricks. Das ist Fast Food –
+        es macht kurzfristig satt, aber nicht langfristig stark. Wer versteht,
+        wie KI denkt – wie Kontext funktioniert, wie man Aufgaben strukturiert –
+        braucht keine Prompt-Sammlung. Er kann selbst denken. Das dauert länger.
+        Aber es hält.
+      </PrincipleCard>
+
+      <PrincipleCard
+        client:load
+        num="V"
+        title="Der Mensch bleibt das Premium-Feature"
+        core="Augmentation, nicht Automation"
+        delay={0.24}
+      >
+        Je mehr Durchschnitt automatisiert wird, desto wertvoller wird das
+        Menschliche. Empathie. Urteilsvermögen. Echte Verbindung. Geschmack. Das
+        sind keine Soft Skills. Das sind die Kernkompetenzen der Zukunft. Wir
+        nutzen KI nicht, um Menschen zu ersetzen. Wir nutzen sie, um die Routine
+        loszuwerden – damit mehr Raum für das bleibt, was nur Menschen können.
+      </PrincipleCard>
+
+      <PrincipleCard
+        client:load
+        num="VI"
+        title="Starten vor Fertig"
+        core="80% heute > 100% nie"
+        delay={0.30}
+      >
+        Perfektion ist der Feind des Fortschritts. Das bedeutet nicht,
+        schlampig zu arbeiten. Es bedeutet, früher ins Machen zu kommen. Zu
+        testen. Zu lernen. Zu verbessern. Ein Prototyp schlägt eine Powerpoint.
+        Ein Experiment schlägt einen Masterplan. Drei Versuche schlagen drei
+        Monate Planung.
+      </PrincipleCard>
+
+      <PrincipleCard
+        client:load
+        num="VII"
+        title="Lernen ist der eigentliche Job"
+        core="Anpassungsfähigkeit gewinnt"
+        delay={0.36}
+      >
+        Das Tool von heute ist morgen veraltet. Das Wissen von gestern ist
+        heute unvollständig. Die einzige Konstante ist Veränderung. Die einzige
+        sinnvolle Antwort ist Anpassungsfähigkeit. Wir hören nicht auf zu
+        lernen. Nicht weil wir müssen, sondern weil wir verstanden haben: Wer
+        stehen bleibt, fällt zurück.
+      </PrincipleCard>
+    </div>
+  </div>
+</section>

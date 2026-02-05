@@ -6,6 +6,7 @@ import "@fontsource/instrument-serif";
 import SEO from "@components/SEO.astro";
 import { Nav } from "@components/layout/Nav";
 import Footer from "@components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -29,6 +30,7 @@ const { title, description, image, article } = Astro.props;
       image={image}
       article={article}
     />
+    <ViewTransitions />
     {
       import.meta.env.PUBLIC_UMAMI_SCRIPT_URL &&
         import.meta.env.PUBLIC_UMAMI_WEBSITE_ID && (
@@ -44,14 +46,15 @@ const { title, description, image, article } = Astro.props;
     <!-- Fixed Frame -->
     <div
       class="fixed inset-0 z-[9999] pointer-events-none border-[18px] border-accent box-border"
+      transition:persist
     >
     </div>
 
     <!-- Scrollable Content Wrapper -->
     <div class="p-[18px]">
       <div class="bg-white min-h-[calc(100vh-36px)] relative">
-        <Nav client:load />
-        <main>
+        <Nav client:load transition:persist />
+        <main transition:animate="fade">
           <slot />
         </main>
         <Footer />

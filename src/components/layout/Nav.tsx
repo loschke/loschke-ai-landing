@@ -5,11 +5,23 @@ import { useState, useEffect } from "react";
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState("");
 
   useEffect(() => {
+    // Get current path for active indicator
+    const updatePath = () => setCurrentPath(window.location.pathname);
+    updatePath();
+
+    // Listen for Astro page transitions
+    document.addEventListener("astro:page-load", updatePath);
+
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("astro:page-load", updatePath);
+    };
   }, []);
 
   // Prevent body scroll when menu is open
@@ -30,6 +42,12 @@ export function Nav() {
     { label: "Speaking", href: "/speaking" },
     { label: "Kontakt", href: "/contact" },
   ];
+
+  // Check if link is active (exact match or starts with for nested routes like /blog/*)
+  const isActive = (href: string) => {
+    if (href === "/") return currentPath === "/";
+    return currentPath === href || currentPath.startsWith(href + "/");
+  };
 
   return (
     <>
@@ -75,9 +93,17 @@ export function Nav() {
             <a
               key={link.label}
               href={link.href}
-              className="hidden sm:inline text-sm md:text-base font-medium text-dark no-underline hover:text-accent transition-colors duration-250"
+              className={`hidden sm:inline text-sm md:text-base font-medium no-underline transition-colors duration-250 relative ${
+                isActive(link.href)
+                  ? "text-accent"
+                  : "text-dark hover:text-accent"
+              }`}
             >
               {link.label}
+              {/* Active indicator dot */}
+              {isActive(link.href) && (
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent rounded-full" />
+              )}
             </a>
           ))}
 
@@ -140,7 +166,11 @@ export function Nav() {
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-4xl font-black text-dark no-underline mb-6 hover:text-accent transition-colors duration-250"
+              className={`text-4xl font-black no-underline mb-6 transition-colors duration-250 flex items-center gap-3 ${
+                isActive(link.href)
+                  ? "text-accent"
+                  : "text-dark hover:text-accent"
+              }`}
               style={{
                 transform: menuOpen ? "translateY(0)" : "translateY(20px)",
                 opacity: menuOpen ? 1 : 0,
@@ -148,6 +178,10 @@ export function Nav() {
               }}
             >
               {link.label}
+              {/* Active indicator for mobile */}
+              {isActive(link.href) && (
+                <span className="w-2 h-2 bg-accent rounded-full" />
+              )}
             </a>
           ))}
 
