@@ -1,0 +1,67 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+import { Dot } from "@components/ui/Dot";
+
+const approaches = [
+  {
+    title: "Kein Standard-Vortrag",
+    text: "Jede Keynote wird auf deine Veranstaltung zugeschnitten. Ich spreche vorher mit dir, verstehe dein Publikum, passe Beispiele und Tiefe an.",
+  },
+  {
+    title: "Substanz statt Show",
+    text: "Keine Motivationsphrasen, keine Buzzword-Bingo-Folien. Sondern Inhalte, über die dein Publikum auch am nächsten Tag noch nachdenkt.",
+  },
+  {
+    title: "Ehrliche Einschätzung",
+    text: "Ich sage auch, was nicht funktioniert und wo der Hype größer ist als die Realität. Das macht unbequem — aber nützlich.",
+  },
+];
+---
+
+<section
+  class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+  >
+    <!-- Left Label -->
+    <Reveal client:load>
+      <p
+        class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase md:sticky md:top-[98px]"
+      >
+        Arbeitsweise
+      </p>
+    </Reveal>
+
+    <!-- Right Content -->
+    <div>
+      <Reveal client:load>
+        <h2
+          class="text-3xl sm:text-4xl md:text-[clamp(34px,4.5vw,60px)] font-black leading-[0.95] tracking-[-0.025em] mb-10 md:mb-12"
+        >
+          Was du<br />erwarten kannst<Dot />
+        </h2>
+      </Reveal>
+
+      <!-- Approach Cards Grid -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
+      >
+        {
+          approaches.map((item, i) => (
+            <Reveal client:load delay={i * 0.1}>
+              <div class="border-t border-[#e5e5e5] pt-6">
+                <h3 class="text-lg font-black tracking-[-0.01em] mb-3">
+                  {item.title}
+                </h3>
+                <p class="text-[15px] font-light leading-[1.65] text-[#525252]">
+                  {item.text}
+                </p>
+              </div>
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

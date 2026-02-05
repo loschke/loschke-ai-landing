@@ -1,0 +1,138 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+import { Dot } from "@components/ui/Dot";
+import { TopicCard } from "@components/ui/TopicCard";
+---
+
+<section
+  id="themen"
+  class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+  >
+    <!-- Left Label -->
+    <Reveal client:load>
+      <div class="md:sticky md:top-[98px]">
+        <p
+          class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase mb-4"
+        >
+          Themen
+        </p>
+        <p
+          class="text-sm font-light leading-[1.6] text-[#737373] max-w-[180px] hidden md:block"
+        >
+          Von der großen Einordnung bis zur persönlichen Konsequenz.
+        </p>
+      </div>
+    </Reveal>
+
+    <!-- Right Content -->
+    <div>
+      <Reveal client:load>
+        <h2
+          class="text-3xl sm:text-4xl md:text-[clamp(34px,4.5vw,60px)] font-black leading-[0.95] tracking-[-0.025em] mb-5 md:mb-6"
+        >
+          Sechs Perspektiven<Dot />
+        </h2>
+      </Reveal>
+
+      <Reveal client:load delay={0.08}>
+        <p
+          class="text-base sm:text-lg font-light leading-[1.7] text-[#525252] max-w-[520px] mb-10 md:mb-12"
+        >
+          Jeder Vortrag kann an deine Veranstaltung angepasst werden — in Länge,
+          Tiefe und Schwerpunkt. Alle Themen funktionieren als Keynote,
+          Impulsvortrag oder als Einstieg in einen Workshop.
+        </p>
+      </Reveal>
+
+      <!-- Topic Cards -->
+      <TopicCard
+        client:load
+        num="01"
+        level="Die große Einordnung"
+        title="Generative KI verstehen: Ein ehrlicher Blick"
+        forWhom="Führungskräfte, Entscheider, Teams"
+        formats="Keynote, Impulsvortrag · 30–60 Min"
+        delay={0}
+      >
+        Eine nüchterne Bestandsaufnahme. Was kann KI wirklich, was nicht? Wo
+        sind die echten Potenziale, wo der Hype? Keine Versprechen, keine
+        Panikmache — sondern eine fundierte Basis für eigene Entscheidungen.
+      </TopicCard>
+
+      <TopicCard
+        client:load
+        num="02"
+        level="Die große Einordnung"
+        title="KI-Transformation ohne Illusionen"
+        forWhom="C-Level, Führungskräfte"
+        formats="Keynote, Impulsvortrag · 30–45 Min"
+        delay={0.06}
+      >
+        Das zentrale Paradoxon: Warum scheitern KI-Initiativen sowohl bei zu
+        viel als auch bei zu wenig Erwartung? Und was hilft wirklich? Konkrete
+        Muster aus der Praxis — was funktioniert, was nicht.
+      </TopicCard>
+
+      <TopicCard
+        client:load
+        num="03"
+        level="Was sich verändert"
+        title="Das neue Internet: Suche, Content, Interaktion"
+        forWhom="Marketing, Kommunikation, Digital"
+        formats="Keynote, Impulsvortrag · 30–45 Min"
+        delay={0.12}
+      >
+        Wenn KI die erste Anlaufstelle wird, verändert sich alles. Das ist
+        größer als SEO vs. AI Overviews — es geht um eine fundamentale
+        Verschiebung in der Art, wie wir mit Information interagieren.
+      </TopicCard>
+
+      <TopicCard
+        client:load
+        num="04"
+        level="Was sich verändert"
+        title="Das Ende der Spezialisten? Skills im KI-Zeitalter"
+        forWhom="HR, Führungskräfte, Teams"
+        formats="Keynote, Impulsvortrag · 30–45 Min"
+        delay={0.18}
+      >
+        KI senkt die Kosten für Kompetenz. Aber was bedeutet das für Karrieren,
+        für Teams, für Organisationen? Welche Skills werden wertvoller — und
+        warum Empathie, Urteilsvermögen und Geschmack keine Soft Skills mehr
+        sind.
+      </TopicCard>
+
+      <TopicCard
+        client:load
+        num="05"
+        level="Was sich verändert"
+        title="Führen im KI-Zeitalter: Verstehen, um zu entscheiden"
+        forWhom="C-Level, Management"
+        formats="Keynote, Impulsvortrag · 30–45 Min"
+        delay={0.24}
+      >
+        KI-Kompetenz lässt sich nicht an eine Taskforce auslagern. Wer führt,
+        muss genug verstehen, um gute Fragen zu stellen, Bullshit zu erkennen
+        und Veränderung glaubwürdig zu gestalten.
+      </TopicCard>
+
+      <TopicCard
+        client:load
+        num="06"
+        level="Wie wir damit umgehen"
+        title="Lernen als Job: Anpassungsfähigkeit als Kernkompetenz"
+        forWhom="Fachkräfte, Teams, Führungskräfte"
+        formats="Keynote, Impulsvortrag · 30–45 Min"
+        delay={0.30}
+      >
+        Das Tool von heute ist morgen veraltet. Die einzige sinnvolle Antwort
+        auf permanente Veränderung ist permanente Anpassungsfähigkeit. Wie lernt
+        man richtig in einer Welt, in der Wissen schneller obsolet wird als man
+        es aufbauen kann?
+      </TopicCard>
+    </div>
+  </div>
+</section>
