@@ -1,0 +1,40 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+---
+
+<section
+  class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 bg-[#fafafa]"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+  >
+    <Reveal client:load>
+      <p
+        class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase md:sticky md:top-[98px]"
+      >
+        Wer ich bin
+      </p>
+    </Reveal>
+    <div class="max-w-full md:max-w-[680px]">
+      <Reveal client:load>
+        <p
+          class="text-xl sm:text-2xl md:text-[clamp(22px,2.8vw,34px)] font-serif leading-[1.45] mb-5 md:mb-7"
+        >
+          Seit 2021 arbeite ich täglich mit generativer KI. Erst als Director
+          Automation & AI, seit 2026 selbständig. Was mich antreibt: die Lücke
+          zwischen dem, was KI kann, und dem, was wir daraus machen.
+        </p>
+      </Reveal>
+      <Reveal client:load delay={0.12}>
+        <p
+          class="text-base sm:text-lg font-sans font-light leading-[1.75] text-[#525252] max-w-full md:max-w-[560px]"
+        >
+          Kein Spezialist in einem Bereich, sondern ein Generalist mit Tiefen —
+          ich übersetze zwischen Tech und Business, zwischen Strategie und
+          Praxis. In Keynotes wie in Code-Sessions. Für Konzerne wie für
+          Solo-Gründer.
+        </p>
+      </Reveal>
+    </div>
+  </div>
+</section>
