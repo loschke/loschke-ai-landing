@@ -1,0 +1,28 @@
+---
+import { SITE, NAVIGATION } from "@/config";
+---
+
+<header class="bg-white border-b border-gray-200 sticky top-0 z-10">
+  <div
+    class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+  >
+    <a
+      href="/"
+      class="font-sans font-black text-2xl tracking-tight hover:text-gray-600 transition-colors"
+    >
+      {SITE.name}
+    </a>
+    <nav class="flex gap-6">
+      {
+        NAVIGATION.map(({ href, label }) => (
+          <a
+            href={href}
+            class="text-sm font-medium hover:text-gray-600 transition-colors"
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

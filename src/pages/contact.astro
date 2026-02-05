@@ -1,0 +1,19 @@
+---
+import Base from "@layouts/Base.astro";
+import ContactForm from "@components/ContactForm";
+---
+
+<Base title="Kontakt" description="Schreiben Sie uns">
+  <div class="max-w-2xl mx-auto py-16 px-4">
+    <h1 class="text-4xl font-sans font-black text-gray-900 mb-8 text-center">
+      Kontakt aufnehmen
+    </h1>
+    <p class="text-center text-gray-600 mb-12 font-serif text-xl">
+      Haben Sie Fragen oder Interesse an einer Zusammenarbeit? Ich freue mich
+      auf Ihre Nachricht.
+    </p>
+    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+      <ContactForm client:load />
+    </div>
+  </div>
+</Base>

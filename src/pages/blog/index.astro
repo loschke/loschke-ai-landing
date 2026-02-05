@@ -1,0 +1,33 @@
+---
+import Base from "@layouts/Base.astro";
+import Card from "@components/Card.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("posts"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => {
+    const dateA = a.data.pubDate?.valueOf() || 0;
+    const dateB = b.data.pubDate?.valueOf() || 0;
+    return dateB - dateA;
+  });
+---
+
+<Base title="Blog" description="Gedanken und Artikel über KI Transformation">
+  <div class="space-y-8">
+    <h1 class="text-4xl font-sans font-black text-gray-900">Alle Beiträge</h1>
+    <div class="grid gap-8 sm:grid-cols-2">
+      {
+        posts.map((post) => (
+          <Card
+            title={post.data.title}
+            description={post.data.description || ""}
+            href={`/blog/${post.slug}`}
+            date={post.data.pubDate}
+            image={post.data.heroImage}
+            tags={post.data.tags}
+          />
+        ))
+      }
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,56 @@
+---
+import Base from "@layouts/Base.astro";
+import Card from "@components/Card.astro";
+import { getCollection } from "astro:content";
+import { SITE } from "@/config";
+
+const posts = (await getCollection("posts"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => {
+    const dateA = a.data.pubDate?.valueOf() || 0;
+    const dateB = b.data.pubDate?.valueOf() || 0;
+    return dateB - dateA;
+  })
+  .slice(0, 3);
+---
+
+<Base title="Home" description={SITE.description}>
+  <section class="max-w-4xl mx-auto space-y-8 py-16 text-center">
+    <h1
+      class="text-5xl md:text-7xl font-sans font-black text-gray-900 tracking-tight"
+    >
+      {SITE.title}
+    </h1>
+    <p
+      class="font-serif text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+    >
+      {SITE.description}
+    </p>
+    <div class="flex justify-center gap-4">
+      <a
+        href="/blog"
+        class="bg-gray-900 text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+      >
+        Zum Blog
+      </a>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto mt-20">
+    <h2 class="text-3xl font-sans font-black mb-8">Aktuelle Artikel</h2>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        posts.map((post) => (
+          <Card
+            title={post.data.title}
+            description={post.data.description || ""}
+            href={`/blog/${post.slug}`}
+            date={post.data.pubDate}
+            image={post.data.heroImage}
+            tags={post.data.tags}
+          />
+        ))
+      }
+    </div>
+  </section>
+</Base>

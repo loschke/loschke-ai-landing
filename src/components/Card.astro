@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  description?: string;
+  href: string;
+  date?: Date;
+  image?: ImageMetadata;
+  tags?: string[];
+}
+
+const { title, description, href, date, image, tags = [] } = Astro.props;
+---
+
+<article
+  class="group h-full flex flex-col bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all"
+>
+  <a href={href} class="block flex-1">
+    {
+      image && (
+        <div class="mb-4 overflow-hidden rounded-lg">
+          <Image
+            src={image}
+            alt={title}
+            class="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
+            widths={[400, 800]}
+            sizes="(max-width: 800px) 100vw, 800px"
+          />
+        </div>
+      )
+    }
+    <h2
+      class="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors font-sans"
+    >
+      {title}
+    </h2>
+    {
+      date && (
+        <time class="text-sm text-gray-500 block mb-2">
+          {date.toLocaleDateString("de-DE", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
+        </time>
+      )
+    }
+    {
+      description && (
+        <p class="text-gray-600 line-clamp-2 mb-4">{description}</p>
+      )
+    }
+  </a>
+
+  {
+    tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mt-auto pt-4">
+        {tags.map((tag) => (
+          <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full font-medium">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )
+  }
+</article>
