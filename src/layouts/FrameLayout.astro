@@ -6,7 +6,7 @@ import "@fontsource/instrument-serif";
 import SEO from "@components/SEO.astro";
 import { Nav } from "@components/layout/Nav";
 import Footer from "@components/Footer.astro";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -30,7 +30,7 @@ const { title, description, image, article } = Astro.props;
       image={image}
       article={article}
     />
-    <ViewTransitions />
+    <ClientRouter />
     {
       import.meta.env.PUBLIC_UMAMI_SCRIPT_URL &&
         import.meta.env.PUBLIC_UMAMI_WEBSITE_ID && (
