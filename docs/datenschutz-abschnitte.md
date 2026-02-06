@@ -35,3 +35,22 @@ Für den technischen Versand der Formularnachrichten nutzen wir den Dienst **Res
 Rechtsgrundlage für die Verarbeitung ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen bzw. Vertragserfüllung) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung von Anfragen).
 
 Die im Kontaktformular übermittelten Daten werden nur zur Bearbeitung Ihrer Anfrage verwendet und nach Abschluss der Bearbeitung gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.
+
+---
+
+## Newsletter
+
+Auf unserer Website haben Sie die Möglichkeit, unseren Newsletter zu abonnieren. Für die Anmeldung benötigen wir Ihre E-Mail-Adresse. Weitere Angaben sind freiwillig.
+
+Wir verwenden das sogenannte **Double-Opt-In-Verfahren**: Nach Ihrer Anmeldung erhalten Sie eine E-Mail mit einem Bestätigungslink. Erst nach Klick auf diesen Link wird Ihre E-Mail-Adresse in unseren Verteiler aufgenommen. Damit stellen wir sicher, dass nur Sie selbst sich mit Ihrer E-Mail-Adresse anmelden können.
+
+Für den Versand des Newsletters nutzen wir **Listmonk**, eine Open-Source-Newsletter-Software. Listmonk wird von uns selbst auf einem Server in Deutschland (Hetzner Online GmbH) betrieben. Es erfolgt **keine Weitergabe Ihrer Daten an Dritte** und **keine Übermittlung in Drittländer**.
+
+Bei der Anmeldung zum Newsletter speichern wir:
+- Ihre E-Mail-Adresse
+- Datum und Uhrzeit der Anmeldung
+- IP-Adresse zum Zeitpunkt der Bestätigung (zur Dokumentation der Einwilligung)
+
+Rechtsgrundlage für die Verarbeitung ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie den Abmeldelink am Ende jedes Newsletters nutzen oder uns direkt kontaktieren. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.
+
+Mit der Hetzner Online GmbH besteht ein Vertrag zur Auftragsverarbeitung gemäß Art. 28 DSGVO. Die Datenverarbeitung findet ausschließlich auf Servern in Deutschland statt.
