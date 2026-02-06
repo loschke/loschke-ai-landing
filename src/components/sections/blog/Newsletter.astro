@@ -34,20 +34,96 @@ import { Dot } from "@components/ui/Dot";
       </Reveal>
 
       <Reveal client:load delay={0.15}>
-        <form class="flex gap-3 flex-wrap">
+        <form id="blog-newsletter-form" class="flex gap-3 flex-wrap">
           <input
             type="email"
+            id="blog-newsletter-email"
             placeholder="E-Mail-Adresse"
+            required
             class="flex-[1_1_240px] px-4 py-3.5 text-sm border border-[#e5e5e5] bg-white font-sans outline-none focus:border-dark transition-colors duration-250"
           />
           <button
             type="submit"
-            class="px-7 py-3.5 bg-dark text-white text-[13px] font-medium border-none cursor-pointer font-sans transition-colors duration-300 hover:bg-accent"
+            id="blog-newsletter-btn"
+            class="px-7 py-3.5 bg-dark text-white text-[13px] font-medium border-none cursor-pointer font-sans transition-colors duration-300 hover:bg-accent disabled:opacity-60 disabled:cursor-not-allowed"
           >
             Abonnieren
           </button>
         </form>
+        <p
+          id="blog-newsletter-success"
+          class="hidden mt-4 text-sm text-accent font-medium"
+        >
+          ✓ Vielen Dank! Bitte bestätige deine E-Mail-Adresse.
+        </p>
+        <p id="blog-newsletter-error" class="hidden mt-3 text-xs text-red-500">
+        </p>
       </Reveal>
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById(
+    "blog-newsletter-form",
+  ) as HTMLFormElement;
+  const emailInput = document.getElementById(
+    "blog-newsletter-email",
+  ) as HTMLInputElement;
+  const btn = document.getElementById(
+    "blog-newsletter-btn",
+  ) as HTMLButtonElement;
+  const successMsg = document.getElementById("blog-newsletter-success")!;
+  const errorMsg = document.getElementById("blog-newsletter-error")!;
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Reset error state
+    errorMsg.classList.add("hidden");
+    errorMsg.textContent = "";
+
+    const originalText = btn.innerText;
+    btn.innerText = "…";
+    btn.disabled = true;
+
+    try {
+      const response = await fetch(
+        "https://list.sevenx.cloud/api/public/subscription",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: emailInput.value,
+            list_uuids: ["673d5088-6885-4ba4-852f-3f171ac84e9e"],
+          }),
+        },
+      );
+
+      if (response.ok) {
+        form.classList.add("hidden");
+        successMsg.classList.remove("hidden");
+      } else {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.message || "Anmeldung fehlgeschlagen");
+      }
+    } catch (error: any) {
+      btn.innerText = originalText;
+      btn.disabled = false;
+
+      if (
+        error.message?.includes("fetch") ||
+        error.message?.includes("network")
+      ) {
+        errorMsg.textContent =
+          "Netzwerkfehler. Bitte prüfe deine Internetverbindung.";
+      } else if (error.message?.includes("already")) {
+        errorMsg.textContent = "Diese E-Mail ist bereits registriert.";
+      } else {
+        errorMsg.textContent =
+          "Ein Fehler ist aufgetreten. Bitte versuche es erneut.";
+      }
+      errorMsg.classList.remove("hidden");
+    }
+  });
+</script>
