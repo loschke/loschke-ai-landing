@@ -1,0 +1,85 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+import { HeroLine } from "@components/ui/HeroLine";
+import { Dot } from "@components/ui/Dot";
+
+interface Props {
+  title: string;
+  excerpt?: string;
+  category: string;
+  categoryIcon: string;
+  readTime?: string;
+  tags?: string[];
+}
+
+const {
+  title,
+  excerpt,
+  category,
+  categoryIcon,
+  readTime,
+  tags = [],
+} = Astro.props;
+---
+
+<header
+  class="min-h-[60vh] flex items-end px-6 sm:px-10 md:px-16 lg:px-20 pb-12 md:pb-16"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-end w-full"
+  >
+    <!-- Left: Meta -->
+    <Reveal client:load>
+      <div class="flex flex-col gap-2 pb-1">
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] text-accent">{categoryIcon}</span>
+          <span
+            class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.02em]"
+          >
+            {category}
+          </span>
+        </div>
+        {
+          readTime && (
+            <span class="text-xs text-[#a3a3a3]">{readTime} Lesezeit</span>
+          )
+        }
+      </div>
+    </Reveal>
+
+    <!-- Right: Title + Excerpt + Tags -->
+    <div class="max-w-full md:max-w-[900px]">
+      <h1
+        class="text-4xl sm:text-5xl md:text-[clamp(44px,6vw,72px)] font-black leading-[1.05] tracking-[-0.03em] mb-5 sm:mb-6"
+      >
+        <HeroLine client:load delay={0.15}>
+          {title}<Dot />
+        </HeroLine>
+      </h1>
+
+      {
+        excerpt && (
+          <Reveal client:load delay={0.4}>
+            <p class="text-xl sm:text-2xl md:text-[clamp(22px,2.8vw,34px)] font-serif leading-[1.45] text-[#525252] max-w-[780px]">
+              {excerpt}
+            </p>
+          </Reveal>
+        )
+      }
+
+      {
+        tags.length > 0 && (
+          <Reveal client:load delay={0.5}>
+            <div class="flex flex-wrap gap-2 mt-6 sm:mt-8">
+              {tags.map((tag) => (
+                <span class="inline-block px-3 py-1 text-[11px] font-medium text-[#737373] bg-[#f5f5f5]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        )
+      }
+    </div>
+  </div>
+</header>

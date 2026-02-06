@@ -1,8 +1,13 @@
 ---
-import Base from "@layouts/Base.astro";
-import Card from "@components/Card.astro";
+import FrameLayout from "@layouts/FrameLayout.astro";
+import Hero from "@components/sections/blog/Hero.astro";
+import { BlogContent } from "@components/sections/blog/BlogContent";
+import Newsletter from "@components/sections/Newsletter.astro";
+import CTA from "@components/sections/CTA.astro";
 import { getCollection } from "astro:content";
+import { categoryMeta, type Category } from "@content/config";
 
+// Fetch and prepare posts
 const posts = (await getCollection("posts"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => {
@@ -10,24 +15,36 @@ const posts = (await getCollection("posts"))
     const dateB = b.data.pubDate?.valueOf() || 0;
     return dateB - dateA;
   });
+
+// Transform posts into the shape BlogContent expects
+const articles = posts.map((post) => {
+  const cat = post.data.category as Category;
+  const meta = categoryMeta[cat] || categoryMeta.takes;
+
+  return {
+    slug: post.slug,
+    title: post.data.title,
+    excerpt: post.data.excerpt || post.data.metaDescription || undefined,
+    category: cat,
+    categoryLabel: meta.label,
+    categoryIcon: meta.icon,
+    readTime: post.data.readTime || undefined,
+    featured: post.data.featured,
+    tags: post.data.tags || [],
+    hasAudio: !!post.data.audioSrc,
+  };
+});
 ---
 
-<Base title="Blog" description="Gedanken und Artikel über KI Transformation">
-  <div class="space-y-8">
-    <h1 class="text-4xl font-sans font-black text-gray-900">Alle Beiträge</h1>
-    <div class="grid gap-8 sm:grid-cols-2">
-      {
-        posts.map((post) => (
-          <Card
-            title={post.data.title}
-            description={post.data.description || ""}
-            href={`/blog/${post.slug}`}
-            date={post.data.pubDate}
-            image={post.data.heroImage}
-            tags={post.data.tags}
-          />
-        ))
-      }
-    </div>
-  </div>
-</Base>
+<FrameLayout
+  title="Blog – Gedanken & Experimente"
+  description="Über KI, Arbeit und was sich verändert. Beobachtungen, Experimente, Einordnungen."
+>
+  <Hero />
+  <BlogContent client:load articles={articles} />
+  <Newsletter />
+  <CTA
+    headline="Lass uns\naustauschen"
+    text="Du hast Gedanken zu einem Artikel oder eine Frage? Schreib mir — ich freue mich über den Dialog."
+  />
+</FrameLayout>

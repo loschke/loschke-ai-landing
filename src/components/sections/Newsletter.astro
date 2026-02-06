@@ -1,0 +1,70 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+import { Dot } from "@components/ui/Dot";
+
+interface Props {
+  headline?: string;
+  text?: string;
+  label?: string;
+}
+
+const {
+  headline = "Nichts verpassen",
+  text = "Neue Artikel direkt ins Postfach. Kein Spam, keine Werbung. Etwa 2× im Monat.",
+  label = "Newsletter",
+} = Astro.props;
+---
+
+<section
+  class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 bg-dark text-white"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+  >
+    <Reveal client:load>
+      <p
+        class="text-xs sm:text-sm font-medium text-white/40 tracking-[0.08em] uppercase"
+      >
+        {label}
+      </p>
+    </Reveal>
+
+    <div class="max-w-full md:max-w-[560px]">
+      <Reveal client:load>
+        <h2
+          class="text-3xl sm:text-4xl md:text-[clamp(28px,4vw,44px)] font-black leading-[0.95] tracking-[-0.02em] mb-5 text-white"
+        >
+          {headline}<Dot />
+        </h2>
+      </Reveal>
+
+      <Reveal client:load delay={0.08}>
+        <p class="text-base font-light leading-[1.6] text-white/60 mb-7">
+          {text}
+        </p>
+      </Reveal>
+
+      <Reveal client:load delay={0.12}>
+        <form class="flex gap-3 flex-wrap">
+          <input
+            type="email"
+            placeholder="E-Mail-Adresse"
+            class="flex-[1_1_240px] px-4 py-3.5 text-sm border border-white/20 bg-white/10 text-white placeholder-white/40 font-sans outline-none focus:border-accent transition-colors duration-250"
+          />
+          <button
+            type="submit"
+            class="px-7 py-3.5 bg-accent text-white text-[13px] font-medium border-none cursor-pointer font-sans transition-all duration-300 hover:bg-white hover:text-dark"
+          >
+            Abonnieren
+          </button>
+        </form>
+      </Reveal>
+
+      <Reveal client:load delay={0.16}>
+        <p class="mt-4 text-[11px] text-white/30">
+          Kein Tracking. Jederzeit abbestellbar.
+        </p>
+      </Reveal>
+    </div>
+  </div>
+</section>

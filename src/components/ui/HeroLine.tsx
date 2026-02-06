@@ -12,7 +12,7 @@ export function HeroLine({ children, delay = 0 }: HeroLineProps) {
     return () => clearTimeout(t);
   }, [delay]);
   return (
-    <span style={{ display: "block", overflow: "hidden" }}>
+    <span style={{ display: "block", overflow: "hidden", paddingBottom: "0.1em" }}>
       <span
         style={{
           display: "block",

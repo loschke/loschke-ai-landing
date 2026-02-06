@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview: Summary + Audio Varianten</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Noto Sans", system-ui, sans-serif; color: #151416; background: #f5f5f5; padding: 40px 20px; }
+    
+    .variant-wrapper { max-width: 720px; margin: 0 auto 60px; background: #fff; padding: 48px; border: 1px solid #e5e5e5; }
+    .variant-label { 
+      display: inline-block; padding: 6px 14px; background: #151416; color: #fff; 
+      font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .variant-note {
+      font-size: 13px; color: #737373; font-weight: 300; line-height: 1.6;
+      margin-bottom: 24px; padding: 12px 16px; background: #fffbeb; border-left: 3px solid #f59e0b;
+    }
+
+    /* Article Header Simulation */
+    .article-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+    .article-meta .cat-icon { font-size: 10px; color: #FC2D01; }
+    .article-meta .cat-label { font-size: 12px; font-weight: 500; color: #737373; }
+    .article-meta .date { font-size: 12px; color: #a3a3a3; }
+    
+    .article-title { 
+      font-size: clamp(28px, 4vw, 42px); font-weight: 900; 
+      line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 12px;
+    }
+    .article-title .dot { color: #FC2D01; }
+    
+    .article-subtitle {
+      font-size: clamp(16px, 2vw, 20px); font-weight: 300; 
+      line-height: 1.4; color: #525252; margin-bottom: 32px;
+    }
+
+    .divider { border: none; border-top: 1px solid #e5e5e5; margin: 32px 0; }
+
+    /* Prose Content Simulation */
+    .prose p { font-size: 17px; font-weight: 300; line-height: 1.75; color: #404040; margin-bottom: 24px; }
+    .prose h2 { font-size: 28px; font-weight: 900; letter-spacing: -0.02em; margin-top: 48px; margin-bottom: 16px; }
+
+    /* ═══════════════════════════════════════
+       SUMMARY STYLES
+       ═══════════════════════════════════════ */
+    
+    /* Summary Box Shared */
+    .summary-box {
+      padding: 24px 28px;
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      margin-bottom: 40px;
+    }
+    .summary-label {
+      font-size: 11px; font-weight: 500; color: #a3a3a3;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 12px; display: block;
+    }
+    .summary-content { font-size: 15px; font-weight: 300; line-height: 1.7; color: #404040; }
+    .summary-content strong { font-weight: 500; color: #151416; }
+    .summary-content em { font-style: italic; }
+    .summary-content a { color: #FC2D01; text-decoration: none; border-bottom: 1px solid transparent; }
+    .summary-content a:hover { border-bottom-color: #FC2D01; }
+    .summary-content ul { padding-left: 0; list-style: none; margin-top: 12px; }
+    .summary-content li { 
+      padding-left: 20px; position: relative; margin-bottom: 8px; 
+      font-size: 15px; font-weight: 300; line-height: 1.6; color: #404040;
+    }
+    .summary-content li::before { 
+      content: "→"; position: absolute; left: 0; color: #FC2D01; font-weight: 500; 
+    }
+
+    /* Audio Player */
+    .audio-player {
+      padding: 20px 24px;
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      margin-bottom: 40px;
+    }
+    .audio-inner { display: flex; align-items: center; gap: 16px; }
+    .play-btn {
+      width: 44px; height: 44px; border-radius: 50%; background: #151416; 
+      border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.25s;
+    }
+    .play-btn:hover { background: #FC2D01; }
+    .play-btn svg { fill: #fff; }
+    .audio-info { flex: 1; }
+    .audio-top { display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .audio-label { font-size: 12px; font-weight: 500; color: #151416; }
+    .audio-time { font-size: 11px; color: #a3a3a3; font-variant-numeric: tabular-nums; }
+    .progress-bar { height: 4px; background: #e5e5e5; position: relative; }
+    .progress-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 35%; background: #FC2D01; }
+    .speed-btn {
+      padding: 6px 10px; background: transparent; border: 1px solid #e5e5e5;
+      font-size: 11px; font-weight: 500; color: #737373; cursor: pointer;
+      font-family: inherit; font-variant-numeric: tabular-nums; flex-shrink: 0;
+    }
+
+    /* ═══ COMBINED BOX VARIANTS ═══ */
+    
+    .combined-box {
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .combined-box .summary-section {
+      padding: 24px 28px 20px;
+    }
+    .combined-box .audio-section {
+      padding: 16px 28px 20px;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    /* Variante B2: Accent top border */
+    .combined-box-accent {
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      border-top: 3px solid #FC2D01;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .combined-box-accent .summary-section {
+      padding: 24px 28px 20px;
+    }
+    .combined-box-accent .audio-section {
+      padding: 16px 28px 20px;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    /* Variante B3: Sidebar accent */
+    .combined-box-sidebar {
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      border-left: 3px solid #FC2D01;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .combined-box-sidebar .summary-section {
+      padding: 24px 28px 20px;
+    }
+    .combined-box-sidebar .audio-section {
+      padding: 16px 28px 20px;
+      border-top: 1px solid #e5e5e5;
+    }
+  </style>
+</head>
+<body>
+
+  <div style="max-width: 720px; margin: 0 auto 40px;">
+    <h1 style="font-size: 32px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 8px;">
+      Summary + Audio Preview
+    </h1>
+    <p style="font-size: 15px; color: #737373; font-weight: 300; line-height: 1.6;">
+      Visuelle Varianten für die Summary/TL;DR-Box mit Audio-Player-Integration auf der Blog-Detailseite.
+      <br>Alle Varianten zeigen den gleichen Beispiel-Content mit <strong style="font-weight:500;color:#151416;">formatiertem Text</strong> (fett, kursiv, Liste, Link).
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       VARIANTE A: Getrennte Elemente (Original-Template)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="variant-wrapper">
+    <span class="variant-label">Variante A — Getrennt</span>
+    <div class="variant-note">
+      Summary-Box und Audio-Player als separate, eigenständige Elemente — wie im Original-Template.
+    </div>
+
+    <!-- Article Header -->
+    <div class="article-meta">
+      <span class="cat-icon">◆</span>
+      <span class="cat-label">Takes</span>
+      <span class="date">· Mai 2025</span>
+    </div>
+    <h1 class="article-title">KI-Governance, die wirklich funktioniert<span class="dot">.</span></h1>
+    <p class="article-subtitle">Warum Unternehmen einen dualen Ansatz brauchen</p>
+
+    <hr class="divider">
+
+    <!-- Summary Box -->
+    <div class="summary-box">
+      <span class="summary-label">Kurzfassung</span>
+      <div class="summary-content">
+        <p style="margin-bottom: 12px;">
+          Klassische KI-Richtlinien scheitern, weil sie <strong>Compliance und Praxishilfe</strong> in ein 
+          Dokument packen. Der bessere Ansatz ist eine <em>bewusste Trennung</em> in zwei Säulen:
+        </p>
+        <ul>
+          <li><strong>Compliance-Richtlinie</strong> — kurz, rechtssicher, von der Geschäftsleitung verabschiedet</li>
+          <li><strong>Anwenderhandbuch</strong> — praxisnah, mit Beispielen, kontinuierlich aktualisiert</li>
+        </ul>
+        <p style="margin-top: 12px; margin-bottom: 0;">
+          Diese Trennung ermöglicht <a href="#">agile Weiterentwicklung</a> ohne ständige Compliance-Reviews.
+        </p>
+      </div>
+    </div>
+
+    <!-- Audio Player (separate) -->
+    <div class="audio-player">
+      <div class="audio-inner">
+        <button class="play-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 1L13 7L3 13V1Z"/></svg>
+        </button>
+        <div class="audio-info">
+          <div class="audio-top">
+            <span class="audio-label">Audio-Zusammenfassung</span>
+            <span class="audio-time">0:00 / 3:24</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <button class="speed-btn">1×</button>
+      </div>
+    </div>
+
+    <!-- Article Start -->
+    <div class="prose">
+      <h2>Das Problem bisheriger KI-Richtlinien</h2>
+      <p>Vielleicht kennen Sie das Dilemma: Zu strenge Richtlinien werden umgangen, zu vage bieten keine Orientierung...</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       VARIANTE B1: Kombinierte Box (schlicht)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="variant-wrapper">
+    <span class="variant-label">Variante B1 — Kombiniert (schlicht)</span>
+    <div class="variant-note">
+      Summary und Audio als eine visuelle Einheit. Dezente Trennung durch eine interne Border-Linie.
+    </div>
+
+    <!-- Article Header -->
+    <div class="article-meta">
+      <span class="cat-icon">◆</span>
+      <span class="cat-label">Takes</span>
+      <span class="date">· Mai 2025</span>
+    </div>
+    <h1 class="article-title">KI-Governance, die wirklich funktioniert<span class="dot">.</span></h1>
+    <p class="article-subtitle">Warum Unternehmen einen dualen Ansatz brauchen</p>
+
+    <hr class="divider">
+
+    <!-- Combined Box -->
+    <div class="combined-box">
+      <div class="summary-section">
+        <span class="summary-label">Kurzfassung</span>
+        <div class="summary-content">
+          <p style="margin-bottom: 12px;">
+            Klassische KI-Richtlinien scheitern, weil sie <strong>Compliance und Praxishilfe</strong> in ein 
+            Dokument packen. Der bessere Ansatz ist eine <em>bewusste Trennung</em> in zwei Säulen:
+          </p>
+          <ul>
+            <li><strong>Compliance-Richtlinie</strong> — kurz, rechtssicher, von der Geschäftsleitung verabschiedet</li>
+            <li><strong>Anwenderhandbuch</strong> — praxisnah, mit Beispielen, kontinuierlich aktualisiert</li>
+          </ul>
+          <p style="margin-top: 12px; margin-bottom: 0;">
+            Diese Trennung ermöglicht <a href="#">agile Weiterentwicklung</a> ohne ständige Compliance-Reviews.
+          </p>
+        </div>
+      </div>
+      <div class="audio-section">
+        <div class="audio-inner">
+          <button class="play-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 1L13 7L3 13V1Z"/></svg>
+          </button>
+          <div class="audio-info">
+            <div class="audio-top">
+              <span class="audio-label">Audio-Zusammenfassung anhören</span>
+              <span class="audio-time">0:00 / 3:24</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+          </div>
+          <button class="speed-btn">1×</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Start -->
+    <div class="prose">
+      <h2>Das Problem bisheriger KI-Richtlinien</h2>
+      <p>Vielleicht kennen Sie das Dilemma: Zu strenge Richtlinien werden umgangen, zu vage bieten keine Orientierung...</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       VARIANTE B2: Kombiniert mit Accent-Top
+       ═══════════════════════════════════════════════════════ -->
+  <div class="variant-wrapper">
+    <span class="variant-label">Variante B2 — Kombiniert (Accent Top-Border)</span>
+    <div class="variant-note">
+      Wie B1, aber mit orangem Top-Border als visuellem Marker — hebt die Box vom Rest des Contents ab.
+    </div>
+
+    <!-- Article Header -->
+    <div class="article-meta">
+      <span class="cat-icon">◆</span>
+      <span class="cat-label">Takes</span>
+      <span class="date">· Mai 2025</span>
+    </div>
+    <h1 class="article-title">KI-Governance, die wirklich funktioniert<span class="dot">.</span></h1>
+    <p class="article-subtitle">Warum Unternehmen einen dualen Ansatz brauchen</p>
+
+    <hr class="divider">
+
+    <!-- Combined Box with Accent -->
+    <div class="combined-box-accent">
+      <div class="summary-section">
+        <span class="summary-label">Kurzfassung</span>
+        <div class="summary-content">
+          <p style="margin-bottom: 12px;">
+            Klassische KI-Richtlinien scheitern, weil sie <strong>Compliance und Praxishilfe</strong> in ein 
+            Dokument packen. Der bessere Ansatz ist eine <em>bewusste Trennung</em> in zwei Säulen:
+          </p>
+          <ul>
+            <li><strong>Compliance-Richtlinie</strong> — kurz, rechtssicher, von der Geschäftsleitung verabschiedet</li>
+            <li><strong>Anwenderhandbuch</strong> — praxisnah, mit Beispielen, kontinuierlich aktualisiert</li>
+          </ul>
+          <p style="margin-top: 12px; margin-bottom: 0;">
+            Diese Trennung ermöglicht <a href="#">agile Weiterentwicklung</a> ohne ständige Compliance-Reviews.
+          </p>
+        </div>
+      </div>
+      <div class="audio-section">
+        <div class="audio-inner">
+          <button class="play-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 1L13 7L3 13V1Z"/></svg>
+          </button>
+          <div class="audio-info">
+            <div class="audio-top">
+              <span class="audio-label">Audio-Zusammenfassung anhören</span>
+              <span class="audio-time">0:00 / 3:24</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+          </div>
+          <button class="speed-btn">1×</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Start -->
+    <div class="prose">
+      <h2>Das Problem bisheriger KI-Richtlinien</h2>
+      <p>Vielleicht kennen Sie das Dilemma: Zu strenge Richtlinien werden umgangen, zu vage bieten keine Orientierung...</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       VARIANTE B3: Kombiniert mit Sidebar-Accent
+       ═══════════════════════════════════════════════════════ -->
+  <div class="variant-wrapper">
+    <span class="variant-label">Variante B3 — Kombiniert (Accent Left-Border)</span>
+    <div class="variant-note">
+      Wie B1, aber mit orangem Left-Border — konsistent mit dem Blockquote-Styling im Artikel.
+    </div>
+
+    <!-- Article Header -->
+    <div class="article-meta">
+      <span class="cat-icon">◆</span>
+      <span class="cat-label">Takes</span>
+      <span class="date">· Mai 2025</span>
+    </div>
+    <h1 class="article-title">KI-Governance, die wirklich funktioniert<span class="dot">.</span></h1>
+    <p class="article-subtitle">Warum Unternehmen einen dualen Ansatz brauchen</p>
+
+    <hr class="divider">
+
+    <!-- Combined Box with Sidebar -->
+    <div class="combined-box-sidebar">
+      <div class="summary-section">
+        <span class="summary-label">Kurzfassung</span>
+        <div class="summary-content">
+          <p style="margin-bottom: 12px;">
+            Klassische KI-Richtlinien scheitern, weil sie <strong>Compliance und Praxishilfe</strong> in ein 
+            Dokument packen. Der bessere Ansatz ist eine <em>bewusste Trennung</em> in zwei Säulen:
+          </p>
+          <ul>
+            <li><strong>Compliance-Richtlinie</strong> — kurz, rechtssicher, von der Geschäftsleitung verabschiedet</li>
+            <li><strong>Anwenderhandbuch</strong> — praxisnah, mit Beispielen, kontinuierlich aktualisiert</li>
+          </ul>
+          <p style="margin-top: 12px; margin-bottom: 0;">
+            Diese Trennung ermöglicht <a href="#">agile Weiterentwicklung</a> ohne ständige Compliance-Reviews.
+          </p>
+        </div>
+      </div>
+      <div class="audio-section">
+        <div class="audio-inner">
+          <button class="play-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 1L13 7L3 13V1Z"/></svg>
+          </button>
+          <div class="audio-info">
+            <div class="audio-top">
+              <span class="audio-label">Audio-Zusammenfassung anhören</span>
+              <span class="audio-time">0:00 / 3:24</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+          </div>
+          <button class="speed-btn">1×</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Start -->
+    <div class="prose">
+      <h2>Das Problem bisheriger KI-Richtlinien</h2>
+      <p>Vielleicht kennen Sie das Dilemma: Zu strenge Richtlinien werden umgangen, zu vage bieten keine Orientierung...</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       VARIANTE C: Nur Summary, kein Audio vorhanden
+       ═══════════════════════════════════════════════════════ -->
+  <div class="variant-wrapper">
+    <span class="variant-label">Variante C — Ohne Audio (Fallback)</span>
+    <div class="variant-note">
+      So sieht es aus wenn kein Audio vorhanden ist — nur die Summary-Box. Zeigt dass beide Felder optional funktionieren.
+    </div>
+
+    <!-- Article Header -->
+    <div class="article-meta">
+      <span class="cat-icon">◎</span>
+      <span class="cat-label">Visionen</span>
+      <span class="date">· Apr 2025</span>
+    </div>
+    <h1 class="article-title">Follow schlägt Search<span class="dot">.</span></h1>
+    <p class="article-subtitle">Warum persönliche Marken in der AI-Ära wichtiger werden als SEO</p>
+
+    <hr class="divider">
+
+    <!-- Summary Box only (no audio) -->
+    <div class="combined-box-accent">
+      <div class="summary-section">
+        <span class="summary-label">Kurzfassung</span>
+        <div class="summary-content">
+          <p style="margin-bottom: 0;">
+            In einer Welt, in der <strong>AI Overviews</strong> die klassische Google-Suche kannibalisieren, 
+            wird <em>persönliche Sichtbarkeit</em> zum entscheidenden Wettbewerbsvorteil. 
+            Wer heute eine <a href="#">authentische Stimme</a> aufbaut, gewinnt morgen — 
+            unabhängig vom Algorithmus.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Start -->
+    <div class="prose">
+      <h2>Die stille Revolution in der Suche</h2>
+      <p>Was passiert, wenn Google die Antwort gleich selbst gibt? Wenn der Klick auf deine Seite gar nicht mehr stattfindet?</p>
+    </div>
+  </div>
+
+  <!-- Technische Hinweise -->
+  <div style="max-width: 720px; margin: 60px auto 0; padding: 32px; background: #fff; border: 1px solid #e5e5e5;">
+    <h2 style="font-size: 20px; font-weight: 900; margin-bottom: 16px;">Technische Hinweise</h2>
+    <div style="font-size: 14px; font-weight: 300; line-height: 1.7; color: #525252;">
+      <p style="margin-bottom: 12px;"><strong style="font-weight: 500; color: #151416;">Keystatic Feld-Typ für Summary:</strong></p>
+      <ul style="padding-left: 20px; margin-bottom: 16px;">
+        <li style="margin-bottom: 8px;"><code style="background: #f5f5f5; padding: 2px 6px; font-size: 13px;">fields.text({ multiline: true })</code> — Plain Markdown, wir rendern es mit einem Mini-Parser. Unterstützt **fett**, *kursiv*, Links, Listen via Markdown-Syntax.</li>
+        <li style="margin-bottom: 8px;"><code style="background: #f5f5f5; padding: 2px 6px; font-size: 13px;">fields.markdoc.inline()</code> — Rich-Text im CMS-Editor, aber nur Inline (fett, kursiv, Links). Keine Listen möglich.</li>
+        <li style="margin-bottom: 8px;"><code style="background: #f5f5f5; padding: 2px 6px; font-size: 13px;">fields.document()</code> — Voller Rich-Text-Editor (fett, kursiv, Links, Listen). Speichert als JSON. Aufwändiger beim Rendern.</li>
+      </ul>
+      <p><strong style="font-weight: 500; color: #151416;">Empfehlung:</strong> <code style="background: #f5f5f5; padding: 2px 6px; font-size: 13px;">fields.text({ multiline: true })</code> mit Markdown-Rendering — einfachste Lösung, volle Formatierung über Markdown-Syntax, GEO-kompatibel.</p>
+    </div>
+  </div>
+
+</body>
+</html>
