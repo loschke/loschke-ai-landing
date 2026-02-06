@@ -40,7 +40,7 @@ export function Nav() {
     { label: "Blog", href: "/blog" },
     { label: "Manifest", href: "/manifest" },
     { label: "Speaking", href: "/speaking" },
-    { label: "Kontakt", href: "/contact" },
+    { label: "Austausch", href: "/contact" },
   ];
 
   // Check if link is active (exact match or starts with for nested routes like /blog/*)
@@ -109,7 +109,7 @@ export function Nav() {
 
           {/* LinkedIn - Always visible */}
           <a
-            href="https://linkedin.com/in/loschke"
+            href="https://www.linkedin.com/in/rico-loschke/"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:block text-dark hover:text-accent transition-colors duration-250"
@@ -187,7 +187,7 @@ export function Nav() {
 
           {/* LinkedIn in Mobile Menu */}
           <a
-            href="https://linkedin.com/in/loschke"
+            href="https://www.linkedin.com/in/rico-loschke/"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-8 text-dark hover:text-accent transition-colors duration-250"

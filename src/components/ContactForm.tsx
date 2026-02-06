@@ -44,73 +44,85 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-green-50 text-green-800 p-6 rounded-lg text-center">
-        <h3 className="text-xl font-bold mb-2">Nachricht gesendet!</h3>
-        <p>Vielen Dank für Ihre Anfrage. Wir melden uns in Kürze.</p>
+      <div className="py-12">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="w-8 h-8 flex items-center justify-center bg-accent text-white text-sm font-bold">✓</span>
+          <h3 className="text-xl sm:text-2xl font-black tracking-[-0.02em] text-[#151416]">
+            Nachricht ist raus!
+          </h3>
+        </div>
+        <p className="text-base sm:text-lg font-light leading-[1.75] text-[#525252] mb-6">
+          Vielen Dank für deine Nachricht. Ich melde mich in der Regel innerhalb von 1–2 Werktagen.
+        </p>
         <button 
-            onClick={() => setStatus("idle")} 
-            className="mt-4 text-green-700 underline hover:text-green-900"
+          onClick={() => setStatus("idle")} 
+          className="text-sm font-medium text-accent border-b border-transparent hover:border-accent transition-colors duration-250 cursor-pointer bg-transparent p-0"
         >
-            Neue Nachricht senden
+          Noch eine Nachricht senden →
         </button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 max-w-lg mx-auto">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
       {status === "error" && (
-        <div className="bg-red-50 text-red-700 p-4 rounded-lg">
-          {serverError || "Es gab einen Fehler beim Senden. Bitte versuchen Sie es später erneut."}
+        <div className="px-4 py-3 bg-red-50 border-l-2 border-red-500 text-red-700 text-sm">
+          {serverError || "Es gab einen Fehler beim Senden. Bitte versuche es später erneut."}
         </div>
       )}
 
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="name" className="block text-xs font-medium text-[#151416]/40 tracking-[0.08em] uppercase mb-2">
           Name
         </label>
         <input
           {...register("name")}
           id="name"
           type="text"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all"
+          placeholder="Wie heißt du?"
+          className="w-full px-0 py-3 text-base sm:text-lg font-light text-[#151416] bg-transparent border-0 border-b border-[#151416]/15 focus:border-accent outline-none transition-colors duration-300 placeholder:text-[#151416]/25"
         />
-        {errors.name && <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>}
+        {errors.name && <p className="text-red-600 text-xs mt-2">{errors.name.message}</p>}
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="email" className="block text-xs font-medium text-[#151416]/40 tracking-[0.08em] uppercase mb-2">
           E-Mail
         </label>
         <input
           {...register("email")}
           id="email"
           type="email"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all"
+          placeholder="deine@email.de"
+          className="w-full px-0 py-3 text-base sm:text-lg font-light text-[#151416] bg-transparent border-0 border-b border-[#151416]/15 focus:border-accent outline-none transition-colors duration-300 placeholder:text-[#151416]/25"
         />
-        {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email.message}</p>}
+        {errors.email && <p className="text-red-600 text-xs mt-2">{errors.email.message}</p>}
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="message" className="block text-xs font-medium text-[#151416]/40 tracking-[0.08em] uppercase mb-2">
           Nachricht
         </label>
         <textarea
           {...register("message")}
           id="message"
           rows={5}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all"
+          placeholder="Worum geht's? Schreib einfach drauf los."
+          className="w-full px-0 py-3 text-base sm:text-lg font-light text-[#151416] bg-transparent border-0 border-b border-[#151416]/15 focus:border-accent outline-none transition-colors duration-300 resize-y placeholder:text-[#151416]/25"
         />
-        {errors.message && <p className="text-red-600 text-sm mt-1">{errors.message.message}</p>}
+        {errors.message && <p className="text-red-600 text-xs mt-2">{errors.message.message}</p>}
       </div>
 
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className="w-full bg-gray-900 text-white py-3 px-6 rounded-lg font-medium hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-      >
-        {status === "submitting" ? "Wird gesendet..." : "Nachricht senden"}
-      </button>
+      <div className="pt-2">
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          className="inline-block bg-[#151416] text-white px-7 py-3.5 text-sm font-medium tracking-wide transition-colors duration-300 hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer border-0"
+        >
+          {status === "submitting" ? "Wird gesendet…" : "Nachricht senden"}
+        </button>
+      </div>
     </form>
   );
 }
