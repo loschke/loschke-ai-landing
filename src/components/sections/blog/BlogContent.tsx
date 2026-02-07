@@ -13,6 +13,15 @@ interface Article {
   featured: boolean;
   tags: string[];
   hasAudio: boolean;
+  pubDate?: string;
+}
+
+/* ─── Quarter Helper ─── */
+function formatQuarter(isoDate?: string): string | null {
+  if (!isoDate) return null;
+  const date = new Date(isoDate);
+  const quarter = Math.ceil((date.getMonth() + 1) / 3);
+  return `Q${quarter} ${date.getFullYear()}`;
 }
 
 interface BlogContentProps {
@@ -102,13 +111,14 @@ function TagPill({ label }: { label: string }) {
 
 /* ─── Featured Article Card ─── */
 function FeaturedCard({ article }: { article: Article }) {
+  const quarter = formatQuarter(article.pubDate);
   return (
     <Reveal>
       <a
         href={`/blog/${article.slug}`}
         className="block group py-10 md:py-14 border-t-2 border-accent transition-[padding] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:pl-4"
       >
-        {/* Category + Audio */}
+        {/* Category + Quarter + Audio */}
         <div className="flex flex-wrap gap-3 items-center mb-5">
           <span className="text-[10px] text-accent tracking-[0.05em]">
             {article.categoryIcon}
@@ -116,6 +126,12 @@ function FeaturedCard({ article }: { article: Article }) {
           <span className="text-[11px] font-medium text-accent tracking-[0.02em] uppercase">
             Featured
           </span>
+          {quarter && (
+            <>
+              <span className="text-[11px] text-[#d4d4d4]">·</span>
+              <span className="text-[11px] text-[#a3a3a3]">{quarter}</span>
+            </>
+          )}
           {article.hasAudio && (
             <>
               <span className="text-[11px] text-[#d4d4d4]">·</span>
@@ -163,13 +179,14 @@ function ArticleCard({
   article: Article;
   delay?: number;
 }) {
+  const quarter = formatQuarter(article.pubDate);
   return (
     <Reveal delay={delay}>
       <a
         href={`/blog/${article.slug}`}
         className="block group py-8 md:py-10 border-t border-[#e5e5e5] transition-[padding] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:pl-3"
       >
-        {/* Category + Audio Row */}
+        {/* Category + Quarter + Audio Row */}
         <div className="flex flex-wrap gap-2 items-center mb-3">
           <span className="text-xs text-accent">
             {article.categoryIcon}
@@ -177,6 +194,12 @@ function ArticleCard({
           <span className="text-xs sm:text-sm font-medium text-[#a3a3a3] tracking-[0.02em]">
             {article.categoryLabel}
           </span>
+          {quarter && (
+            <>
+              <span className="text-[11px] text-[#d4d4d4]">·</span>
+              <span className="text-[11px] text-[#a3a3a3]">{quarter}</span>
+            </>
+          )}
           {article.hasAudio && (
             <>
               <span className="text-[11px] text-[#d4d4d4]">·</span>
@@ -232,23 +255,8 @@ export function BlogContent({ articles }: BlogContentProps) {
 
   return (
     <div id="artikel">
-      {/* ═══ CATEGORY FILTER — no label, just pills ═══ */}
-      <section className="px-6 sm:px-10 md:px-16 lg:px-20 py-8 md:py-10 border-t border-[#e5e5e5]">
-        <div className="flex flex-wrap gap-2">
-          {categories.map((cat) => (
-            <CategoryPill
-              key={cat.id}
-              icon={cat.icon}
-              label={cat.label}
-              active={activeCategory === cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-            />
-          ))}
-        </div>
-      </section>
-
       {/* ═══ ARTICLES SECTION ═══ */}
-      <section className="py-8 md:py-12 lg:py-16 px-6 sm:px-10 md:px-16 lg:px-20">
+      <section className="py-8 md:py-12 lg:py-16 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]">
         <div className="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start">
           {/* Label: hidden on mobile, visible on md+ */}
           <Reveal>
@@ -258,6 +266,19 @@ export function BlogContent({ articles }: BlogContentProps) {
             </p>
           </Reveal>
           <div>
+            {/* ═══ CATEGORY FILTER — aligned with articles column ═══ */}
+            <div className="flex flex-wrap gap-2 pb-8 md:pb-10">
+              {categories.map((cat) => (
+                <CategoryPill
+                  key={cat.id}
+                  icon={cat.icon}
+                  label={cat.label}
+                  active={activeCategory === cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                />
+              ))}
+            </div>
+
             {/* Featured first */}
             {featuredArticle && <FeaturedCard article={featuredArticle} />}
 

@@ -6,7 +6,11 @@
 export function renderSimpleMarkdown(input: string): string {
   if (!input) return '';
 
-  const lines = input.split('\n');
+  // Pre-process: unfold YAML >- folded list items
+  // "- **A** text - **B** text" → separate lines
+  const normalized = input.replace(/ - (?=\*\*)/g, '\n- ');
+
+  const lines = normalized.split('\n');
   const blocks: string[] = [];
   let currentList: string[] = [];
 

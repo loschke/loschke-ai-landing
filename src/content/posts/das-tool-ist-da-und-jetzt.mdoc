@@ -1,0 +1,104 @@
+---
+title: "Das Tool ist da. Und jetzt?"
+excerpt: Enterprise-KI-Tools lösen das Zugangsproblem. Aber 80% der Belegschaft starren auf ein leeres Textfeld. Warum Abstraktionsschichten wichtiger sind als Feature-Listen.
+summary: >-
+  Enterprise-KI-Tools wie Langdock oder OpenWebUI bringen Modelle compliant
+  in Organisationen. Was sie nicht lösen: produktive Nutzung jenseits der
+  Power-User. Das leere Textfeld überfordert die Mehrheit.
+
+  - **Modellauswahl** hilft nur, wer die Unterschiede kennt
+  - **Prompt-Bibliotheken** setzen Wissen voraus, das fehlt
+  - **Agenten-Builder** automatisieren Prozesse, die vorher niemand hinterfragt hat
+  - **Abstraktionsschichten** sind Organisationsarbeit, keine Software-Features
+
+  Die Frage bei der Toolauswahl ist nicht welches Tool. Die Frage ist: für wen.
+pubDate: 2025-11-12
+category: takes
+featured: false
+tags:
+  - Enterprise-KI
+  - KI-Tools
+  - Abstraktionsschicht
+  - KI-Adoption
+readTime: 8 min
+draft: false
+---
+
+Vor ein paar Wochen saß ich mit einem IT-Leiter zusammen, der stolz war. Zu Recht. Sein Team hatte Langdock ausgerollt. 200 Lizenzen, Compliance geklärt, SSO eingerichtet. Alles richtig gemacht.
+
+Dann habe ich ihn gefragt, wie die Nutzung aussieht. Er hat kurz gezögert. "Naja, die meisten nutzen es als Chat. Manche fragen nach Zusammenfassungen. Ein paar Mutige bauen Prompts." Pause. "Ehrlich gesagt weiß ich nicht, ob wir das Potenzial ausschöpfen."
+
+Das war kein Einzelfall. In den letzten Monaten habe ich diese Szene in Variationen immer wieder erlebt. Die Tools sind da, die Nutzung bleibt hinter den Erwartungen. Und fast immer liegt es am selben Punkt.
+
+## Das Zugangsproblem ist gelöst. Das Nutzungsproblem nicht.
+
+Tools wie Langdock, LibreChat oder OpenWebUI lösen ein reales Problem. Sie bringen KI-Modelle compliant in die Organisation. Sie regeln Zugang, Datenschutz, Abrechnung. Das ist notwendig, und das machen sie gut.
+
+Was sie nicht lösen: Wie die 80% der Belegschaft, die keine Prompt-Expertise haben, mit diesen Tools produktiv arbeiten. Die Oberfläche sieht für den Analysten genauso aus wie für die Teamleiterin, genauso wie für den Kreativen. Eine Suchleiste, eine Modellauswahl, ein leeres Textfeld.
+
+> **Das leere Textfeld ist das größte Hindernis für produktive KI-Nutzung in Unternehmen.**
+
+Für jemanden, der täglich mit KI arbeitet, ist das kein Problem. Ich weiß, welches Modell ich für welche Aufgabe nehme, wie ich einen Prompt strukturiere, wann ich Claude statt GPT wähle. Aber ich bin Teil der Bubble. Die meisten Menschen in Organisationen sind es nicht. Und die Lücke zwischen denen, die KI produktiv nutzen, und denen, die vor dem leeren Textfeld sitzen, wird nicht kleiner. Sie wird größer.
+
+## Wo die Feature-Logik nicht aufgeht
+
+Die genannten Tools folgen einer Logik, die für Power-User Sinn ergibt. Aber für den Großteil der Nutzer wird jedes Feature zur Hürde.
+
+| Was das Tool bietet | Was der Nutzer braucht |
+|---------------------|------------------------|
+| Modellauswahl (GPT-4, Claude, Mistral...) | Eine Antwort auf: "Welches Modell passt zu meiner Aufgabe?" |
+| Prompt-Bibliotheken | Aufgaben, die ohne Prompt-Wissen funktionieren |
+| Agenten-Builder | Prozesse, die vor der Automatisierung verstanden sind |
+| Eine UI für alle | Oberflächen, die zur Rolle passen |
+
+**Modellauswahl:** Wer nicht weiß, worin sich Claude von GPT unterscheidet, für den ist eine Liste mit 15 Modellen keine Auswahl. Es ist Überforderung. Was gebraucht wird, ist nicht die Frage "Welches Modell?", sondern die Frage "Welche Aufgabe?". Die Modellwahl sollte im Hintergrund passieren, unsichtbar für den Nutzer, gesteuert durch die Art der Anfrage.
+
+**Prompt-Bibliotheken:** Eine Sammlung guter Prompts hilft denen, die schon wissen, was Prompting ist. Für alle anderen ist es eine weitere Komplexitätsschicht. Was gebraucht wird: vordefinierte Aufgaben mit klaren Eingabefeldern. Nicht "Schreib einen guten Prompt für eine Wettbewerbsanalyse", sondern "Gib deine Branche ein, wähle den Fokus, klick auf Ausführen."
+
+**Agenten:** Die Möglichkeit, Agenten zu bauen, klingt nach dem nächsten Level. In der Praxis bauen Teams Agenten für Prozessschritte, die niemand vorher in Frage gestellt hat. Bevor ich automatisiere, muss ich verstehen, ob der Schritt überhaupt nötig ist. Automatisierung ohne Verständnis erzeugt keine Effizienz. Sie zementiert Ineffizienz.
+
+## Was ich unter Abstraktion verstehe
+
+Ich habe in den letzten Monaten selbst an einem Ansatz gearbeitet, der eine andere Richtung einschlägt. Nicht als fertiges Produkt, sondern als Denkmodell, das ich in Kundenprojekten teste. Der Kern lässt sich auf ein Wort reduzieren: Abstraktion. Die technische Komplexität verschwindet hinter der Aufgabe.
+
+**Statt Modellauswahl: Aufgabenorientierung.** Der Nutzer wählt nicht zwischen Claude und GPT. Er wählt zwischen "Schnelle Antwort", "Kreatives Schreiben" oder "Komplexe Analyse". Das System entscheidet im Hintergrund, welches Modell arbeitet. Die Modellwahl wird zur Infrastruktur, nicht zur Entscheidung.
+
+**Statt Prompt-Bibliothek: Task-Templates.** Wiederkehrende Aufgaben werden als strukturierte Formulare abgebildet. Branche eingeben, Fokus wählen, ausführen. Kein Prompting-Wissen nötig. Die Qualität ist reproduzierbar, weil der Prompt im Template steckt, nicht im Kopf des Nutzers.
+
+**Statt einer UI für alle: Rollen-basierte Zugänge.** Der Kreative sieht eine visuelle Auswahl mit Beispielen und Anpassungsmöglichkeiten. Die Führungskraft bekommt schnelle Entscheidungsvorlagen. Analysten arbeiten mit strukturierten Datenabfragen. Eine Oberfläche für alle klingt nach Fairness, ist aber das Gegenteil. Sie bevorzugt die, die ohnehin schon wissen, was sie tun.
+
+## Warum kein Tool dieses Problem allein löst
+
+Hier kommt der Punkt, den niemand gern hört: Die Abstraktionsschicht zu bauen ist nicht Aufgabe des Softwareanbieters. Es ist Aufgabe der Organisation.
+
+Das bedeutet: Jemand muss verstehen, welche Aufgaben im Alltag wiederkehren. Jemand muss entscheiden, welche davon sich als Task-Template abbilden lassen. Jemand muss die Brücke bauen zwischen dem, was das Tool kann, und dem, was die Menschen im Unternehmen tatsächlich tun.
+
+Das ist Arbeit. Das ist keine einmalige Konfiguration, sondern ein fortlaufender Prozess. Und genau deshalb kaufen viele Organisationen lieber ein mächtiges Multi-Tool und hoffen, dass die Nutzung schon kommt. Sie kommt nicht. Nicht von allein.
+
+> **Ein Enterprise-AI-Tool ohne Abstraktionsschicht ist wie ein ERP-System ohne konfigurierte Workflows. Es kann alles. Es tut nichts.**
+
+## Wo mein Argument an Grenzen stößt
+
+Was ich hier beschreibe, kommt aus meiner Erfahrung mit mittelständischen Organisationen. Keine Studie, keine repräsentative Erhebung. Trotzdem bin ich überzeugt, dass das Muster auf die Mehrheit zutrifft. Und zwar aus einem simplen Grund: Die Schere zwischen Power-Usern und Gelegenheitsnutzern ist real, und sie wird größer.
+
+Wer täglich mit KI arbeitet, lernt exponentiell. Wer alle zwei Wochen mal ChatGPT öffnet, steht jedes Mal wieder am Anfang. Das ist kein Motivationsproblem. Das ist ein Kompetenzgefälle, das sich mit der gleichen Oberfläche für beide Gruppen nicht schließen lässt.
+
+Gibt es Organisationen, in denen ein Multi-Tool ohne Abstraktionsschicht funktioniert? Vermutlich ja. Kleine, technikaffine Teams. Startups, in denen alle ohnehin im Tool leben. Aber das sind nicht die Unternehmen, die ich berate. Und es sind nicht die Unternehmen, die Enterprise-Lizenzen für 200 oder 2.000 Mitarbeitende kaufen.
+
+Kann man auch zu früh abstrahieren? Auch das. Wer Templates baut, bevor er die Aufgaben versteht, schafft neue Komplexität statt sie zu reduzieren. Die Reihenfolge ist entscheidend: Erst verstehen, dann vereinfachen. Nicht umgekehrt.
+
+## Was das für die Toolauswahl bedeutet
+
+Ich will hier keine Tools schlecht reden. Langdock, OpenWebUI, LibreChat haben ihre Berechtigung. Sie lösen das Zugangsproblem, und das ist der notwendige erste Schritt.
+
+Aber wenn du gerade evaluierst, welches Tool in deine Organisation kommt, stell dir eine Frage, die in keinem Feature-Vergleich auftaucht: Für wen kaufst du das? Wenn die Antwort "für alle" ist, dann frag dich, ob "alle" damit arbeiten können. Oder ob du ein Tool für die 20% einführst und hoffst, dass die 80% irgendwie mitziehen.
+
+| Frage | Wenn ja |
+|-------|---------|
+| Haben wir Prompt-Expertise im Team? | Multi-Tool kann funktionieren |
+| Sind unsere Prozesse klar dokumentiert? | Agenten-Builder ergibt Sinn |
+| Wissen wir, welche Aufgaben wiederkehren? | Task-Templates sind der schnellere Weg |
+| Haben wir Ressourcen für laufende Betreuung? | Beides möglich |
+| Keines davon? | Fang nicht beim Tool an |
+
+Der erste Schritt ist nicht die Toolauswahl. Der erste Schritt ist die Frage: Welche Abkürzungen brauchen unsere Leute, damit sie mit KI arbeiten können, statt vor ihr zu sitzen? Wer diese Frage beantworten kann, weiß auch, welches Tool passt. Und vor allem, was drumherum gebaut werden muss.

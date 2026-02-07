@@ -1,0 +1,155 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+import { Dot } from "@components/ui/Dot";
+import { getCollection } from "astro:content";
+import { categoryMeta, type Category } from "@content/config";
+
+// Format date as quarter (e.g. "Q3 2025")
+function formatQuarter(date?: Date): string {
+  if (!date) return "";
+  const quarter = Math.ceil((date.getMonth() + 1) / 3);
+  return `Q${quarter} ${date.getFullYear()}`;
+}
+
+// Fetch all published posts, sorted by date descending
+const allPosts = (await getCollection("posts"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => {
+    const dateA = a.data.pubDate?.valueOf() || 0;
+    const dateB = b.data.pubDate?.valueOf() || 0;
+    return dateB - dateA;
+  });
+
+function mapPost(post: (typeof allPosts)[0]) {
+  const cat = post.data.category as Category;
+  const meta = categoryMeta[cat] || categoryMeta.takes;
+  return {
+    quarter: formatQuarter(post.data.pubDate),
+    title: post.data.title,
+    categoryLabel: meta.label,
+    categoryIcon: meta.icon,
+    href: `/blog/${post.slug}`,
+    featured: post.data.featured,
+  };
+}
+
+// Featured always shown first, then fill remaining 3 slots with latest non-featured
+const featuredPost = allPosts.find((p) => p.data.featured);
+const latestNonFeatured = allPosts.filter((p) => !p.data.featured).slice(0, 3);
+
+const featuredArticle = featuredPost ? mapPost(featuredPost) : null;
+const regularArticles = latestNonFeatured.map(mapPost);
+---
+
+<section
+  class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+  >
+    <Reveal client:load>
+      <p
+        class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase md:sticky md:top-[98px]"
+      >
+        Gedanken
+      </p>
+    </Reveal>
+
+    <div>
+      <Reveal client:load>
+        <h2
+          class="text-3xl sm:text-4xl md:text-[clamp(34px,4.5vw,60px)] font-black leading-[0.95] tracking-[-0.025em] mb-5"
+        >
+          Was mich<br />gerade bewegt<Dot />
+        </h2>
+      </Reveal>
+
+      <Reveal client:load delay={0.08}>
+        <p
+          class="text-base sm:text-lg font-light leading-[1.75] text-[#525252] max-w-full md:max-w-[560px] mb-10 md:mb-14"
+        >
+          Beobachtungen, Experimente, Einordnungen. Alles, worüber ich gerade
+          nachdenke — ohne Filter.
+        </p>
+      </Reveal>
+
+      <div>
+        {/* ═══ FEATURED ARTICLE ═══ */}
+        {
+          featuredArticle && (
+            <Reveal client:load>
+              <a
+                href={featuredArticle.href}
+                class="block group py-10 md:py-14 border-t-2 border-accent transition-[padding] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:pl-4"
+              >
+                <div class="flex flex-wrap gap-3 items-center mb-4">
+                  <span class="text-[10px] text-accent tracking-[0.05em]">
+                    {featuredArticle.categoryIcon}
+                  </span>
+                  <span class="text-[11px] font-medium text-accent tracking-[0.02em] uppercase">
+                    Featured
+                  </span>
+                  {featuredArticle.quarter && (
+                    <>
+                      <span class="text-[11px] text-[#d4d4d4]">·</span>
+                      <span class="text-[11px] text-[#a3a3a3]">
+                        {featuredArticle.quarter}
+                      </span>
+                    </>
+                  )}
+                </div>
+                <h3 class="text-2xl sm:text-3xl md:text-[clamp(30px,4vw,44px)] font-black tracking-[-0.025em] leading-[1.05] max-w-[720px] transition-colors duration-300 group-hover:text-accent">
+                  {featuredArticle.title}
+                </h3>
+              </a>
+            </Reveal>
+          )
+        }
+
+        {/* ═══ REGULAR ARTICLES ═══ */}
+        {
+          regularArticles.map((article, i) => (
+            <Reveal client:load delay={i * 0.08}>
+              <a
+                href={article.href}
+                class="block group py-7 md:py-9 border-t border-[#e5e5e5] transition-[padding] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:pl-3"
+              >
+                <div class="flex flex-wrap gap-2 items-center mb-3">
+                  <span class="text-xs text-accent">
+                    {article.categoryIcon}
+                  </span>
+                  <span class="text-xs sm:text-sm font-medium text-[#a3a3a3] tracking-[0.02em]">
+                    {article.categoryLabel}
+                  </span>
+                  {article.quarter && (
+                    <>
+                      <span class="text-[11px] text-[#d4d4d4]">·</span>
+                      <span class="text-[11px] text-[#a3a3a3]">
+                        {article.quarter}
+                      </span>
+                    </>
+                  )}
+                </div>
+                <h3 class="text-xl sm:text-2xl md:text-[clamp(22px,3vw,30px)] font-black tracking-[-0.015em] leading-[1.1] max-w-[680px] transition-colors duration-300 group-hover:text-accent">
+                  {article.title}
+                </h3>
+              </a>
+            </Reveal>
+          ))
+        }
+
+        {/* Bottom border */}
+        <div class="border-t border-[#e5e5e5]"></div>
+      </div>
+
+      <Reveal client:load delay={0.35}>
+        <a
+          href="/blog"
+          class="inline-block mt-8 text-sm sm:text-base font-medium text-accent border-b border-transparent hover:border-accent transition-colors duration-250"
+        >
+          Alle Artikel →
+        </a>
+      </Reveal>
+    </div>
+  </div>
+</section>

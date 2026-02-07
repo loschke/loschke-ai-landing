@@ -32,6 +32,7 @@ const articles = posts.map((post) => {
     featured: post.data.featured,
     tags: post.data.tags || [],
     hasAudio: !!post.data.audioSrc,
+    pubDate: post.data.pubDate ? post.data.pubDate.toISOString() : undefined,
   };
 });
 ---

@@ -10,6 +10,7 @@ interface Props {
   categoryIcon: string;
   readTime?: string;
   tags?: string[];
+  pubDate?: Date;
 }
 
 const {
@@ -19,7 +20,16 @@ const {
   categoryIcon,
   readTime,
   tags = [],
+  pubDate,
 } = Astro.props;
+
+// Format date as quarter
+function formatQuarter(date?: Date): string | null {
+  if (!date) return null;
+  const quarter = Math.ceil((date.getMonth() + 1) / 3);
+  return `Q${quarter} ${date.getFullYear()}`;
+}
+const quarter = formatQuarter(pubDate);
 ---
 
 <header
@@ -39,6 +49,7 @@ const {
             {category}
           </span>
         </div>
+        {quarter && <span class="text-xs text-[#a3a3a3]">{quarter}</span>}
         {
           readTime && (
             <span class="text-xs text-[#a3a3a3]">{readTime} Lesezeit</span>
@@ -48,7 +59,7 @@ const {
     </Reveal>
 
     <!-- Right: Title + Excerpt + Tags -->
-    <div class="max-w-full md:max-w-[900px]">
+    <div class="max-w-full">
       <h1
         class="text-4xl sm:text-5xl md:text-[clamp(44px,6vw,72px)] font-black leading-[1.05] tracking-[-0.03em] mb-5 sm:mb-6"
       >
@@ -60,7 +71,7 @@ const {
       {
         excerpt && (
           <Reveal client:load delay={0.4}>
-            <p class="text-xl sm:text-2xl md:text-[clamp(22px,2.8vw,34px)] font-serif leading-[1.45] text-[#525252] max-w-[780px]">
+            <p class="text-xl sm:text-2xl md:text-[clamp(22px,2.8vw,34px)] font-serif leading-[1.45] text-[#525252] max-w-[900px]">
               {excerpt}
             </p>
           </Reveal>

@@ -1,0 +1,121 @@
+---
+title: "Generative KI: Eine Bestandsaufnahme zwischen Hype und Panik"
+excerpt: Auf LinkedIn sehe ich zwei Lager. Die einen zeigen kaputte Deutschlandkarten als Beweis, dass KI nichts taugt. Die anderen lassen Agenten Flüge buchen und tun so, als wäre das Unternehmensrealität. Beide liegen falsch. Meine Bestandsaufnahme nach zwei Jahren im Maschinenraum.
+summary: >-
+  Generative KI wird gleichzeitig über- und unterschätzt. Die Wahrheit
+  liegt nicht in der Mitte, sondern im Detail: 9 von 14 Meta-Fähigkeiten
+  sind produktionsreif, aber keine davon funktioniert ohne Kompetenz.
+
+  - **Text & Denken** funktioniert zuverlässig, Code-Assistenz hat den klarsten ROI
+  - **Sehen & Erzeugen** ist im Mainstream angekommen, Video bleibt experimentell
+  - **Hören & Sprechen** hat 2025 den größten Sprung gemacht
+  - **Systemfähigkeiten** wie RAG und Agents funktionieren, brauchen aber Expertise
+  - **Der Engpass ist nicht mehr die Technik.** Er ist organisatorisch und menschlich.
+
+  Wer seine Meinung über KI auf Erfahrungen von vor einem Jahr stützt,
+  urteilt über eine Technologie, die es so nicht mehr gibt.
+pubDate: 2026-01-10
+category: experiments
+featured: false
+tags:
+  - Generative KI
+  - KI-Fähigkeiten
+  - Bestandsaufnahme
+  - KI-Kompetenz
+readTime: 9 min
+draft: false
+---
+
+Mein LinkedIn-Feed erzählt zwei Geschichten. Die eine geht so: Jemand lässt eine KI eine Deutschlandkarte generieren, Sachsen fehlt, Kommentar darunter: "Und damit soll ich mein Unternehmen transformieren?" Viele Lacher, viel Zustimmung. Die andere Geschichte: Ein Entwickler zeigt einen Agenten, der eigenständig recherchiert, E-Mails schreibt, Meetings plant und nebenbei eine Datenbank aufräumt. Standing Ovations.
+
+Beide Geschichten sind real. Beide sind irreführend. Die kaputte Karte sagt nichts über die Fähigkeit von KI, einen Vertrag zu analysieren oder Code zu schreiben. Die Agent-Demo sagt nichts über die Realität in einem Unternehmen mit SAP, Betriebsrat und Freigabeprozessen, die allein sechs Monate dauern.
+
+Ich arbeite seit zwei Jahren mit generativer KI. Nicht als Beobachter, sondern als Anwender. Ich schreibe Code damit, erstelle Bilder, baue Workflows, transkribiere Gespräche, analysiere Dokumente. Jeden Tag, in verschiedenen Kontexten, mit verschiedenen Modellen. Dieser Artikel ist der Versuch, eine ehrliche Bestandsaufnahme zu machen. Nicht basierend auf Benchmarks oder Pressemeldungen, sondern auf dem, was ich in der Praxis erlebe.
+
+## Was "funktioniert" heißt
+
+Bevor ich in die Details gehe, eine Klarstellung. Wenn ich sage, eine KI-Fähigkeit "funktioniert", meine ich nicht: fehlerfrei. Ich meine: Du kannst damit produktiv arbeiten, wenn du weißt, was du tust.
+
+Excel funktioniert auch. Trotzdem produzieren Menschen damit jeden Tag Tabellen voller Fehler. Photoshop funktioniert. Trotzdem sehen die meisten Ergebnisse von Anfängern furchtbar aus. Kein Werkzeug funktioniert ohne Kompetenz. Bei KI ist das nicht anders. Nur dass viele Menschen erwarten, dass es anders sein sollte.
+
+> **Produktionsreif heißt nicht fehlerfrei. Es heißt: brauchbar für Leute, die wissen, was sie tun.** Wie jedes professionelle Werkzeug.
+
+Diese Unterscheidung ist wichtig, weil sie beide Lager korrigiert. Die Skeptiker, die aus Einzelfehlern auf generelle Untauglichkeit schließen. Und die Enthusiasten, die so tun, als müsste man nur den richtigen Prompt schreiben und alles löse sich von selbst.
+
+## 14 Fähigkeiten, vier Gruppen, eine Bestandsaufnahme
+
+Generative KI ist kein monolithisches Werkzeug. Sie besteht aus unterschiedlichen Fähigkeiten, die unterschiedlich weit entwickelt sind. Ich habe in den letzten zwei Jahren 14 Meta-Fähigkeiten identifiziert, die sich in vier Gruppen sortieren lassen. Die Bewertung basiert auf meiner Arbeitspraxis: 🟢 bedeutet, ich setze das produktiv ein. 🟡 bedeutet, es funktioniert mit Einschränkungen. 🔴 bedeutet, beeindruckende Demos, aber noch nicht alltagstauglich.
+
+| Gruppe | Fähigkeiten | Status |
+|--------|------------|--------|
+| **Text & Denken** | Textverständnis, Textgenerierung, Reasoning, Code | 🟢 🟢 🟢 🟢 |
+| **Sehen & Erzeugen** | Vision Input, Bildgenerierung, Video | 🟢 🟢 🔴 |
+| **Hören & Sprechen** | Audio Input, Audio Output, Realtime | 🟢 🟢 🟡 |
+| **Systemfähigkeiten** | RAG, Memory, Agents, Multimodal | 🟢 🔴 🟡 🟡 |
+
+Neun von vierzehn Fähigkeiten nutze ich produktiv. Drei mit Einschränkungen. Zwei sind noch nicht so weit. Das ist die Realität. Nicht die kaputte Deutschlandkarte. Nicht die Agent-Demo.
+
+### Text und Denken: Das Fundament steht
+
+Textverständnis, Textgenerierung, Reasoning und Code sind die Bereiche, in denen generative KI am weitesten ist. Das überrascht niemanden. Was viele unterschätzen: Der Sprung im letzten Jahr war nicht inkrementell, er war fundamental.
+
+Code-Assistenz ist der Bereich mit dem klarsten Return. Ich habe Anfang 2025 Stunden damit verbracht, nach einem KI-Codierblock aufzuräumen. Heute baue ich komplette Webanwendungen mit KI-Unterstützung. Der Unterschied liegt nicht nur in besseren Modellen. Er liegt in besseren Methoden: Specs statt vager Prompts, Rules-Files statt Hoffnung, Review statt blindem Vertrauen. Extended Thinking hat das Reasoning auf ein neues Level gehoben. Modelle wie Claude Opus oder GPT-5 zerlegen komplexe Probleme in Teilschritte und erklären ihre Entscheidungen. Nicht perfekt. Aber gut genug, um damit zu arbeiten.
+
+### Sehen und Erzeugen: Mainstream mit einer Ausnahme
+
+Vision Input ist der unterschätzte Durchbruch dieses Jahres. Ein Foto vom Whiteboard machen und die Inhalte strukturiert zusammenfassen lassen. Einen Screenshot einer Fehlermeldung hochladen und eine Lösung bekommen. Das funktioniert heute zuverlässig und verändert Arbeitsabläufe mehr als die meisten spektakulären Demos.
+
+Bildgenerierung ist im Mainstream angekommen. Marketing-Teams nutzen sie für Konzeptvisualisierungen, Social-Media-Content, Mockups. Die Qualität reicht für viele professionelle Anwendungen. Ja, Hände werden manchmal falsch dargestellt. Ja, Text in Bildern bleibt fehleranfällig. Aber wer daraus schließt, dass die Technologie nichts taugt, verwechselt eine Schwäche in einem Teilbereich mit einem Gesamturteil.
+
+Video-Generierung ist die Ausnahme. Sora, Veo 3, Kling produzieren beeindruckende Ergebnisse. Aber die Konsistenz über längere Sequenzen schwankt, die Kosten sind hoch, die Steuerbarkeit begrenzt. Für kommerzielle Produktion im großen Stil ist das noch nicht reif. Ich erwarte, dass sich das 2026 ändert. Aber heute ist es noch nicht so weit.
+
+### Hören und Sprechen: Der leise Durchbruch
+
+Sprache war lange die Schwachstelle. Transkription unzuverlässig, synthetische Stimmen robotisch, Echtzeit-Gespräche undenkbar. Das hat sich gedreht.
+
+**Transkription** funktioniert mit Fehlerraten unter fünf Prozent für die meisten Sprachen. Für Meetings, Interviews, Podcasts ist das längst Standard. **Speech-to-Speech** ohne den Umweg über Text ist der eigentliche Durchbruch. Neue Modelle verarbeiten Sprache direkt. Das Ergebnis: Latenz in Millisekunden, natürliche Unterbrechungen werden verstanden, der Tonfall bleibt erhalten. Voice-Interfaces fühlen sich zum ersten Mal nicht wie Sprachmenüs an. **Realtime-Interaktion** funktioniert technisch, ist aber noch nicht ausgereift genug für den Unternehmensalltag. Deshalb 🟡 statt 🟢.
+
+### Systemfähigkeiten: Hier wird es komplex
+
+RAG, also die Einbindung externer Datenquellen in KI-Antworten, funktioniert. Ich nutze es täglich für mein eigenes Wissensmanagement. Aber es erfordert Expertise bei Chunking, Embedding-Auswahl und Prompt-Design. Wer denkt, man wirft einfach Dokumente in einen Chatbot und bekommt perfekte Antworten, wird enttäuscht.
+
+Agents sind das Buzzword des Jahres. Und ja, sie können heute Recherche-Aufgaben durchführen, Code schreiben und testen, Daten zwischen Systemen synchronisieren. Aber: Fehler in frühen Schritten propagieren durch die gesamte Kette. Kosten können schnell steigen. Die Demo, in der ein Agent autonom eine komplexe Aufgabe löst, ist oft genau das. Eine Demo. In der Praxis brauchen Agents enge Leitplanken und menschliche Kontrolle.
+
+Memory bleibt die größte offene Baustelle. Features existieren bei Claude und GPT, aber die Konsistenz über lange Zeiträume schwankt. Für Enterprise fehlen Compliance-Features. Das Potenzial ist enorm, die Umsetzung noch nicht da.
+
+## Was nicht geht (die ehrliche Seite)
+
+Eine Bestandsaufnahme, die nur Stärken zeigt, ist keine Bestandsaufnahme. Also: Was funktioniert noch nicht?
+
+**Halluzinationen sind nicht gelöst.** LLMs generieren manchmal Inhalte, die faktisch falsch sind und absolut überzeugend klingen. Erfundene Zitate, nicht existierende Studien, falsche Zahlen. Die Raten variieren je nach Anwendungsfall massiv. Das Problem ist beherrschbar mit den richtigen Methoden: verifizierte Quellen, Human-in-the-Loop, explizite Aufforderung zur Unsicherheit. Aber gelöst ist es nicht.
+
+**Konsistenz ist nicht garantiert.** Gleiche Frage, andere Antwort. Das liegt in der Natur stochastischer Modelle. Für kreative Aufgaben ist das nützlich. Für Prozesse, die reproduzierbare Ergebnisse brauchen, ist es ein Problem, das man aktiv managen muss.
+
+**Kosten skalieren.** Die Preise pro Token sind gefallen. Trotzdem können KI-Projekte teuer werden. Reasoning-Tokens, Agentic Workflows, iteratives Prompting. Wer das nicht im Blick hat, erlebt Überraschungen.
+
+Wer diese Grenzen ignoriert, wird scheitern. Aber wer aus diesen Grenzen schließt, dass die Technologie insgesamt nicht funktioniert, ignoriert die neun von vierzehn Fähigkeiten, die heute produktiv einsetzbar sind.
+
+## Der Engpass hat sich verschoben
+
+Und hier wird es unbequem. 2023 war die Frage: Funktioniert die Technologie überhaupt? 2024 war die Frage: Ist sie zuverlässig genug? 2026 lautet die ehrliche Frage: Warum nutzt ihr sie nicht?
+
+Die technischen Ausreden sind aufgebraucht. Neun von vierzehn Fähigkeiten sind produktionsreif. Die Tools sind zugänglich. Die Kosten sind gesunken. Der Engpass hat sich verschoben. Er ist jetzt organisatorisch und menschlich.
+
+| Engpass | 2023 | 2024 | 2026 |
+|---------|------|------|------|
+| **Technologie** | Funktioniert es? | Ist es zuverlässig? | ✅ Für die meisten Fälle: Ja |
+| **Kompetenz** | Kaum vorhanden | Wachsend | ⚠️ Größtes Hemmnis |
+| **Erwartungen** | Überhype | Ernüchterung | ⚠️ Immer noch verzerrt (beide Richtungen) |
+| **Organisation** | Nicht auf dem Radar | Strategie ohne Umsetzung | ⚠️ Gap zwischen Können und Machen |
+
+In Deutschland nutzen 67 Prozent der Bevölkerung generative KI. Die Unternehmensadoption hat sich innerhalb eines Jahres verdoppelt. Aber fehlendes Wissen ist immer noch das meistgenannte Hemmnis für den KI-Einsatz. Nicht Datenschutz. Nicht Kosten. Wissen.
+
+Das bedeutet: Die kaputte Deutschlandkarte ist kein Argument gegen KI. Sie ist ein Argument dafür, dass Bildgenerierung Schwächen hat, die jeder kennen sollte, der damit arbeitet. Die Agent-Demo ist kein Beweis, dass KI alles kann. Sie ist ein Beweis, dass die Technologie Potenzial hat, das ohne organisatorische Veränderung ungenutzt bleibt.
+
+## Die eigentliche Frage
+
+Ich könnte jetzt eine Roadmap aufzeichnen. Fünf Phasen, drei Ebenen, zwölf Maßnahmen. Aber das würde am Punkt vorbeigehen.
+
+Die Technik hat geliefert. Nicht perfekt. Nicht in allen Bereichen. Aber in genug Bereichen, um die Art zu verändern, wie wir arbeiten. Die Frage ist nicht mehr, ob generative KI funktioniert. Die Frage ist, ob du bereit bist, dich mit ihr auseinanderzusetzen. Nicht mit den Demos. Nicht mit den Fails. Mit dem, was tatsächlich möglich ist, wenn du die Kompetenz aufbaust.
+
+Wer seine Meinung über KI auf Erfahrungen von vor einem Jahr stützt, urteilt über eine Technologie, die es so nicht mehr gibt. Und wer wartet, bis alles perfekt funktioniert, wartet auf etwas, das bei keiner Technologie jemals eingetreten ist.

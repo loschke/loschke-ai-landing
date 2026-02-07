@@ -1,0 +1,120 @@
+---
+title: "AI Coding: Ein Realitätscheck nach 12 Monaten im Maschinenraum"
+excerpt: Vibe Coding war der Hype. Agentic Coding ist die Realität. Was ich nach 12 Monaten KI-gestützter Entwicklung gelernt habe, und warum das Gatekeeping der Dev-Community am Thema vorbeigeht.
+summary: >-
+  AI Coding hat sich von fehleranfälligem "Vibe Coding" zu strukturierter
+  Mensch-KI-Kollaboration entwickelt. Die Modelle sind besser geworden
+  (Opus 4.5, Gemini 3 als Meilensteine), aber auch die Methoden:
+  Specs, Rules-Files und systematisches Review ersetzen blindes Prompting.
+
+  - **Vibe Coding** war ein Anfang, aber kein tragfähiges Modell
+  - **Agentic Coding** kombiniert KI-Geschwindigkeit mit menschlicher Steuerung
+  - **Gatekeeping durch Devs** ignoriert, dass dieselben Probleme in menschlichem Code existieren
+  - **UI-Entwicklung** hat den größten Sprung gemacht, von generisch zu individuell
+
+  Die Frage ist nicht mehr ob AI Coding funktioniert. Die Frage ist, wer sich anpasst.
+pubDate: 2025-12-01
+category: experiments
+featured: false
+tags:
+  - AI Coding
+  - Vibe Coding
+  - Agentic Coding
+  - Software-Entwicklung
+  - KI-Kollaboration
+readTime: 10 min
+draft: false
+---
+
+Anfang 2025. Sonnet 3, Cursor, ein Seitenprojekt. Ich wollte eine Komponente refactoren. Nichts Wildes, ein Layout-Wechsel mit angepasster Datenstruktur. Die KI hat den Code geschrieben. Sah gut aus. Build gestartet. **47 TypeScript-Errors.**
+
+Also: Fehlermeldung zurück in den Chat. Fix generiert. Neue Errors. Andere diesmal. Nächster Fix. Jetzt kompiliert es, aber die Seite ist leer. Zurück zum Chat. Die KI schlägt vor, die Komponente komplett neu zu schreiben. Ich sage ja, weil ich nach 40 Minuten keine Lust mehr habe. Neuer Code. Neue Fehler. Andere Ordnerstruktur als vorher. Imports kaputt.
+
+Das war mein Alltag. Nicht jeden Tag, aber oft genug, um frustriert zu sein. Ich habe trotzdem weitergemacht, weil ich die Richtung gesehen habe. Aber ehrlich: Spaß hat das nicht gemacht.
+
+Heute, 12 Monate später, baue ich komplette Webanwendungen mit KI. Nicht als Experiment, sondern als Arbeitsweise. Was ist passiert?
+
+## Der Begriff war von Anfang an falsch
+
+Andrej Karpathy hat "Vibe Coding" als Idee in die Welt gesetzt: Code schreiben lassen, nicht anschauen, ausführen, bei Fehlern die Fehlermeldung zurückfüttern. Sich den *Vibes* hingeben.
+
+Für ein Wochenendprojekt mag das funktionieren. Für alles andere ist es eine Einladung zum Desaster. Ich habe das am eigenen Rechner erlebt. Die Idee, KI Code schreiben zu lassen, ist richtig. Aber "Vibes" als Steuerungsmodell? Das ist wie Autofahren mit verbundenen Augen und hoffen, dass das Navi schon Bescheid sagt, bevor man im Graben landet.
+
+Was sich inzwischen herausgebildet hat, ist etwas anderes. Manche nennen es *Agentic Coding*, manche *AI-assisted Development*. Der Name ist egal. Der Unterschied zum Vibe Coding ist: **Der Mensch denkt. Die KI schreibt.** Und dazwischen gibt es Struktur.
+
+## Was sich verändert hat
+
+Die Entwicklung der letzten 12 Monate lässt sich in zwei Stränge aufteilen: Was ich selbst geändert habe, und was die Modelle geändert haben.
+
+### Mein Teil
+
+Irgendwann habe ich begriffen, dass das Problem nicht die KI war. Das Problem war, dass ich ihr nicht genug Kontext gegeben habe. Kein Mensch könnte guten Code schreiben, wenn die Anweisung lautet: *"Mach das Layout anders."* Warum sollte eine KI das können?
+
+Ich habe angefangen, **Rules-Files** zu schreiben. Projektregeln, die der KI sagen, welche Ordnerstruktur gilt, welche Patterns verwendet werden, welche Libraries im Projekt sind. Ich habe angefangen, vor dem Coden **Specs** zu formulieren: Was genau soll passieren, welche Daten fließen wo hin, welche Edge Cases gibt es.
+
+Auch bei den Tools habe ich mich bewegt. Von Cursor über Windsurf bis zur Cline-Erweiterung in VSCode. Jede IDE hat andere Stärken, andere Schwächen, andere Philosophien der Mensch-KI-Interaktion. Allein dieser Wechsel hat mir gezeigt, wie schnell sich das Feld verändert.
+
+Das klingt nach mehr Arbeit. Ist es auch. Aber diese Arbeit ist Denkarbeit, nicht Tipparbeit. Und sie hätte auch ohne KI stattfinden müssen. Bei menschlichen Entwicklern heißt das Briefing, Ticket-Beschreibung, Architektur-Review. Nur dass es dort oft genauso wenig passiert.
+
+### Der Teil der Modelle
+
+Der andere Strang ist die Modellentwicklung. Und hier muss ich klar sagen: Der Sprung von Anfang 2025 bis heute ist enorm.
+
+**Sonnet 3** hat Code produziert, der oft funktioniert hat. Aber die Nebeneffekte waren unberechenbar. Wilde Ordnerstrukturen, überflüssige Abstraktionsschichten, Komponenten die drei Mal gerendert wurden, weil die State-Logik nicht durchdacht war. Ich habe Stunden damit verbracht, nach einem KI-Codierblock aufzuräumen.
+
+**Opus 4.5** war für mich der Wendepunkt. Nicht weil plötzlich alles perfekt war. Aber weil das Modell angefangen hat, Entscheidungen zu erklären, Rückfragen zu stellen, bestehenden Code zu respektieren statt alles neu zu schreiben. Die Error-Loops, die mich Anfang 2025 wahnsinnig gemacht haben, sind selten geworden. Nicht verschwunden. Aber selten.
+
+Bei **UI-Entwicklung** war der Sprung noch drastischer. Anfang 2025 sah jede KI-generierte Oberfläche gleich aus: die typische SaaS-Ästhetik mit blauen Buttons und Cards. Heute kann ich mit wenigen Anweisungen Interfaces bauen, die individuell aussehen und sich modern anfühlen. Gemini 3 hat hier einen Meilenstein gesetzt. Das Modell versteht visuelle Hierarchien und Design-Prinzipien auf einem Level, das vor einem Jahr undenkbar war.
+
+## Was die Gatekeeping-Debatte übersieht
+
+Auf LinkedIn lese ich regelmäßig Posts von Entwicklern, die AI Coding kritisieren. Die Argumente wiederholen sich: Keine Tests. Keine Architektur. Technische Schulden. Sicherheitslücken. Code, den niemand versteht.
+
+Alles richtige Punkte. Aber hier ist die Frage, die nie gestellt wird: **Wie sieht es in euren Codebases aus?**
+
+Ich habe in den letzten Jahren genug Projekte gesehen. Bei Kunden, in Agenturen, in internen IT-Abteilungen. Die Realität: Ein Großteil der professionell geschriebenen Software hat exakt dieselben Probleme. Keine Tests, oder Tests die nichts testen. Copy-Paste von Stack Overflow ohne Verständnis. Technische Schulden, die seit Jahren vor sich hergeschoben werden. Legacy-Code, den niemand anfassen will, weil niemand ihn versteht.
+
+> **Das sind keine AI-Coding-Probleme. Das sind Software-Probleme.** Sie existierten, bevor ChatGPT ein Wort Code geschrieben hat.
+
+Das Gatekeeping der Dev-Community fühlt sich an wie ein Abwehrmechanismus. Nicht gegen schlechten Code, sondern gegen die Erkenntnis, dass ein Großteil der handwerklichen Programmierarbeit automatisierbar wird. Das bedroht eine Identität, die auf technischer Exzellenz aufgebaut ist.
+
+Ich verstehe das. Aber es hilft niemandem, sich hinter Qualitätsargumenten zu verstecken, die man an die eigene Arbeit genauso anlegen müsste.
+
+## Wie AI Coding in der Praxis funktioniert
+
+Mein Workflow heute:
+
+Ich formuliere, was gebaut werden soll. Nicht als vagen Prompt, sondern als Spec mit Kontext, Constraints und erwarteter Struktur. Die KI schreibt den Code. Ich reviewe. Nicht jede Zeile, aber die Architektur-Entscheidungen, die Datenflüsse, die sicherheitsrelevanten Stellen. Feedback geht zurück. Die KI iteriert.
+
+Das ist kein Vibe Coding. Das ist Kollaboration. **Der Mensch ist Architekt, Product Owner und Reviewer.** Die KI ist der Entwickler, der unglaublich schnell tippt, nie müde wird und manchmal Mist baut. Wie menschliche Entwickler auch.
+
+Die Abstufung ist dabei wichtig:
+
+| Aufgabe | KI-Autonomie | Menschliche Steuerung |
+|---------|--------------|----------------------|
+| **Prototypen, persönliche Tools** | Hoch. Mehr Freiheit, schnelle Iteration. | Grob-Review, Richtung vorgeben. |
+| **UI-Komponenten, Styling** | Hoch. Hier sind die Modelle inzwischen stark. | Design-Vorgaben, Marken-Konsistenz. |
+| **Produktionscode** | Mittel. Klarere Specs, engere Leitplanken. | Strenges Review, automatisierte Tests. |
+| **Business-Logik, Datenbank** | Niedrig. Braucht tiefes Domänenwissen. | Architektur vorgeben, jeden Output prüfen. |
+
+Das ist kein Versagen der Technologie. Das ist der normale Unterschied zwischen Aufgaben, die Kreativität brauchen, und Aufgaben, die tiefes Domänenwissen erfordern.
+
+## Die Branche muss sich bewegen
+
+AI Coding ist nicht die Zukunft. Es ist die Gegenwart. Jede Woche kommen neue Tools, bessere Modelle, effizientere Workflows. Wer heute noch so entwickelt wie 2023, verliert Produktivität. Nicht theoretisch, sondern messbar.
+
+Das bedeutet nicht, dass menschliche Entwickler überflüssig werden. Es bedeutet, dass sich ihre Rolle verschiebt. Weg vom Tippen, hin zum Denken. Weg von der Syntax, hin zur Architektur. Weg vom *"Ich schreibe den Code"* hin zu *"Ich stelle sicher, dass der Code richtig ist."*
+
+Für Nicht-Entwickler bedeutet es etwas anderes: Die Hürde ist gesunken. Wer ein Problem klar beschreiben kann, kann Software bauen. Nicht jede Software, nicht fehlerfreie Software. Aber funktionierende Software, die echte Probleme löst.
+
+Das verschiebt Machtverhältnisse. Und genau das macht vielen Angst.
+
+## Was ich in 12 Monaten gelernt habe
+
+Drei Dinge, die ich nach 12 Monaten AI Coding für wahr halte:
+
+**Die Qualität des Outputs hängt zu 70% von der Qualität des Inputs ab.** Wer vage promptet, bekommt vagen Code. Wer präzise Specs schreibt, bekommt brauchbare Ergebnisse. Das war Anfang 2025 so und ist heute noch so. Nur dass die Modelle mit guten Inputs jetzt deutlich bessere Ergebnisse liefern.
+
+**Die Modelle werden besser, schneller als die meisten denken.** Was Anfang 2025 frustrierend war, funktioniert heute. Was heute noch Schwächen zeigt, wird in sechs Monaten anders aussehen. Wer seine Meinung über AI Coding auf Erfahrungen von vor einem Jahr stützt, urteilt über eine Technologie, die es so nicht mehr gibt.
+
+**Das größte Risiko ist nicht die KI.** Das größte Risiko ist, die Augen zu verschließen und zu hoffen, dass sich nichts ändert. Die Tools werden besser. Die Frage ist nur, ob du lernst, sie zu nutzen.

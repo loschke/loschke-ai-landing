@@ -142,7 +142,7 @@ export function SummaryAudioBox({ summary, audioSrc }: SummaryAudioBoxProps) {
             Kurzfassung
           </span>
           <div
-            className="summary-content text-[15px] font-light leading-[1.7] text-[#404040] [&_strong]:font-medium [&_strong]:text-dark [&_a]:text-accent [&_a]:no-underline hover:[&_a]:border-b hover:[&_a]:border-accent [&_ul]:list-none [&_ul]:pl-0 [&_ul]:mt-3 [&_li]:pl-5 [&_li]:relative [&_li]:mb-2 [&_li]:text-[15px] [&_li]:font-light [&_li]:leading-[1.6] [&_p]:mb-3 last:[&_p]:mb-0"
+            className="summary-content text-[15px] font-light leading-[1.7] text-[#404040] [&_strong]:font-semibold [&_strong]:text-dark [&_a]:text-accent [&_a]:no-underline hover:[&_a]:border-b hover:[&_a]:border-accent [&_ul]:list-none [&_ul]:pl-0 [&_ul]:mt-3 [&_li]:pl-5 [&_li]:relative [&_li]:mb-2 [&_li]:text-[15px] [&_li]:font-light [&_li]:leading-[1.6] [&_p]:mb-3 last:[&_p]:mb-0"
             dangerouslySetInnerHTML={{ __html: summaryHtml }}
           />
         </div>
