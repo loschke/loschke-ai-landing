@@ -24,7 +24,12 @@ const seoTitle = post.data.metaTitle || post.data.title;
 const seoDescription = post.data.metaDescription || post.data.excerpt || "";
 ---
 
-<FrameLayout title={seoTitle} description={seoDescription} article>
+<FrameLayout
+  title={seoTitle}
+  description={seoDescription}
+  image={post.data.ogImage || "/og-default-blog.png"}
+  article
+>
   <ArticleHeader
     title={post.data.title}
     excerpt={post.data.excerpt}
