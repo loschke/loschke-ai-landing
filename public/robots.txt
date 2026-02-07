@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://loschke.ai/sitemap.xml
 Sitemap: https://loschke.ai/sitemap-index.xml
