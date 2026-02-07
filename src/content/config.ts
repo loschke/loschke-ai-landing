@@ -25,6 +25,7 @@ const posts = defineCollection({
     heroImage: image().optional(),
     tags: z.array(z.string()).default([]),
     readTime: z.string().optional(),
+    ogImage: z.string().optional(),
     audioSrc: z.string().optional(),
     draft: z.boolean().default(false),
   }),

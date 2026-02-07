@@ -58,6 +58,10 @@ export default config({
             }
         ),
         readTime: fields.text({ label: 'Read Time (e.g. "6 min")' }),
+        ogImage: fields.text({
+          label: 'OG Image Path',
+          description: 'Überschreibt das Standard-OG-Bild. Pfad relativ zu /public/images/og/ (z.B. /images/og/mein-post.png)',
+        }),
         audioSrc: fields.text({
           label: 'Audio Summary Path',
           description: 'Pfad zur Audio-Datei in /public/audio/ (z.B. /audio/ki-governance.mp3)',
