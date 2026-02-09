@@ -1,0 +1,122 @@
+---
+title: "KI-Agenten brauchen Werte, keine Regeln"
+excerpt: Anthropic hat die Constitution für Claude veröffentlicht. 84 Seiten, frei zugänglich. Was wie ein Policy-Dokument klingt, verändert die Art, wie wir KI-Systeme steuern. Und betrifft jedes Unternehmen, das KI-Agenten einsetzt.
+summary: >-
+  Regellisten für KI-Agenten versagen bei neuen Situationen, erzeugen
+  Widersprüche und formen ein ungewolltes Selbstbild. Anthropics Claude
+  Constitution zeigt einen anderen Weg: Werte statt Regeln, mit klarer
+  Prioritätenhierarchie.
+
+  - **Regelbasierte Steuerung** scheitert ab einer gewissen Komplexität
+  - **Wertebasierte Steuerung** gibt dem Agenten Urteilsfähigkeit in neuen Situationen
+  - **Die 1.000-Nutzer-Heuristik** verschiebt den Fokus von Risikominimierung zu Policy-Design
+  - **Übervorsicht ist kein sicherer Default.** Ein Agent, der ständig verweigert, ist genauso schlecht kalibriert
+
+  Für Unternehmen heißt das: Werte und Prioritäten definieren, bevor der nächste System Prompt geschrieben wird.
+pubDate: 2026-02-09
+category: takes
+featured: false
+tags:
+  - KI-Agenten
+  - KI-Strategie
+  - Prompt Engineering
+  - Anthropic
+readTime: 9 min
+draft: false
+---
+
+Ein Szenario, das so oder ähnlich in vielen Unternehmen vorkommt: Ein Versicherungsunternehmen stattet seinen Support-Agenten mit über 200 Einzelregeln aus. "Sage nie X." "Verweise bei Y immer an einen Mitarbeiter." "Erwähne nie Z." Sauber dokumentiert, alles nachvollziehbar.
+
+Das Ergebnis: Der Agent ist so eingeschränkt, dass er bei jeder zweiten Anfrage an einen menschlichen Mitarbeiter verweist. Nicht weil die Anfrage schwierig ist. Sondern weil irgendeine Regel dagegen spricht, eigenständig zu antworten. Die Kunden sind frustriert. Das Team ist überlastet. Und der Agent, für den man gutes Geld bezahlt hat, ist im Grunde ein teurer Weiterleitungsautomat.
+
+Ich habe mich kürzlich dabei ertappt, genau dasselbe Muster zu reproduzieren. Beim Aufsetzen eines eigenen Agenten habe ich angefangen, ein detailliertes Regelwerk zu entwickeln. Kontextinformationen, Verhaltensanweisungen, Ausnahmen, Sonderfälle. Am Ende stand ein System Prompt, der so lang war, dass ich mich ernsthaft gefragt habe: Kann das Modell dieses Regelwerk überhaupt noch zuverlässig anwenden? Oder widersprechen sich die Anweisungen längst an Stellen, die ich selbst nicht mehr überblicke?
+
+Genau in dieser Phase bin ich auf Anthropics "Constitution" für Claude gestoßen. 84 Seiten, frei zugänglich, unter Creative Commons. Die zentrale Erkenntnis trifft einen Nerv: Regellisten funktionieren nicht. Werte schon.
+
+## Das Problem mit Regeln
+
+Wer heute einen KI-Agenten aufsetzt, macht meistens das Gleiche. Man schreibt eine Liste. "Tu dies. Tu das nicht. Antworte immer freundlich. Erwähne nie die Konkurrenz. Verweise bei rechtlichen Fragen an die Rechtsabteilung."
+
+Das funktioniert. Bis es nicht mehr funktioniert.
+
+**Neue Situationen haben keine Regel.** Kein Regelwerk kann jede mögliche Kundenanfrage vorwegnehmen. Sobald ein Fall auftaucht, den niemand bedacht hat, steht der Agent ohne Orientierung da. Er wird entweder zu vorsichtig oder zu nachlässig. Im Versicherungsbeispiel von oben war es Ersteres: Im Zweifel lieber ablehnen als Fehler machen. Klingt vernünftig. Ist es nicht.
+
+**Ab einer gewissen Menge widersprechen sich Regeln.** "Sei immer hilfreich" kollidiert mit "Gib nie konkrete Empfehlungen". Der Agent muss dann selbst entscheiden, welche Regel Vorrang hat. Ohne Wertesystem kann er das nicht. Also wählt er den sichersten Weg. Und der sicherste Weg ist fast immer: nichts tun.
+
+Aber der Punkt, den die meisten übersehen: **Regeln formen ein Selbstbild.** Wenn ein KI-Agent hunderte Einzelregeln befolgt, entwickelt er ein implizites Verständnis davon, was für eine Art Agent er ist. Anthropic beschreibt das in der Constitution so: Trainiert man Claude, in einem bestimmten Kontext übervorsichtig zu reagieren, generalisiert das Modell daraus möglicherweise "Ich bin die Art von Entität, die sich mehr um Absicherung kümmert als um die tatsächlichen Bedürfnisse der Person." Das wirkt sich dann auf jede Konversation aus. Auch die, für die es keine Regel gibt.
+
+## Der Erziehungsgedanke
+
+Anthropic geht einen anderen Weg. Statt Claude eine Regelliste zu geben, beschreiben sie ein Wertesystem. Und sie erklären das *Warum* hinter jeder Erwartung.
+
+Der Vergleich mit Erziehung liegt nahe. Und er ist treffender als die meisten Analogien, die in der KI-Debatte kursieren.
+
+| Regelbasiert | Wertebasiert |
+|--------------|-------------|
+| "Sage nie, dass du dir unsicher bist" | "Ehrlichkeit ist wichtiger als Selbstsicherheit. Wenn du etwas nicht weißt, sag das. Menschen vertrauen dir mehr, wenn du deine Grenzen kennst." |
+| "Verweise bei medizinischen Fragen immer an einen Arzt" | "Du bist kein Arzt. Aber du kannst Menschen helfen, informierte Entscheidungen zu treffen. Teile Wissen, mach Grenzen transparent, und empfiehl professionelle Hilfe wo nötig." |
+| "Beantworte keine politischen Fragen" | "Politische Fragen verdienen eine faire, ausgewogene Behandlung. Hilf Menschen, verschiedene Perspektiven zu verstehen, statt ihnen deine Einschätzung aufzudrängen." |
+
+Der Unterschied ist nicht kosmetisch. Die linke Spalte sagt dem Agenten, *was* er tun soll. Die rechte Spalte erklärt ihm, *warum*, und gibt ihm die Grundlage, in neuen Situationen selbst zu urteilen.
+
+In der Constitution steht dazu ein Satz, der es auf den Punkt bringt: "Wir wollen, dass Claude ein so tiefes Verständnis seiner Situation und der relevanten Faktoren hat, dass es jede Regel, die wir uns ausdenken könnten, selbst ableiten kann."
+
+Kein Dekalog. Sondern ein Agent, der versteht, warum bestimmte Verhaltensweisen richtig sind. Und der deshalb auch in Situationen richtig handelt, die niemand vorhergesehen hat.
+
+## Die vier Prioritäten
+
+Anthropics Constitution definiert vier Prioritäten, die bei Konflikten in dieser Reihenfolge greifen:
+
+**1. Sicher handeln.** Menschliche Kontrolle über KI-Systeme nicht untergraben. Konkret: Der Agent soll sich korrigieren lassen, transparent kommunizieren, keine Aktionen durchführen, die nicht rückgängig gemacht werden können.
+
+**2. Ethisch handeln.** Ehrlich sein, Schaden vermeiden, gute Werte vertreten. Nicht als Lippenbekenntnis, sondern als Handlungsgrundlage, die im Zweifel schwierige Entscheidungen bestimmt.
+
+**3. Richtlinien befolgen.** Die spezifischen Vorgaben des Herstellers. Wichtig: Das steht auf Platz 3, nicht auf Platz 1. Wenn Richtlinien mit Ethik kollidieren, hat Ethik Vorrang. Das ist eine bewusste Entscheidung, keine Nachlässigkeit.
+
+**4. Wirklich hilfreich sein.** Nicht hilfreich im Sinne von "irgendetwas antworten". Sondern echten Mehrwert liefern. Und zwar nicht trotz der ersten drei Punkte, sondern als deren logische Konsequenz. In über 95% aller Interaktionen gibt es keinen Konflikt zwischen diesen Prioritäten. Die Hierarchie wird nur relevant, wenn es knirscht. Und genau dann braucht man sie.
+
+Was mich an dieser Struktur überzeugt: Sie macht explizit, was die meisten Unternehmen implizit lassen. Jedes Unternehmen, das einen KI-Agenten einsetzt, hat eine Prioritätenreihenfolge. Die meisten haben sie nur nie aufgeschrieben. Und wenn dann der Agent in eine Grauzone gerät, fehlt die Orientierung.
+
+## Warum "zu vorsichtig" kein sicherer Default ist
+
+Anthropic schreibt in der Constitution einen Satz, der der Intuition vieler Unternehmen widerspricht: "Ein unhilfreicher Agent ist aus unserer Sicht nie trivial 'sicher'. Die Risiken durch übermäßige Vorsicht sind für uns genauso real wie die Risiken durch schädliches Verhalten."
+
+Die gängige Annahme lautet: Im Zweifelsfall lieber zu zurückhaltend als zu freizügig. Lieber einmal zu viel verweigern als einmal zu viel sagen.
+
+> **Was bedeutet es, Zugang zu einem brillanten Freund zu haben, der zufällig das Wissen eines Arztes, Anwalts und Finanzberaters hat?** Für die meisten Menschen wäre das ein enormer Gewinn. Besonders für Menschen, die sich professionelle Beratung nicht leisten können. Wenn ein KI-Agent diese Hilfe verweigert, weil irgendeine Regel dagegen spricht, ist das kein Sicherheitsgewinn. Es ist ein realer Schaden.
+
+Zurück zum Versicherungsbeispiel: Die allermeisten Fragesteller wollen einfach verstehen, was ihre Police abdeckt. Darauf kann und sollte ein Agent sachlich antworten. Nur bei Grenzfällen oder konkreten Schadensmeldungen ist die Weiterleitung sinnvoll. Aber ein starres Regelwerk macht keinen Unterschied. Jede Frage, die auch nur entfernt nach Deckungszusage klingt, wird weitergeleitet. Das Ergebnis: frustrierte Kunden und ein überflüssiger Bot.
+
+## Die 1.000-Nutzer-Heuristik
+
+Wie findet man die richtige Balance? Die Constitution bietet dafür eine Heuristik, die sich direkt in die Praxis übertragen lässt.
+
+Die Idee: Stell dir vor, 1.000 verschiedene Menschen stellen deinem Agenten dieselbe Frage. Manche meinen es gut, manche sind neugierig, vielleicht einer hat schlechte Absichten. Was ist die beste Antwort für diese gesamte Gruppe?
+
+Manche Informationen sollte ein Agent geben, auch wenn einer von tausend sie missbrauchen könnte. Weil der Nutzen für die anderen 999 überwiegt. Andere Informationen sollte ein Agent verweigern, selbst wenn nur einer von einer Million sie missbrauchen würde. Weil der potenzielle Schaden zu groß ist.
+
+Das ist eine andere Art zu denken als "darf der Agent das sagen oder nicht?". Es ist eine Policy-Entscheidung. Und genau so sollten Unternehmen sie auch behandeln: nicht als Einzelfallentscheidung, sondern als bewusste Abwägung.
+
+## Harte Grenzen bleiben harte Grenzen
+
+Der wertebasierte Ansatz bedeutet nicht, dass alles verhandelbar wird. Im Gegenteil. Die Constitution definiert eine kleine Menge absoluter Verbote. Keine Hilfe bei der Erstellung von Waffen. Keine Unterstützung bei der Manipulation demokratischer Prozesse. Kein sexualisiertes Material mit Minderjährigen.
+
+Diese Grenzen sind bewusst eng gehalten. Es sind wenige, und sie sind eindeutig. Kein Abwägen, keine Grauzone. Wie bei einem Menschen, der bestimmte Dinge einfach nicht tut.
+
+Interessant ist die Begründung: Je überzeugender ein Argument klingt, eine dieser Linien zu überschreiten, desto verdächtiger sollte es sein. Echte rote Linien halten auch dann, wenn jemand einen guten Grund zu haben scheint.
+
+Für Unternehmen heißt das: Trennt eure harten Grenzen von euren flexiblen Richtlinien. Wenige echte rote Linien, klar formuliert. Und darüber hinaus Werte und Urteilsspielraum statt endloser Regelkataloge.
+
+## Was das für die Art verändert, wie wir KI-Agenten bauen
+
+Die erste Generation von KI-Steuerung war regelbasiert. Sperrlisten, Filterwörter, starre Anweisungen. Das hat funktioniert, solange die Einsatzgebiete überschaubar waren.
+
+Die zweite Generation, in der wir uns gerade befinden, ist wertebasiert. Statt dem System zu sagen, was es tun soll, vermitteln wir ihm, warum bestimmtes Verhalten richtig ist. Das skaliert besser, weil das System in neuen Situationen selbst urteilen kann.
+
+Der konkreteste Hebel, den ich aus der Constitution mitnehme: **Definiert Werte, bevor ihr Regeln schreibt.** Was sind die drei bis fünf Kernwerte, die euer Agent verkörpern soll? Ehrlichkeit? Hilfsbereitschaft? Diskretion? Effizienz? Schreibt diese Werte auf und erklärt, *warum* sie wichtig sind. Das gibt dem Agenten eine Orientierung, die über jede Einzelregel hinausgeht. Macht eure Prioritäten explizit: Was passiert, wenn "hilfreich sein" mit "vorsichtig sein" kollidiert? Und testet mit der 1.000-Nutzer-Heuristik, bevor ihr eine Regel aufstellt.
+
+Ein mittelmäßiges Modell mit durchdachtem Wertesystem schlägt ein Top-Modell mit schlechtem Regelwerk. Jedes Mal.
+
+---
+
+*Die vollständige Claude Constitution ist unter [anthropic.com/constitution](https://www.anthropic.com/constitution) frei zugänglich (CC0 1.0). Für Teams, die ihre eigenen KI-Agenten aufsetzen, lohnt sich die Lektüre als Inspiration für den eigenen Ansatz.*
