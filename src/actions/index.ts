@@ -2,8 +2,6 @@ import { ActionError, defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
 import { Resend } from 'resend';
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
-
 export const server = {
   sendContact: defineAction({
     accept: 'json',
@@ -14,6 +12,17 @@ export const server = {
     }),
     handler: async (input) => {
       const { name, email, message } = input;
+
+      const apiKey = import.meta.env.RESEND_API_KEY;
+
+      if (!apiKey) {
+        throw new ActionError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Resend API key is not configured.',
+        });
+      }
+
+      const resend = new Resend(apiKey);
 
       const { data, error } = await resend.emails.send({
         from: "Loschke AI <hallo@loschke.ai>",
