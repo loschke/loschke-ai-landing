@@ -1,0 +1,111 @@
+---
+/**
+ * CTA Banner — Markdoc Custom Tag
+ *
+ * Usage in .mdoc files:
+ * {% cta title="Kontakt aufnehmen" link="/contact" %}
+ * Beschreibungstext hier.
+ * {% /cta %}
+ *
+ * With brand styling:
+ * {% cta title="KI ist Chefsache" link="https://unlearn.how" brand="unlearn" %}
+ * Text hier.
+ * {% /cta %}
+ *
+ * Brands: "loschke" (default, orange), "unlearn" (purple), "lernen" (teal)
+ */
+
+interface Props {
+  title: string;
+  link: string;
+  linkText?: string;
+  brand?: "loschke" | "unlearn" | "lernen";
+}
+
+const {
+  title,
+  link,
+  linkText = "Mehr erfahren →",
+  brand = "loschke",
+} = Astro.props;
+---
+
+{
+  brand === "unlearn" ? (
+    <aside
+      class="not-prose my-10 md:my-14 bg-[#1a1225] p-8 md:p-10 lg:p-12"
+      style="border: 2px solid #a855f7;"
+    >
+      {/* Logo wordmark — Instrument Serif italic */}
+      <p class="font-serif italic text-lg md:text-xl mb-5">
+        <>
+          <span class="text-white">unlearn</span>
+          <span class="text-[#a855f7]">.how</span>
+        </>
+      </p>
+
+      {/* Title — Large Instrument Serif like the hero */}
+      <h4 class="font-serif text-[clamp(24px,3.5vw,36px)] leading-[1.15] text-white mb-5 max-w-[600px]">
+        {title}
+        <span class="text-[#a855f7]">.</span>
+      </h4>
+
+      {/* Body text */}
+      <div class="text-[15px] md:text-base font-light leading-[1.75] text-[#c4b5d4] mb-7 max-w-[540px]">
+        <slot />
+      </div>
+
+      {/* CTA button + link row */}
+      <div class="flex flex-wrap items-center gap-4">
+        <a
+          href={link}
+          class="inline-block bg-[#a855f7] text-white px-5 py-2.5 text-sm font-medium hover:bg-[#9333ea] transition-colors duration-250"
+          target={link.startsWith("http") ? "_blank" : undefined}
+          rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
+        >
+          {linkText}
+        </a>
+      </div>
+    </aside>
+  ) : brand === "lernen" ? (
+    <aside class="not-prose my-10 md:my-14 border-l-[3px] border-[#14B8A6] bg-[#0f1514] p-6 md:p-8">
+      <p class="text-[11px] font-medium tracking-[0.1em] uppercase mb-2 text-[#14B8A6]">
+        lernen.diy
+      </p>
+      <h4 class="text-lg md:text-xl font-black tracking-[-0.01em] text-white mb-3">
+        {title}
+      </h4>
+      <div class="text-[15px] font-light leading-[1.7] text-[#9fbab6] mb-5">
+        <slot />
+      </div>
+      <a
+        href={link}
+        class="inline-flex items-center gap-2 text-sm font-medium text-[#14B8A6] hover:text-[#2DD4BF] transition-colors duration-250"
+        target={link.startsWith("http") ? "_blank" : undefined}
+        rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
+      >
+        {linkText}
+      </a>
+    </aside>
+  ) : (
+    <aside class="not-prose my-10 md:my-14 border-l-[3px] border-accent bg-[#fafafa] p-6 md:p-8">
+      <p class="text-[11px] font-medium text-accent tracking-[0.1em] uppercase mb-2">
+        Empfehlung
+      </p>
+      <h4 class="text-lg md:text-xl font-black tracking-[-0.01em] text-dark mb-3">
+        {title}
+      </h4>
+      <div class="text-[15px] font-light leading-[1.7] text-[#525252] mb-5">
+        <slot />
+      </div>
+      <a
+        href={link}
+        class="inline-flex items-center gap-2 text-sm font-medium text-dark hover:text-accent transition-colors duration-250"
+        target={link.startsWith("http") ? "_blank" : undefined}
+        rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
+      >
+        {linkText}
+      </a>
+    </aside>
+  )
+}

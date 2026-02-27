@@ -1,0 +1,57 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+---
+
+<section
+  class="py-12 md:py-16 px-6 sm:px-10 md:px-16 lg:px-20"
+  style="background-color: #1a1225; border-top: 2px solid #a855f7; border-bottom: 2px solid #a855f7;"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+  >
+    <!-- Left Label -->
+    <Reveal client:load>
+      <a
+        href="https://unlearn.how"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-serif italic text-lg md:text-xl hover:opacity-80 transition-opacity"
+      >
+        <span class="text-white">unlearn</span><span class="text-[#a855f7]"
+          >.how</span
+        >
+      </a>
+    </Reveal>
+
+    <!-- Right Content -->
+    <div>
+      <Reveal client:load>
+        <p
+          class="text-xl sm:text-2xl md:text-[clamp(22px,3vw,30px)] font-serif leading-[1.25] text-white mb-4 max-w-[640px]"
+        >
+          Bevor das Neue kommen kann, muss das Alte gehen<span
+            class="text-[#a855f7]">.</span
+          >
+        </p>
+      </Reveal>
+      <Reveal client:load delay={0.08}>
+        <p
+          class="text-sm md:text-[15px] font-light leading-[1.7] text-[#c4b5d4] mb-5 max-w-[560px]"
+        >
+          KI-Transformation für Führungskräfte und Organisationen. Erst
+          verstehen, dann verändern.
+        </p>
+      </Reveal>
+      <Reveal client:load delay={0.12}>
+        <a
+          href="https://unlearn.how"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-[#a855f7] text-white px-5 py-2.5 text-sm font-medium hover:bg-[#9333ea] transition-colors duration-250"
+        >
+          Mehr erfahren →
+        </a>
+      </Reveal>
+    </div>
+  </div>
+</section>

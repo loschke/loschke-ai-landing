@@ -1,0 +1,69 @@
+---
+/**
+ * Infobox — Markdoc Custom Tag
+ *
+ * Usage in .mdoc files:
+ * {% infobox type="tip" title="Optionaler Titel" %}
+ * Inhalt der Infobox. Markdown-Inline-Formatierung möglich.
+ * {% /infobox %}
+ *
+ * Types: "info" (default), "tip", "warning"
+ */
+
+interface Props {
+  type?: "info" | "tip" | "warning";
+  title?: string;
+}
+
+const { type = "info", title } = Astro.props;
+
+const config = {
+  info: {
+    border: "border-[#a3a3a3]",
+    bg: "bg-[#fafafa]",
+    icon: "○",
+    iconColor: "text-[#737373]",
+    defaultTitle: "Hinweis",
+  },
+  tip: {
+    border: "border-accent",
+    bg: "bg-[#fff8f6]",
+    icon: "◆",
+    iconColor: "text-accent",
+    defaultTitle: "Tipp",
+  },
+  warning: {
+    border: "border-[#d97706]",
+    bg: "bg-[#fffbeb]",
+    icon: "▲",
+    iconColor: "text-[#d97706]",
+    defaultTitle: "Achtung",
+  },
+};
+
+const c = config[type];
+const displayTitle = title || c.defaultTitle;
+---
+
+<aside
+  class:list={[
+    "not-prose my-8 md:my-10 border-l-[3px] p-5 md:p-6",
+    c.border,
+    c.bg,
+  ]}
+>
+  <div class="flex items-center gap-2 mb-2">
+    <span class:list={["text-xs", c.iconColor]}>{c.icon}</span>
+    <p
+      class:list={[
+        "text-[11px] font-medium tracking-[0.08em] uppercase",
+        c.iconColor,
+      ]}
+    >
+      {displayTitle}
+    </p>
+  </div>
+  <div class="text-[15px] font-light leading-[1.7] text-[#525252]">
+    <slot />
+  </div>
+</aside>

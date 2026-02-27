@@ -1,7 +1,8 @@
 # Blog-Authoring Guide – loschke.ai
 
-> Anleitung für Claude Desktop zum Erstellen fertiger `.mdoc` Blog-Beiträge für loschke.ai.
-> Die Dateien werden direkt in `src/content/posts/` abgelegt und sind sofort im CMS und auf der Website nutzbar.
+> Anleitung für Claude Code/Desktop zum Erstellen fertiger `.mdoc` Blog-Beiträge für loschke.ai.
+> Die Dateien werden direkt in `src/content/posts/` abgelegt und sind sofort auf der Website nutzbar.
+> Custom Content-Blöcke (CTA, Infobox, Divider) sind über Markdoc-Tags verfügbar — siehe Abschnitt 6.
 
 ---
 
@@ -44,12 +45,10 @@ summary: >-
   - **Punkt 2** — Erklärung
 
   Abschließender Satz mit Einordnung.
-metaTitle: Optionaler SEO-Titel (überschreibt title für <title> Tag)
-metaDescription: Optionale SEO-Description (überschreibt excerpt für <meta>). Multiline möglich.
 pubDate: 2026-02-06
 category: takes
 featured: false
-heroImage: 
+ogImage: /images/og/og-mein-post.png
 tags:
   - Tag1
   - Tag2
@@ -78,19 +77,19 @@ draft: false
 | Feld | Typ | Beschreibung |
 |------|-----|--------------|
 | `excerpt` | String (multiline) | Anlesetext für Blog-Übersicht und Detailseite. 1-2 Sätze, kein Markdown. Klar und neugierig machend. |
+| `ogImage` | String | OG-Bild für Social Sharing. Pfad relativ zu `/public/`, z.B. `/images/og/og-mein-post.png`. Bilder liegen in `public/images/og/`. Fallback: `/og-default-blog.png`. |
 | `tags` | Array of Strings | Themen-Tags für Filterung. 2-5 Tags pro Beitrag. Deutschsprachig, Title-Case. |
 | `readTime` | String | Geschätzte Lesezeit, Format: `"X min"` (z.B. `"6 min"`). Faustregel: ~200 Wörter pro Minute. |
+| `audioSrc` | String | Pfad zur Audio-Zusammenfassung in `/public/audio/`. Format: `/audio/dateiname.mp3` |
 
 ### Optionale Felder
 
 | Feld | Typ | Beschreibung |
 |------|-----|--------------|
 | `summary` | String (multiline) | TL;DR-Box auf der Artikelseite. Für AI Overviews optimiert (GEO). Markdown-Formatierung erlaubt. |
+| `featured` | Boolean | `true` = wird prominent in der Übersicht angezeigt. Nur für 1-2 Artikel gleichzeitig verwenden. |
 | `metaTitle` | String | Überschreibt `title` für `<title>` und Social Sharing. Nur setzen wenn SEO-Titel abweichen soll. |
 | `metaDescription` | String (multiline) | Überschreibt `excerpt` für `<meta>` und Social Sharing. Nur setzen wenn SEO-Description abweichen soll. |
-| `featured` | Boolean | `true` = wird prominent in der Übersicht angezeigt. Nur für 1-2 Artikel gleichzeitig verwenden. |
-| `heroImage` | Image Path | Pfad zum Hero-Bild. Aktuell nicht aktiv genutzt, kann leer bleiben. |
-| `audioSrc` | String | Pfad zur Audio-Zusammenfassung in `/public/audio/`. Format: `/audio/dateiname.mp3` |
 
 ---
 
@@ -145,7 +144,98 @@ summary: >-
 
 ---
 
-## 6. Content-Bereich (nach dem Frontmatter)
+## 6. Custom Content-Blöcke (Markdoc Tags)
+
+Im Content-Bereich können neben Standard-Markdown auch **Custom Tags** verwendet werden. Diese werden zu gestylten Astro-Komponenten gerendert.
+
+### CTA-Banner
+
+Ein Call-to-Action Block mit Titel, Beschreibungstext und Link.
+
+```markdown
+{% cta title="Jetzt Kontakt aufnehmen" link="/contact" %}
+Du willst KI in deinem Unternehmen einsetzen? Lass uns reden.
+{% /cta %}
+```
+
+**Attribute:**
+| Attribut | Pflicht | Default | Beschreibung |
+|----------|---------|---------|--------------|
+| `title` | ✅ | — | Überschrift des CTA-Banners |
+| `link` | ✅ | — | Ziel-URL (intern oder extern) |
+| `linkText` | ❌ | `"Mehr erfahren →"` | Text des Link-Buttons |
+| `brand` | ❌ | `"loschke"` | Visuelles Branding: `loschke` (orange/hell), `unlearn` (purple/dunkel), `lernen` (teal/dunkel) |
+
+**Standard-Variante (loschke.ai Stil):**
+```markdown
+{% cta title="Speaking anfragen" link="/speaking" linkText="Themen & Anfrage →" %}
+Ich spreche über KI-Transformation, AI Coding und die Zukunft der Arbeit.
+{% /cta %}
+```
+
+**Unlearn-Variante (häufigster Use Case für Cross-Promotion):**
+
+Der Unlearn-CTA hat ein eigenes Farbschema (Dark Purple, Instrument Serif Headline, Purple-Button) und sticht als Fremdmarken-Banner im Blog heraus. Ideal für Beiträge über Führung, Organisation, Kultur, Transformation.
+
+```markdown
+{% cta title="KI ist Chefsache — nicht delegierbar" link="https://unlearn.how" linkText="Mehr über unlearn.how →" brand="unlearn" %}
+Schulungen verpuffen, wenn der Boden nicht bereitet ist. Bei unlearn.how helfe ich Führungskräften, KI selbst zu verstehen — und Organisationen, die Kultur zu schaffen, in der Neugier und Eigeninitiative wachsen können.
+{% /cta %}
+```
+
+**Platzierungs-Empfehlung:** Nach einem Abschnitt, der ein Organisationsproblem beschreibt (Kultur, Führung, Skills-Gap) — dort wo der Leser denkt: "Was kann ich als Führungskraft tun?"
+
+**Lernen-Variante (für Hands-on / DIY-Verweise):**
+```markdown
+{% cta title="Selbst ausprobieren" link="https://lernen.diy" brand="lernen" %}
+Guides, Labs und Übungen — kostenlos zugänglich, ohne Warten.
+{% /cta %}
+```
+
+### Infobox
+
+Eine farblich hervorgehobene Box für Hinweise, Tipps oder Warnungen.
+
+```markdown
+{% infobox type="tip" title="Praxis-Tipp" %}
+Starte mit einem kleinen Pilotprojekt. Nicht mit einer Gesamtstrategie.
+{% /infobox %}
+```
+
+**Attribute:**
+| Attribut | Pflicht | Default | Beschreibung |
+|----------|---------|---------|--------------|
+| `type` | ❌ | `"info"` | Variante: `info`, `tip`, `warning` |
+| `title` | ❌ | Typ-abhängig | Überschrift (Default: "Hinweis" / "Tipp" / "Achtung") |
+
+**Varianten:**
+```markdown
+{% infobox %}
+Allgemeiner Hinweis (grau, Icon ○)
+{% /infobox %}
+
+{% infobox type="tip" %}
+Tipp mit Accent-Farbe (rot, Icon ◆)
+{% /infobox %}
+
+{% infobox type="warning" title="Vorsicht bei Produktionsdaten" %}
+Warnung in Gelb (Icon ▲)
+{% /infobox %}
+```
+
+### Divider
+
+Ein visueller Abschnitt-Trenner (drei Punkte) für lange Artikel.
+
+```markdown
+{% divider /%}
+```
+
+Keine Attribute. Self-closing Tag.
+
+---
+
+## 7. Content-Bereich (nach dem Frontmatter)
 
 Nach dem schließenden `---` folgt der Artikelinhalt in Markdoc-Syntax (kompatibel mit Standard-Markdown).
 
@@ -185,7 +275,7 @@ Code-Block
 
 ---
 
-## 7. Stimme und Schreibstil
+## 8. Stimme und Schreibstil
 
 ### Die Grundhaltung
 
@@ -255,7 +345,7 @@ Behauptungen brauchen mindestens einen Folgesatz, der sie begründet, erklärt o
 
 ---
 
-## 8. Verbotene Wörter und Muster
+## 9. Verbotene Wörter und Muster
 
 ### Nie verwenden
 
@@ -295,7 +385,7 @@ Stattdessen: Offene Frage, konkreter nächster Schritt, oder einfach aufhören w
 
 ---
 
-## 9. Vokabular-Referenz
+## 10. Vokabular-Referenz
 
 | ❌ Vermeiden | ✅ Bevorzugen |
 |--------------|---------------|
@@ -311,7 +401,7 @@ Stattdessen: Offene Frage, konkreter nächster Schritt, oder einfach aufhören w
 
 ---
 
-## 10. Vollständige Beispiel-Datei
+## 11. Vollständige Beispiel-Datei
 
 Dateiname: `ki-governance.mdoc`
 
@@ -329,6 +419,7 @@ summary: >-
 pubDate: 2026-01-15
 category: takes
 featured: true
+ogImage: /images/og/og-ki-governance.png
 tags:
   - KI-Governance
   - Compliance
@@ -369,7 +460,7 @@ Wenn du gerade an KI-Richtlinien arbeitest: Frag dich nicht "Was muss alles rein
 
 ---
 
-## 11. Minimale Beispiel-Datei
+## 12. Minimale Beispiel-Datei
 
 Nicht jeder Beitrag braucht alle Felder. Das hier ist das Minimum:
 
@@ -399,7 +490,7 @@ Was bleibt, sind Prinzipien. Wer versteht, wie Sprachmodelle denken, braucht kei
 
 ---
 
-## 12. Checkliste vor Fertigstellung
+## 13. Checkliste vor Fertigstellung
 
 | Check | Frage |
 |-------|-------|
@@ -418,7 +509,7 @@ Was bleibt, sind Prinzipien. Wer versteht, wie Sprachmodelle denken, braucht kei
 
 ---
 
-## 13. Schnellreferenz: Frontmatter-Template zum Kopieren
+## 14. Schnellreferenz: Frontmatter-Template zum Kopieren
 
 ```yaml
 ---
@@ -429,6 +520,7 @@ summary: >-
 pubDate: 
 category: takes
 featured: false
+ogImage: /images/og/og-SLUG.png
 tags:
   - 
 readTime: 
