@@ -3,112 +3,120 @@ import { Reveal } from "@components/ui/Reveal";
 import { Dot } from "@components/ui/Dot";
 ---
 
-<section
-  class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]"
->
-  <div
-    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
-  >
+<!-- Ökosystem -->
+<section class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 bg-dark text-white">
+  <div class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start">
     <Reveal client:load>
-      <p
-        class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase md:sticky md:top-[98px]"
-      >
+      <p class="text-xs sm:text-sm font-medium text-white/40 tracking-[0.08em] uppercase md:sticky md:top-[98px]">
         Ökosystem
       </p>
     </Reveal>
 
     <div>
       <Reveal client:load>
-        <p
-          class="text-xl sm:text-2xl md:text-[clamp(22px,2.8vw,34px)] font-serif leading-[1.45] mb-10 md:mb-12 max-w-full md:max-w-[560px]"
-        >
-          Drei Plattformen, ein Ziel: Menschen und Organisationen fit machen für
-          die KI-Ära.
+        <h2 class="text-2xl sm:text-3xl md:text-[clamp(28px,4vw,48px)] font-black leading-[0.95] tracking-[-0.025em] mb-4">
+          Mein Ökosystem<Dot />
+        </h2>
+      </Reveal>
+
+      <Reveal client:load delay={0.06}>
+        <p class="text-base sm:text-lg font-light leading-[1.75] text-white/60 max-w-[580px] mb-10 md:mb-12">
+          Vier Projekte, ein Ziel: Menschen und Organisationen fit machen für die KI-Ära. Ich denke, begleite, baue und lehre.
         </p>
       </Reveal>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10">
-        <!-- loschke.ai -->
-        <Reveal client:load delay={0}>
-          <div class="pt-6 border-t-2 border-accent">
-            <div class="mb-3">
-              <span class="text-xl sm:text-2xl font-black tracking-[-0.02em]">
+      <!-- Brand Cards 2x2 Grid -->
+      <Reveal client:load delay={0.1}>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+          <!-- loschke.ai (Du bist hier) -->
+          <div
+            class="block p-6 border-t-[3px] border-accent bg-accent/10"
+          >
+            <div class="flex items-center gap-3 mb-1">
+              <p class="text-2xl font-black tracking-[-0.02em]">
                 RL<span class="text-accent">.</span>
+              </p>
+              <span class="text-[11px] font-medium text-accent bg-accent/20 px-2.5 py-1 rounded-full">
+                Du bist hier
               </span>
             </div>
-            <p class="text-xs sm:text-sm font-medium text-accent mb-2">
-              Du bist hier
+            <p class="text-[13px] font-medium text-white/40 tracking-[0.04em] uppercase mb-4">
+              Denken & Meinung
             </p>
-            <p
-              class="text-base sm:text-lg font-light leading-[1.75] text-[#525252]"
-            >
-              Denken, Experimente, Meinung. Was ich über KI lerne und baue.
+            <p class="text-[15px] font-light leading-[1.65] text-white/70 mb-6">
+              Mein persönlicher Blog. Perspektiven zu KI und Transformation, Experimente und was ich auf dem Weg lerne. Kein Marketing, keine Versprechen. Klares Denken, ehrliche Einschätzungen.
             </p>
+            <span class="text-base font-medium text-accent">
+              Du bist bereits hier ✓
+            </span>
           </div>
-        </Reveal>
 
-        <!-- unlearn.how -->
-        <Reveal client:load delay={0.1}>
+          <!-- unlearn.how -->
           <a
             href="https://unlearn.how"
             target="_blank"
-            rel="noopener"
-            class="block pt-6 border-t border-[#e5e5e5] group"
+            rel="noopener noreferrer"
+            class="group block p-6 border-t-[3px] border-[#a855f7] bg-white/5 hover:bg-white/10 transition-colors duration-300"
           >
-            <div class="mb-3">
-              <span class="text-xl sm:text-2xl tracking-[-0.01em]">
-                <span class="font-serif italic">unlearn</span><span
-                  class="font-serif text-[#a855f7]">.how</span
-                >
-              </span>
-            </div>
-            <p class="text-xs sm:text-sm font-medium text-[#737373] mb-2">
-              Für Organisationen
+            <p class="font-serif text-2xl mb-1">
+              <span class="italic text-white">unlearn</span><span class="text-[#a855f7]">.how</span>
             </p>
-            <p
-              class="text-base sm:text-lg font-light leading-[1.75] text-[#525252] mb-3"
-            >
-              Beratung und Workshops für Führungskräfte und Teams.
+            <p class="text-[13px] font-medium text-white/40 tracking-[0.04em] uppercase mb-4">
+              Begleiten & Transformieren
             </p>
-            <span
-              class="text-sm sm:text-base font-medium text-[#a855f7] group-hover:underline"
-            >
-              Zur Website →
+            <p class="text-[15px] font-light leading-[1.65] text-white/70 mb-6">
+              KI-Transformation für Führungskräfte und Organisationen. Beratung, Workshops und strategisches Sparring. Erst verstehen, dann verändern.
+            </p>
+            <span class="text-base font-medium text-[#a855f7] group-hover:underline">
+              unlearn.how →
             </span>
           </a>
-        </Reveal>
 
-        <!-- lernen.diy -->
-        <Reveal client:load delay={0.2}>
+          <!-- build.jetzt -->
+          <a
+            href="https://build.jetzt"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group block p-6 border-t-[3px] border-[#4A7AE5] bg-white/5 hover:bg-white/10 transition-colors duration-300"
+          >
+            <p class="font-serif text-2xl mb-1">
+              <span class="text-white">build</span><span class="italic text-[#4A7AE5]">.jetzt</span>
+            </p>
+            <p class="text-[13px] font-medium text-white/40 tracking-[0.04em] uppercase mb-4">
+              Bauen & Anwenden
+            </p>
+            <p class="text-[15px] font-light leading-[1.65] text-white/70 mb-6">
+              Agentischer KI-Arbeitsplatz mit spezialisierten Experten. KI, die sich anfühlt wie ein gutes Team. Deep Research, Bildgenerierung, Coding in einem Tool.
+            </p>
+            <span class="text-base font-medium text-[#4A7AE5] group-hover:underline">
+              build.jetzt →
+            </span>
+          </a>
+
+          <!-- lernen.diy -->
           <a
             href="https://lernen.diy"
             target="_blank"
-            rel="noopener"
-            class="block pt-6 border-t border-[#e5e5e5] group"
+            rel="noopener noreferrer"
+            class="group block p-6 border-t-[3px] border-[#0F766E] bg-white/5 hover:bg-white/10 transition-colors duration-300"
           >
-            <div class="mb-3">
-              <span class="text-xl sm:text-2xl tracking-[-0.01em]">
-                <span class="font-serif">lernen</span><span
-                  class="font-serif italic text-[#0F766E]">.diy</span
-                >
-              </span>
-            </div>
-            <p class="text-xs sm:text-sm font-medium text-[#737373] mb-2">
-              Für alle
+            <p class="font-serif text-2xl mb-1">
+              <span class="text-white">lernen</span><span class="italic text-[#0F766E]">.diy</span>
             </p>
-            <p
-              class="text-base sm:text-lg font-light leading-[1.75] text-[#525252] mb-3"
-            >
-              Guides, Labs, Ressourcen. Lerne KI im eigenen Tempo.
+            <p class="text-[13px] font-medium text-white/40 tracking-[0.04em] uppercase mb-4">
+              Lehren & Lernen
             </p>
-            <span
-              class="text-sm sm:text-base font-medium text-[#0F766E] group-hover:underline"
-            >
-              Benachrichtigung erhalten →
+            <p class="text-[15px] font-light leading-[1.65] text-white/70 mb-6">
+              Kostenlose interaktive Lessons, Guides und Ressourcen. KI praxisnah lernen, im eigenen Tempo. Keine Theorie-Schlachten, keine Hype-Versprechen.
+            </p>
+            <span class="text-base font-medium text-[#0F766E] group-hover:underline">
+              lernen.diy →
             </span>
           </a>
-        </Reveal>
-      </div>
+
+        </div>
+      </Reveal>
     </div>
   </div>
 </section>
