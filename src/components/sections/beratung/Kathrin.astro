@@ -1,0 +1,106 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+import { Dot } from "@components/ui/Dot";
+---
+
+<section
+  class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+  >
+    <Reveal client:load>
+      <div class="md:sticky md:top-[98px]">
+        <p
+          class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase mb-4"
+        >
+          Wir ergänzen uns
+        </p>
+        <p
+          class="text-sm font-light leading-[1.6] text-[#737373] max-w-[180px] hidden md:block"
+        >
+          Zwei Perspektiven, ein Ganzes.
+        </p>
+      </div>
+    </Reveal>
+
+    <div class="max-w-full md:max-w-[700px]">
+      <Reveal client:load>
+        <h2
+          class="text-3xl sm:text-4xl md:text-[clamp(34px,4.5vw,60px)] font-black leading-[0.95] tracking-[-0.025em] mb-5 md:mb-6"
+        >
+          KI-Tiefe trifft<br />Change-Systematik<Dot />
+        </h2>
+      </Reveal>
+
+      <Reveal client:load delay={0.06}>
+        <p
+          class="text-base sm:text-lg font-light leading-[1.75] text-[#525252] max-w-[600px] mb-10 md:mb-12"
+        >
+          KI-Transformation braucht zwei Sachen gleichzeitig: technische Tiefe,
+          um zu verstehen, was die Systeme können — und ein Gespür dafür, wie
+          Organisationen tatsächlich funktionieren. Allein decke ich das nicht
+          ab. Mit <strong class="text-dark">Kathrin Boden</strong> als
+          Partnerin schon.
+        </p>
+      </Reveal>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
+        <Reveal client:load delay={0.12}>
+          <div class="border-t border-[#d4d4d4] pt-6 md:pt-7">
+            <p
+              class="text-xs font-medium text-accent uppercase tracking-[0.06em] mb-3"
+            >
+              Mein Beitrag
+            </p>
+            <p class="text-xl font-black tracking-[-0.015em] text-dark mb-3">
+              Rico Loschke
+            </p>
+            <p
+              class="text-base font-light leading-[1.7] text-[#525252]"
+            >
+              KI-Tiefe und Digitalisierung. 15+ Jahre an der Schnittstelle von
+              Strategie, Technik und Organisation. Drei Jahre KI-Bereich von
+              null aufgebaut, intern wie bei Kunden begleitet. Trainer bei
+              Haufe Akademie, IHK und Fraunhofer.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal client:load delay={0.18}>
+          <div class="border-t border-[#d4d4d4] pt-6 md:pt-7">
+            <p
+              class="text-xs font-medium text-accent uppercase tracking-[0.06em] mb-3"
+            >
+              Kathrins Beitrag
+            </p>
+            <p class="text-xl font-black tracking-[-0.015em] text-dark mb-3">
+              Kathrin Boden
+            </p>
+            <p
+              class="text-base font-light leading-[1.7] text-[#525252]"
+            >
+              Change-Systematik aus 20+ Jahren Veränderungsprojekten. Fünf
+              Jahre als C-Level Managerin in der Unternehmens­entwicklung der
+              DVB. Transformation nicht beraten, sondern von innen geführt.
+              15+ Jahre Dozentin.
+            </p>
+          </div>
+        </Reveal>
+      </div>
+
+      <Reveal client:load delay={0.28}>
+        <p class="mt-10 md:mt-12 text-sm">
+          <a
+            href="https://unlearn.how"
+            target="_blank"
+            rel="noopener"
+            class="font-medium text-accent border-b border-transparent hover:border-accent transition-colors duration-250"
+          >
+            Mehr über uns und das Programm auf unlearn.how →
+          </a>
+        </p>
+      </Reveal>
+    </div>
+  </div>
+</section>

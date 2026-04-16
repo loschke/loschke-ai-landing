@@ -1,0 +1,511 @@
+---
+import FrameLayout from "@layouts/FrameLayout.astro";
+import { HeroLine } from "@components/ui/HeroLine";
+import { Dot } from "@components/ui/Dot";
+import ContentSection from "@components/sections/arbeit/ContentSection.astro";
+import {
+  FrameworkTabs,
+  type PromptToken,
+} from "@components/sections/arbeit/FrameworkTabs";
+import { PromptExample } from "@components/sections/arbeit/PromptExample";
+import CTA from "@components/sections/CTA.astro";
+
+// Helper, damit die Token-Arrays unten kompakt bleiben
+const t = (text: string, type: PromptToken["type"] = "neutral"): PromptToken => ({
+  text,
+  type,
+});
+
+const dimensionTabs = [
+  {
+    id: "k1",
+    label: "K1 Konzept",
+    question: "Was ist zu sehen und wie wurde es erstellt?",
+    formula: [
+      t("a "),
+      t("[Medium]", "medium"),
+      t(" of "),
+      t("[Subjekt]", "subject"),
+    ],
+    reference: [
+      t("a "),
+      t("photo", "medium"),
+      t(" of a "),
+      t("maasai warrior", "subject"),
+    ],
+    images: [
+      {
+        src: "/images/4k-framework/k1-acryl-painting.jpg",
+        alt: "Acryl Painting",
+        caption: [t("acryl painting", "medium")],
+      },
+      {
+        src: "/images/4k-framework/k1-graffiti.jpg",
+        alt: "Graffiti Street Art",
+        caption: [t("graffiti", "medium")],
+      },
+      {
+        src: "/images/4k-framework/k1-cartoon.jpg",
+        alt: "Cartoon Illustration",
+        caption: [t("cartoon illustration", "medium")],
+      },
+      {
+        src: "/images/4k-framework/k1-stained-glass.jpg",
+        alt: "Stained Glass",
+        caption: [t("stained glass painting", "medium")],
+      },
+    ],
+  },
+  {
+    id: "k2",
+    label: "K2 Kontext",
+    question: "Was geschieht und wo findet es statt?",
+    formula: [
+      t("a "),
+      t("[Medium]", "medium"),
+      t(" of "),
+      t("[Subjekt]", "subject"),
+      t(" "),
+      t("[Aktion]", "action"),
+      t(" "),
+      t("[Schauplatz]", "place"),
+    ],
+    reference: [
+      t("a "),
+      t("photo", "medium"),
+      t(" of a "),
+      t("maasai warrior", "subject"),
+    ],
+    images: [
+      {
+        src: "/images/4k-framework/k2-running-savannah.jpg",
+        alt: "Maasai läuft in Savannah",
+        caption: [
+          t("…", "neutral"),
+          t("running", "action"),
+          t(" "),
+          t("in the savannah", "place"),
+        ],
+      },
+      {
+        src: "/images/4k-framework/k2-hunting-forest.jpg",
+        alt: "Maasai jagt mit Speer im Wald",
+        caption: [
+          t("…", "neutral"),
+          t("hunting with a spear", "action"),
+          t(" "),
+          t("in the forest", "place"),
+        ],
+      },
+      {
+        src: "/images/4k-framework/k2-standing-hut.jpg",
+        alt: "Maasai steht Wache vor seiner Hütte",
+        caption: [
+          t("…", "neutral"),
+          t("standing guard", "action"),
+          t(" "),
+          t("in front of his hut", "place"),
+        ],
+      },
+      {
+        src: "/images/4k-framework/k2-dancing-campfire.jpg",
+        alt: "Cartoon-Maasai tanzt am Lagerfeuer",
+        caption: [
+          t("cartoon illustration", "medium"),
+          t(" of a "),
+          t("maasai warrior", "subject"),
+          t(" "),
+          t("dancing", "action"),
+          t(" "),
+          t("by a campfire", "place"),
+        ],
+      },
+    ],
+  },
+  {
+    id: "k3",
+    label: "K3 Komposition",
+    question: "Von wo schaue ich und aus welcher Entfernung?",
+    formula: [
+      t("a "),
+      t("[Bildausschnitt]", "composition"),
+      t(" "),
+      t("[Medium]", "medium"),
+      t(" of "),
+      t("[Subjekt]", "subject"),
+    ],
+    reference: [
+      t("a "),
+      t("photo", "medium"),
+      t(" of a "),
+      t("maasai warrior", "subject"),
+    ],
+    images: [
+      {
+        src: "/images/4k-framework/k3-closeup-studio.jpg",
+        alt: "Close-up Foto",
+        caption: [
+          t("a "),
+          t("close-up", "composition"),
+          t(" "),
+          t("photo", "medium"),
+          t(" of…"),
+        ],
+      },
+      {
+        src: "/images/4k-framework/k3-eye-level.jpg",
+        alt: "Eye Level, mittlere Distanz",
+        caption: [
+          t("an "),
+          t("eye-level", "composition"),
+          t(" "),
+          t("photo", "medium"),
+          t(" of…"),
+        ],
+      },
+      {
+        src: "/images/4k-framework/k3-low-angle.jpg",
+        alt: "Low Angle Foto",
+        caption: [
+          t("a "),
+          t("low-angle", "composition"),
+          t(" "),
+          t("photo", "medium"),
+          t(" of…"),
+        ],
+      },
+      {
+        src: "/images/4k-framework/k3-high-angle.jpg",
+        alt: "High Angle Foto",
+        caption: [
+          t("a "),
+          t("high-angle", "composition"),
+          t(" "),
+          t("photo", "medium"),
+          t(" of…"),
+        ],
+      },
+    ],
+  },
+  {
+    id: "k4",
+    label: "K4 Kreativität",
+    question: "Lass deiner Kreativität freien Lauf",
+    formula: [
+      t("a "),
+      t("[Medium]", "medium"),
+      t(" of "),
+      t("[Subjekt]", "subject"),
+      t(" "),
+      t("[Kreativstil]", "creative"),
+    ],
+    reference: [
+      t("a "),
+      t("photo", "medium"),
+      t(" of a "),
+      t("maasai warrior", "subject"),
+    ],
+    images: [
+      {
+        src: "/images/4k-framework/k4-art-nouveau.jpg",
+        alt: "Art Nouveau Stil",
+        caption: [
+          t("an "),
+          t("art nouveau", "creative"),
+          t(" "),
+          t("image", "medium"),
+          t(" of…"),
+        ],
+      },
+      {
+        src: "/images/4k-framework/k4-double-exposure.jpg",
+        alt: "Double Exposure",
+        caption: [
+          t("a "),
+          t("double exposure", "creative"),
+          t(" of a "),
+          t("maasai warrior", "subject"),
+          t(" "),
+          t("and a lion inside an african tree", "creative"),
+        ],
+      },
+      {
+        src: "/images/4k-framework/k4-glass-material.jpg",
+        alt: "Glas-Material-Effekt",
+        caption: [
+          t("a "),
+          t("maasai warrior", "subject"),
+          t(" "),
+          t("made of glass material", "creative"),
+        ],
+      },
+      {
+        src: "/images/4k-framework/k4-cyberpunk.jpg",
+        alt: "Cyberpunk Neon Stil",
+        caption: [
+          t("a "),
+          t("neon cyberpunk", "creative"),
+          t(" "),
+          t("image", "medium"),
+          t(" of a "),
+          t("maasai warrior", "subject"),
+        ],
+      },
+    ],
+  },
+];
+
+// Beispiel für die Prompt-Bibliothek: Motiv-Formel
+const motifExample = {
+  formula: [
+    t("A "),
+    t("photo", "medium"),
+    t(" of "),
+    t("[HAUPTOBJEKT]", "subject"),
+    t(" "),
+    t("[DETAILS]", "subject"),
+    t(", isolated against a "),
+    t("[HINTERGRUND]", "place"),
+    t(" background."),
+  ],
+  images: [
+    {
+      src: "/images/prompt-library/motif-camera.jpg",
+      alt: "Vintage-Kamera vor pastellblauem Hintergrund",
+      caption: [
+        t("vintage camera", "subject"),
+        t(" · "),
+        t("pastel blue", "place"),
+      ],
+    },
+    {
+      src: "/images/prompt-library/motif-watch.jpg",
+      alt: "Stylische Uhr vor schwarzem Hintergrund",
+      caption: [
+        t("stylish watch", "subject"),
+        t(" · "),
+        t("black", "place"),
+      ],
+    },
+    {
+      src: "/images/prompt-library/motif-apple.jpg",
+      alt: "Frischer Apfel vor gelbem Hintergrund",
+      caption: [
+        t("fresh apple", "subject"),
+        t(" · "),
+        t("bright yellow", "place"),
+      ],
+    },
+    {
+      src: "/images/prompt-library/motif-burger.jpg",
+      alt: "Gourmet-Burger vor rotem Hintergrund",
+      caption: [
+        t("gourmet burger", "subject"),
+        t(" · "),
+        t("red", "place"),
+      ],
+    },
+  ],
+};
+---
+
+<FrameLayout
+  title="AI-Design.Guide – Vier Dimensionen für jedes Bild"
+  description="Das 4K Framework für KI-Bildgenerierung. 2023 als Muster erkannt, als Methode formalisiert. Toolunabhängig, stabil, läuft 2026 noch in jeder Schulung. Plus kuratierte Prompt-Bibliothek."
+>
+  <!-- Hero mit Logo statt typografischer Wortmarke -->
+  <section
+    class="min-h-[calc(100vh-36px)] flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20"
+  >
+    <div class="max-w-none">
+      <HeroLine client:load delay={0.15}>
+        <img
+          src="/Logo_AI-Design_Guide_RicoLoschke.png"
+          alt="AI-Design.Guide"
+          class="h-16 sm:h-20 md:h-28 w-auto mb-8 sm:mb-10 md:mb-12"
+        />
+      </HeroLine>
+
+      <h1
+        class="text-5xl sm:text-6xl md:text-[clamp(64px,9vw,140px)] font-sans font-black leading-[0.88] tracking-[-0.04em] mb-8 sm:mb-10 text-dark"
+      >
+        <HeroLine client:load delay={0.4}>
+          Vier Dimensionen<br />für jedes Bild<Dot />
+        </HeroLine>
+      </h1>
+
+      <div class="max-w-full sm:max-w-[600px] md:max-w-[800px] mb-8 sm:mb-10">
+        <HeroLine client:load delay={0.65}>
+          <p
+            class="text-xl sm:text-2xl md:text-[clamp(22px,2.6vw,32px)] font-serif font-normal leading-[1.4] text-[#525252]"
+          >
+            Eine Methode für KI-Bildgenerierung, schon 2023 entwickelt. Vier
+            Dimensionen, toolunabhängig und stabil. Plus eine Bibliothek, die
+            das Framework praktisch macht.
+          </p>
+        </HeroLine>
+      </div>
+
+      <div>
+        <HeroLine client:load delay={0.8}>
+          <a
+            href="#mustererkennung"
+            class="inline-block py-3 sm:py-4 text-sm sm:text-base font-medium text-accent border-b border-transparent hover:border-accent transition-colors duration-250"
+          >
+            Wie es entstand ↓
+          </a>
+        </HeroLine>
+      </div>
+    </div>
+  </section>
+
+  <ContentSection
+    label="Auslöser"
+    title="Die Mustererkennung"
+    id="mustererkennung"
+    variant="divider"
+  >
+    <p>
+      2023, KI-Bildgenerierung wird Alltag. Mal kommt ein gutes Bild raus, mal
+      nicht. Beim genauen Hinschauen fällt auf: Die meisten Prompts beschreiben
+      nur, was zu sehen sein soll. Aber jedes Bild hat mehr Dimensionen. Wer nur
+      eine bedient, überlässt drei dem Zufall.
+    </p>
+    <p>
+      Aus dieser Beobachtung wurde ein Muster. Aus dem Muster ein Framework.
+      Vier Dimensionen, die jedes gute Bild-Prompt trägt. Verbunden zu einem
+      Werkzeugkasten für kontrollierte Bildgenerierung.
+    </p>
+    <p>
+      <strong>Der Begriff: 4K Framework.</strong> Nicht weil es vier Mal K im
+      Namen geben muss. Sondern weil sich die vier Dimensionen so klar trennen
+      lassen, dass sie als Merkhilfe taugen.
+    </p>
+  </ContentSection>
+
+  <ContentSection
+    label="Die Methode"
+    title="Wie die vier Dimensionen wirken"
+    variant="soft"
+  >
+    <p>
+      Jede Dimension ist ein konkreter Hebel. Nicht jeder Prompt braucht alle
+      vier. Aber wer alle vier kennt, weiß, was er gerade weglässt und warum.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Kernfrage</th>
+          <th>Stärkster Hebel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>K1 – Konzept</td>
+          <td>Was + Wie?</td>
+          <td>Medium wählen</td>
+        </tr>
+        <tr>
+          <td>K2 – Kontext</td>
+          <td>Wo + Wann?</td>
+          <td>Epoche setzen</td>
+        </tr>
+        <tr>
+          <td>K3 – Komposition</td>
+          <td>Welche Perspektive?</td>
+          <td>Kamerawinkel + Licht</td>
+        </tr>
+        <tr>
+          <td>K4 – Kreativität</td>
+          <td>Welcher Style?</td>
+          <td>Unerwartete Kombination</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Die vier Dimensionen mit Beispielen</h3>
+    <p>
+      Ein durchgehendes Subjekt, vier Hebel. Wechsle die Tabs, um zu sehen,
+      wie jede Dimension das Bild verschiebt — bei sonst gleichbleibendem
+      Motiv.
+    </p>
+    <FrameworkTabs client:load tabs={dimensionTabs} />
+  </ContentSection>
+
+  <ContentSection label="Stabil" title="Toolunabhängig und langlebig">
+    <p>
+      Das Framework beschreibt Bildsprache, nicht Tool-Syntax. Das macht es
+      technologieunabhängig. Es funktioniert mit Midjourney, Flux,
+      NanoBanana — und mit dem nächsten Tool, das morgen kommt.
+    </p>
+    <p>
+      Seit 2023 habe ich wenig Vergleichbares gefunden. Die meisten Anleitungen
+      bleiben auf der Tool-Ebene: „So klickst du das in Midjourney." Das
+      veraltet, sobald sich die Oberfläche ändert. Das 4K-Framework arbeitet
+      eine Ebene darüber.
+    </p>
+    <p>
+      In jeder KI-Schulung 2026 nutze ich es noch. Mit konstantem Feedback:
+      Endlich verstehen Teilnehmer, warum manche Prompts funktionieren und
+      andere nicht. Kein Glücksspiel mehr. Kontrolliertes Steuern.
+    </p>
+  </ContentSection>
+
+  <ContentSection
+    label="Nächste Stufe"
+    title="Die Prompt-Bibliothek"
+    variant="soft"
+  >
+    <p>
+      Ein Framework allein verändert nichts, wenn jeder bei null anfangen muss.
+      Die Prompt-Bibliothek ist die nächste Stufe: ein strukturierter Ansatz,
+      funktionierende Prompts wiederverwendbar zu machen.
+    </p>
+    <p>
+      Aktuell: <strong>70+ Formeln, 1000+ Beispielbilder</strong>. Alle nach
+      dem 4K-Framework strukturiert, alle in der Praxis erprobt. Direktes
+      Ergebnis des Frameworks, nicht zufällige Sammlung.
+    </p>
+    <p>
+      Voll integriert in <a href="https://build.jetzt">build.jetzt</a>:
+      durchsuchbar, filterbar nach Typ und Medium, jede Formel mit
+      Live-Vorschau und einem Klick zur Bildgenerierung im selben Tool. Aus
+      Bibliothek wird Werkzeug.
+    </p>
+    <figure class="not-prose my-8 border border-[#e5e5e5] rounded-[4px] overflow-hidden bg-[#fafafa]">
+      <img
+        src="/images/prompt-library/design-library-overview.png"
+        alt="Design Library in build.jetzt: Übersicht mit 70+ Prompt-Formeln und 1000+ Beispielbildern, gefiltert nach Typ und Medium"
+        loading="lazy"
+        class="w-full h-auto block"
+      />
+      <figcaption class="px-4 py-3 text-xs text-[#737373] font-mono leading-[1.5] border-t border-[#e5e5e5] bg-white">
+        Design Library in build.jetzt — jede Karte eine Formel, mit
+        Vorschau-Bildern und direkter Generierung im Tool.
+      </figcaption>
+    </figure>
+
+    <h3>Wie eine Formel im Alltag funktioniert</h3>
+    <p>
+      Ein Beispiel: die Motiv-Formel. Aufbau, Hintergrund und Kameraperspektive
+      werden einmal definiert. Das Hauptobjekt bleibt variabel — vier Produkte
+      in Sekunden, alle als Set erkennbar.
+    </p>
+    <PromptExample
+      client:load
+      formula={motifExample.formula}
+      images={motifExample.images}
+    />
+  </ContentSection>
+
+  <CTA
+    variant="dark"
+    headline="Tiefer einsteigen"
+    text="Die ausführliche Lesson auf lernen.diy zeigt jede Dimension mit Beispielen. 30 Minuten, kostenlos, ohne Login. Inklusive Bildbeispielen für jede der vier Dimensionen."
+    primaryHref="https://lernen.diy/lessons/4k-framework"
+    primaryLabel="Zur Lesson auf lernen.diy →"
+    primaryExternal={true}
+    secondaryHref="/arbeit"
+    secondaryLabel="← Zurück zur Arbeit"
+  />
+</FrameLayout>

@@ -1,0 +1,201 @@
+---
+import FrameLayout from "@layouts/FrameLayout.astro";
+import { HeroLine } from "@components/ui/HeroLine";
+import { Dot } from "@components/ui/Dot";
+import ContentSection from "@components/sections/arbeit/ContentSection.astro";
+import CTA from "@components/sections/CTA.astro";
+---
+
+<FrameLayout
+  title="build.jetzt – Eine agentische KI-Plattform, selbst gebaut"
+  description="Warum ich eine eigene KI-Plattform gebaut habe: Das Beste aus Claude und Gemini, plus Review-Modus, eigene Asset-Produktion und eingebauter Datenschutz. Eine Bau-Geschichte."
+>
+  <!-- Hero: Wortmarke als Brand-Mark, beschreibende Headline -->
+  <section
+    class="min-h-[calc(100vh-36px)] flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20"
+  >
+    <div class="max-w-none">
+      <HeroLine client:load delay={0.15}>
+        <p
+          class="font-serif text-3xl sm:text-4xl md:text-[clamp(36px,4.5vw,56px)] mb-8 sm:mb-10 md:mb-12 leading-[1]"
+        >
+          <span class="text-dark">build</span><span class="italic text-[#4A7AE5]">.jetzt</span>
+        </p>
+      </HeroLine>
+
+      <h1
+        class="text-5xl sm:text-6xl md:text-[clamp(64px,9vw,140px)] font-sans font-black leading-[0.88] tracking-[-0.04em] mb-8 sm:mb-10 text-dark"
+      >
+        <HeroLine client:load delay={0.3}>
+          Aus zwei Welten,<br />ein Arbeitsplatz<Dot />
+        </HeroLine>
+      </h1>
+
+      <div class="max-w-full sm:max-w-[600px] md:max-w-[800px] mb-8 sm:mb-10">
+        <HeroLine client:load delay={0.55}>
+          <p
+            class="text-xl sm:text-2xl md:text-[clamp(22px,2.6vw,32px)] font-serif font-normal leading-[1.4] text-[#525252]"
+          >
+            Eine agentische KI-Plattform. Aus Reibung im eigenen Alltag
+            entstanden. Heute Werkzeug, Lernprojekt und Begleittool in einem.
+          </p>
+        </HeroLine>
+      </div>
+
+      <div>
+        <HeroLine client:load delay={0.7}>
+          <a
+            href="#switch-moment"
+            class="inline-block py-3 sm:py-4 text-sm sm:text-base font-medium text-accent border-b border-transparent hover:border-accent transition-colors duration-250"
+          >
+            Wie es entstand ↓
+          </a>
+        </HeroLine>
+      </div>
+    </div>
+  </section>
+
+  <ContentSection
+    label="Auslöser"
+    title="Der Switch-Moment"
+    id="switch-moment"
+    variant="divider"
+  >
+    <p>
+      Ich finde das Claude- und Gemini-Ökosystem beide stark. Deep Research mit
+      Gemini, Writing und agentisches Arbeiten mit Claude, Sprachausgabe wieder
+      mit Gemini. Das Problem: Ich habe ständig zwischen Tabs gewechselt.
+      Kontext kopiert. Ergebnisse manuell zusammengeführt.
+    </p>
+    <p>
+      Das war nicht nur Reibung. Das war ein Designproblem. Zwei gute Systeme,
+      aber keines konnte alles. Und keines wusste, was ich im anderen gerade
+      gemacht hatte.
+    </p>
+    <p>
+      <strong>Mein Ziel war das Beste aus zwei Welten. Plus das, was mir noch
+      gefehlt hat.</strong>
+    </p>
+  </ContentSection>
+
+  <ContentSection label="Was fehlte" title="Vier Lücken" variant="soft">
+    <h3>Ein Review-Modus für lange Texte</h3>
+    <p>
+      Wenn du ein 20-Seiten-Konzept oder eine ausgearbeitete Strategie hast,
+      ist Feedback über ein Prompt-Feld praktisch unmöglich. Du brauchst eine
+      Oberfläche, in der du den Text liest, kommentierst und die KI gezielt auf
+      Abschnitte ansetzt. Das habe ich selbst gebraucht und selbst gebaut.
+    </p>
+
+    <h3>Eigene Asset-Produktion</h3>
+    <p>
+      Nicht nur Text raus, sondern Präsentationen, Bilder, Audio,
+      Office-Dokumente. Direkt im Chat, versioniert, editierbar. 21 Werkzeuge
+      an einem Arbeitsplatz.
+    </p>
+
+    <h3>Inline YouTube-Analyse</h3>
+    <p>
+      Ich schaue viel Fach-Content. Transkripte durchsuchen, Kernaussagen
+      extrahieren, Zeitstempel verlinken. Das konnte kein bestehendes Tool so,
+      wie ich es brauchte.
+    </p>
+
+    <h3>Datenschutz, der mitdenkt</h3>
+    <p>
+      Bevor eine Nachricht rausgeht, prüft das System auf personenbezogene
+      Daten. E-Mail-Adressen, IBANs, Steuer-IDs, Telefonnummern. Nicht als
+      nachgelagertes Feature, sondern eingebaut. Bis hin zur Air-Gapped-Variante
+      ohne externe APIs.
+    </p>
+  </ContentSection>
+
+  <ContentSection
+    label="These"
+    title="Weniger Optionen, mehr smartes Agieren"
+  >
+    <p>
+      Die meisten KI-Tools geben dir Dutzende Buttons und Menüs. Hier ein Tool
+      für Bilder, da eins für Recherche, dort eins für Code. Du musst wissen,
+      was du brauchst, bevor du anfängst.
+    </p>
+    <p>
+      Ich wollte es andersrum. Das System soll selbst erkennen, wo es sinnvoll
+      ist, Werkzeuge einzusetzen. Wenn du eine Frage stellst, die Recherche
+      braucht, startet es die Recherche. Wenn dein Text ein Bild braucht,
+      generiert es eins. Wenn du Grounding an aktuellen Quellen brauchst, holt
+      es sich die Daten.
+    </p>
+    <blockquote>
+      Die KI entscheidet autonom, welche Tools sie nutzt. Aber sie entscheidet
+      nicht über deine Daten, deine Ergebnisse oder deine Arbeitsrichtung.
+    </blockquote>
+    <p>
+      Das ist die These: Agentische Chat-Systeme brauchen eine
+      Abstraktionsschicht, die selbst erkennt, wann Deep Research, wann Canvas,
+      wann Artifact sinnvoll ist. Weniger Optionen für den Menschen. Mehr
+      smartes Agieren im Hintergrund.
+    </p>
+  </ContentSection>
+
+  <ContentSection
+    label="Heute"
+    title="Was es heute ist"
+    variant="soft"
+  >
+    <blockquote>
+      Als KI-Berater muss ich verstehen, wie agentische Systeme funktionieren.
+      Nicht aus Blogposts, sondern aus eigener Entwicklung.
+    </blockquote>
+    <p>
+      <strong>Showcase.</strong> Die Plattform zeigt, was möglich ist, wenn man
+      KI-Systeme konsequent zu Ende denkt. 20+ integrierte Werkzeuge plus
+      spezialisierte Experten, die sich wie echte Fachkollegen verhalten — sie
+      bringen Kontext, Methodik und eigene Skills mit und helfen im Dialog
+      besser als ein generischer Chat. Dazu ein Artifact-System für HTML, Code,
+      Bilder, Audio und Dokumente. Alles versioniert, alles editierbar.
+    </p>
+    <p>
+      <strong>Lernprojekt.</strong> Jede Zeile Code hat mein Verständnis für
+      agentische Systeme vertieft. Tool-Orchestrierung, Prompt-Architektur,
+      Memory-Systeme, MCP-Integration. Dieses Wissen fließt direkt in meine
+      Beratung.
+    </p>
+    <p>
+      <strong>Begleittool.</strong> Viele Unternehmen, die ich begleite, stehen
+      am Anfang. Sie haben sich noch nicht für ein Ökosystem entschieden. Oder
+      nutzen nur oberflächliche Features. Ich bringe mein Tool mit in die
+      Begleitung. Es kann direkt auf das Unternehmen angepasst werden: eigenes
+      Branding, eigene Domain, eigene Feature-Konfiguration.
+    </p>
+  </ContentSection>
+
+  <ContentSection label="Status" title="Wie es weitergeht">
+    <p>
+      build.jetzt ist bisher ein Solo-Projekt. Ich habe es alleine entworfen,
+      entwickelt und deployed. Next.js, TypeScript, Vercel AI SDK, Neon
+      Postgres. Der Stack ist produktionsreif, die Architektur ist auf
+      Multi-Instanz ausgelegt.
+    </p>
+    <p>
+      Ob daraus mal ein Produkt wird, ist offen. Was sicher ist: Die
+      Entwicklung selbst ist der Wert. Für mein Verständnis, für meine
+      Beratung, und für die Unternehmen, die heute schon damit arbeiten.
+    </p>
+    <p>
+      Ich baue alleine, bin aber offen für Austausch mit Entwicklern,
+      Designern und Product-Leuten, die ähnliche Fragen umtreiben.
+    </p>
+  </ContentSection>
+
+  <CTA
+    variant="dark"
+    headline="build.jetzt\nausprobieren"
+    text="Die Plattform läuft als geschlossene Beta. Wenn du sie sehen oder im eigenen Kontext einsetzen willst, schreib mir. Zugang läuft über Freischaltung."
+    primaryHref="https://build.jetzt"
+    primaryLabel="Zur Plattform →"
+    primaryExternal={true}
+    secondaryHref="/arbeit"
+    secondaryLabel="← Zurück zur Arbeit"
+  />
+</FrameLayout>

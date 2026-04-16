@@ -1,0 +1,162 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+import { Dot } from "@components/ui/Dot";
+---
+
+<section
+  class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 bg-[#fafafa]"
+>
+  <div
+    class="grid grid-cols-1 lg:grid-cols-[minmax(100px,240px)_minmax(0,640px)_320px_minmax(0,1fr)] gap-6 md:gap-12 lg:gap-12 items-start"
+  >
+    <!-- Sidebar Label -->
+    <Reveal client:load>
+      <p
+        class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase lg:sticky lg:top-[98px]"
+      >
+        Wer das hier schreibt
+      </p>
+    </Reveal>
+
+    <!-- Story -->
+    <div>
+      <Reveal client:load delay={0.04}>
+        <h2
+          class="text-3xl sm:text-4xl md:text-[clamp(38px,5vw,64px)] font-black leading-[0.92] tracking-[-0.03em] mb-3"
+        >
+          Hi, ich bin Rico<Dot />
+        </h2>
+      </Reveal>
+
+      <Reveal client:load delay={0.08}>
+        <p class="text-sm text-[#737373] mb-8">
+          Rico Loschke · KI-Stratege & Builder
+        </p>
+      </Reveal>
+
+      <Reveal client:load delay={0.12}>
+        <p
+          class="text-base md:text-[1.05rem] font-light leading-[1.75] text-[#525252] mb-5 max-w-[600px]"
+        >
+          15+ Jahre Digitalisierung, davon 5+ Jahre KI — erst als Director
+          Automation & AI in der Agentur, heute freiberuflich. Ich denke darüber
+          nach, was KI mit Arbeit, Teams und Organisationen macht — und schreibe
+          auf, was ich erkenne und erlebe.
+        </p>
+      </Reveal>
+
+      <Reveal client:load delay={0.15}>
+        <p
+          class="text-base md:text-[1.05rem] font-light leading-[1.75] text-[#525252] mb-8 max-w-[600px]"
+        >
+          Tief genug drin, um zu verstehen, was passiert. Weit genug draußen,
+          um zu sehen, was es bedeutet. Ich berate, trainiere und baue eigene
+          KI-Produkte.
+        </p>
+      </Reveal>
+
+      <Reveal client:load delay={0.22}>
+        <p
+          class="text-sm leading-[1.7] text-[#737373] pt-6 border-t border-[#d4d4d4] mb-6 max-w-[600px]"
+        >
+          Davor: 11 Jahre Agenturseite, davon drei als Director Automation &
+          AI. Acht Jahre selbständig in Web, Design und Marketing. Seit 2021
+          täglich mit generativer KI. Trainer an der Haufe Akademie, IHK und
+          Fraunhofer.
+        </p>
+      </Reveal>
+
+      <Reveal client:load delay={0.25}>
+        <div class="flex flex-wrap items-center gap-5 mb-10">
+          <a
+            href="https://www.linkedin.com/in/rico-loschke/"
+            target="_blank"
+            rel="noopener"
+            class="text-sm font-medium text-dark no-underline hover:text-accent transition-colors"
+          >
+            LinkedIn →
+          </a>
+          <a
+            href="https://www.youtube.com/@LoschkeAI"
+            target="_blank"
+            rel="noopener"
+            class="text-sm font-medium text-dark no-underline hover:text-accent transition-colors"
+          >
+            YouTube →
+          </a>
+          <a
+            href="https://www.instagram.com/loschkeai/"
+            target="_blank"
+            rel="noopener"
+            class="text-sm font-medium text-dark no-underline hover:text-accent transition-colors"
+          >
+            Instagram →
+          </a>
+        </div>
+      </Reveal>
+
+      <Reveal client:load delay={0.28}>
+        <div class="pt-6 border-t border-[#d4d4d4]">
+          <span
+            class="block text-xs font-medium text-[#737373] tracking-[0.06em] uppercase mb-4"
+          >
+            Mehr von mir
+          </span>
+          <div class="flex flex-wrap gap-3">
+            <a
+              href="https://unlearn.how"
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2.5 px-4 py-2.5 border border-[#d4d4d4] bg-white text-sm text-[#525252] no-underline hover:border-[#a855f7]/40 hover:text-dark transition-colors"
+            >
+              <span class="w-1.5 h-1.5 rounded-full bg-[#a855f7] shrink-0"
+              ></span>
+              unlearn.how
+              <span class="text-[#a3a3a3] hidden sm:inline"
+                >Beratung & Workshops</span
+              >
+            </a>
+            <a
+              href="https://build.jetzt"
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2.5 px-4 py-2.5 border border-[#d4d4d4] bg-white text-sm text-[#525252] no-underline hover:border-[#3b82f6]/40 hover:text-dark transition-colors"
+            >
+              <span class="w-1.5 h-1.5 rounded-full bg-[#3b82f6] shrink-0"
+              ></span>
+              build.jetzt
+              <span class="text-[#a3a3a3] hidden sm:inline">KI-Plattform</span>
+            </a>
+            <a
+              href="https://lernen.diy"
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2.5 px-4 py-2.5 border border-[#d4d4d4] bg-white text-sm text-[#525252] no-underline hover:border-[#0F766E]/40 hover:text-dark transition-colors"
+            >
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"
+              ></span>
+              lernen.diy
+              <span class="text-[#a3a3a3] hidden sm:inline"
+                >Lessons & Guides</span
+              >
+            </a>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+
+    <!-- Portrait -->
+    <div class="lg:mt-16">
+      <Reveal client:load delay={0.1}>
+        <div class="aspect-[3/4] overflow-hidden">
+          <img
+            src="/images/rico-loschke_ki-visionen-konzepte-digitialisierung.jpg"
+            alt="Rico Loschke"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

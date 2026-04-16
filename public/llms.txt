@@ -1,6 +1,6 @@
 # Rico Loschke
 
-> Selbständiger KI-Pionier und Thought Leader. AI Transformation mit Prinzipien statt Tricks. Gründer des sevenX-Ökosystems mit drei Marken: loschke.ai (Denken & Meinung), unlearn.how (Beratung & Workshops), lernen.diy (Lernen & Machen).
+> Selbständiger KI-Stratege und Builder. AI Transformation mit Prinzipien statt Tricks. Denkt, berät und baut zu KI — über vier eigene Brands: loschke.ai (Denken & Meinung), unlearn.how (Beratung & Workshops), build.jetzt (KI-Plattform), lernen.diy (Lessons & Guides). Plus die methodische Reihe AI-Design.Guide für KI-Bildgenerierung.
 
 ## Über Rico Loschke
 
@@ -34,15 +34,46 @@ Rico arbeitet nach sieben Grundsätzen, die sich in der Praxis bewährt haben:
 
 **VII. Lernen ist der eigentliche Job.** Das Tool von heute ist morgen veraltet. Die einzige sinnvolle Antwort auf permanente Veränderung ist permanente Anpassungsfähigkeit.
 
-## Themen
+## Arbeit
 
-Fünf inhaltliche Säulen, über die Rico auf loschke.ai schreibt und spricht:
+Drei eigene Projekte, jedes aus echtem Bedarf entstanden — nicht Portfolio, sondern ehrliche Bau-Geschichten.
 
-1. **Visionen & Prognosen** – Was kommt auf uns zu
-2. **Takes & Meinungen** – Was er denkt
-3. **Experimente & Learnings** – Was er ausprobiert hat
-4. **Building in Public** – Die Reise zeigen
-5. **Persönliches** – Was er auf dem Weg lernt
+- [Arbeit-Übersicht](https://loschke.ai/arbeit): Die drei Projekte im Überblick
+
+### build.jetzt – Eine agentische KI-Plattform
+
+- [Detailseite](https://loschke.ai/arbeit/build-jetzt) · [Live-Plattform](https://build.jetzt)
+
+Aus dem täglichen Switchen zwischen Claude und Gemini wurde ein eigener Arbeitsplatz. 20+ integrierte Werkzeuge plus spezialisierte Experten, die im Dialog wie echte Fachkollegen helfen. Plus Review-Modus für lange Texte, eigene Asset-Produktion (Bilder, Audio, Office-Dokumente), eingebauter Datenschutz mit PII-Erkennung, bis hin zur Air-Gapped-Variante. These: Agentische Chat-Systeme brauchen eine Abstraktionsschicht, die selbst erkennt, wann welches Tool sinnvoll ist. Weniger Optionen für den Menschen, mehr smartes Agieren im Hintergrund. Stack: Next.js, TypeScript, Vercel AI SDK, Neon Postgres, Multi-Instanz-Architektur.
+
+### lernen.diy – Eine offene Lernplattform für KI
+
+- [Detailseite](https://loschke.ai/arbeit/lernen-diy) · [Live-Plattform](https://lernen.diy)
+
+Aus drei Bedürfnissen entstanden: Wissen teilen (weil Rico selbst viel von Open-Source-Quellen profitiert hat), Begleitmaterial für Schulungen (Workshop-Tag reicht nicht), und eine zentrale Wissensbasis für ein Feld, das ständig wächst. Interaktive Lessons im Codelabs-Stil — Methoden statt Tool-Tutorials, Prinzipien statt Klick-Anleitungen. Vier Themenfelder, kontinuierlich wachsend: KI verstehen & prompten, Bilder & Videos erstellen, KI strategisch einsetzen, Das richtige Tool finden. Frei zugänglich, ohne Login.
+
+### AI-Design.Guide – Methoden für KI-Bildgenerierung
+
+- [Detailseite](https://loschke.ai/arbeit/ai-design-guide) · [Lesson auf lernen.diy](https://lernen.diy/lessons/4k-framework)
+
+2023 das Muster hinter guten Bild-Prompts erkannt und als Framework formalisiert: Das **4K-Framework** beschreibt jedes Bild über vier Dimensionen — K1 Konzept (Subjekt + Medium), K2 Kontext (Aktion + Schauplatz + Zeit), K3 Komposition (Perspektive + Licht), K4 Kreativität (Style + Effekte). Toolunabhängig: funktioniert mit Midjourney, Flux, NanoBanana und jedem nächsten Tool. Läuft 2026 noch in jeder Schulung mit konstantem Feedback. Plus die **Prompt-Bibliothek**: 70+ Formeln, 1000+ Beispielbilder, alle nach 4K-Logik strukturiert, voll integriert in build.jetzt für sofortige Verwendung.
+
+## Beratung
+
+Rico begleitet KI-Transformation in Unternehmen — gemeinsam mit Kathrin Boden über die Marke unlearn.how.
+
+- [Beratung-Seite auf loschke.ai](https://loschke.ai/beratung): Wie Rico arbeitet
+- [unlearn.how](https://unlearn.how): Programme, Formate, Erstgespräch
+
+Drei Ebenen, die sich verschränken — keine Schubladen:
+
+**Verstehen.** Führungskräfte erleben KI selbst. Kein Berater-Slide, sondern eigenes Tun. Zwei Tage Präsenz reichen, um vom Beobachter zum Architekten zu werden. Basis für alles Weitere.
+
+**Befähigen.** Teams brauchen mehr als eine Schulung. Eine Abfolge aus Impulsen über Wochen — Führungskraft, Impuls für alle, Team-Befähigung, Reflexion. Jeder Schritt verschiebt die innere Bereitschaft.
+
+**Werkzeuge mitbringen.** Viele Unternehmen haben noch kein etabliertes KI-Ökosystem. Rico bringt build.jetzt mit — eine geschützte Plattform, sofort einsetzbar, konfigurierbar auf das Unternehmen.
+
+**Komplementarität:** Rico steht für KI-Tiefe und Digitalisierung. Kathrin Boden bringt Change-Systematik aus 20+ Jahren Veränderungsprojekten und fünf Jahren als C-Level Managerin in der Unternehmensentwicklung der DVB. Zusammen ergibt das ein Ganzes aus KI-Tiefe und Change-Verständnis.
 
 ## Speaking
 
@@ -68,27 +99,35 @@ Organisationen, die auf seine Expertise und Trainings vertrauen: IHK, Haufe Akad
 
 ## Ökosystem
 
-Drei Plattformen, ein Ziel: Menschen und Organisationen fit machen für die KI-Ära.
+Vier Plattformen, ein Ziel: Menschen und Organisationen fit machen für die KI-Ära.
 
 ### loschke.ai – Personal Brand & Thought Leadership
 - **Funktion:** Trust Anchor, Content Hub, persönliche Perspektive
-- **Inhalte:** Blog (Meinung, Analyse, Experimente), Speaker-Info, Manifest
-- **Perspektive:** "Ich sehe das so..." / "Ich hab's ausprobiert..."
+- **Inhalte:** Blog (Meinung, Analyse, Experimente), Arbeit-Sektion, Beratung-Sektion, Speaker-Info, Manifest
+- **Perspektive:** „Ich sehe das so…" / „Ich hab's ausprobiert…"
 - **Zielgruppe:** Follower, Peers, Branchenbeobachter
 - **URL:** [loschke.ai](https://loschke.ai)
 
 ### unlearn.how – B2B Consulting & Workshops
 - **Funktion:** Beratung, Workshops, strategisches Sparring
-- **Inhalte:** Case Studies, Methodik, Service-Seiten
-- **Perspektive:** "Was bedeutet das für deine Organisation..."
+- **Inhalte:** Führungskräfte-Programm, Transformationsbegleitung, Insights
+- **Perspektive:** „Was bedeutet das für deine Organisation…"
 - **Zielgruppe:** C-Level, HR-Verantwortliche, Transformationsmanager
+- **Team:** Rico Loschke + Kathrin Boden
 - **URL:** [unlearn.how](https://unlearn.how)
 
+### build.jetzt – Agentische KI-Plattform
+- **Funktion:** Eigene Plattform für agentisches Arbeiten mit KI; Werkzeug, Lernprojekt und Begleittool für Beratungskunden
+- **Inhalte:** 20+ integrierte Werkzeuge, spezialisierte Experten, Artifacts, Datenschutz-Layer
+- **Perspektive:** „KI sollte sich anfühlen wie ein gutes Team."
+- **Zielgruppe:** Power-User; Unternehmen ohne etabliertes KI-Ökosystem
+- **URL:** [build.jetzt](https://build.jetzt)
+
 ### lernen.diy – Self-Service Learning
-- **Funktion:** Guides, Labs, Übungen, Tools
-- **Inhalte:** Tutorials, How-tos, interaktive Demos
-- **Perspektive:** "So machst du es..." / "Du kannst das"
-- **Zielgruppe:** Praktiker, selbstmotivierte Lernende
+- **Funktion:** Offene Lernplattform mit interaktiven Lessons
+- **Inhalte:** Lessons im Codelabs-Stil, Methoden statt Tutorials, themenbreit von Prompting bis Agenten
+- **Perspektive:** „So machst du es…" / „Du kannst das."
+- **Zielgruppe:** Praktiker, selbstmotivierte Lernende, Workshop-Teilnehmer
 - **URL:** [lernen.diy](https://lernen.diy)
 
 ## Ausgewählte Blog-Artikel
@@ -103,10 +142,12 @@ Drei Plattformen, ein Ziel: Menschen und Organisationen fit machen für die KI-�
 
 ## Hauptseiten
 
-- [Startseite](https://loschke.ai/): Übersicht, aktuelle Artikel, Ökosystem
+- [Startseite](https://loschke.ai/): Übersicht, Author-Vorstellung, aktuelle Artikel, Projekte
 - [Blog](https://loschke.ai/blog): Meinungen, Experimente, Analysen zu KI und Transformation
-- [Manifest](https://loschke.ai/manifest): 7 Grundsätze für die Arbeit mit KI
+- [Arbeit](https://loschke.ai/arbeit): Die drei eigenen Projekte (build.jetzt, lernen.diy, AI-Design.Guide)
+- [Beratung](https://loschke.ai/beratung): Wie Rico KI-Transformation begleitet
 - [Speaking](https://loschke.ai/speaking): Keynotes und Impulsvorträge
+- [Manifest](https://loschke.ai/manifest): 7 Grundsätze für die Arbeit mit KI
 - [Kontakt](https://loschke.ai/contact): Anfragen und Projekte
 
 ## Kontakt & Social

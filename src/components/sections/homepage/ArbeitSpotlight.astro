@@ -1,0 +1,116 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+import { Dot } from "@components/ui/Dot";
+
+const projects = [
+  {
+    href: "/arbeit/build-jetzt",
+    wordmark: { dark: "build", italic: ".jetzt", color: "#4A7AE5" },
+    teaser:
+      "Eine agentische KI-Plattform, selbst gebaut. Aus dem Switchen zwischen Claude und Gemini wurde ein eigener Arbeitsplatz.",
+  },
+  {
+    href: "/arbeit/lernen-diy",
+    wordmark: { dark: "lernen", italic: ".diy", color: "#0F766E" },
+    teaser:
+      "Eine offene Lernplattform für KI. Aus Workshop-Begleitmaterial gewachsen, frei zugänglich für alle.",
+  },
+  {
+    href: "/arbeit/ai-design-guide",
+    wordmark: null,
+    logo: "/Logo_AI-Design_Guide_RicoLoschke.png",
+    teaser:
+      "Strukturierte Methoden für KI-Bildgenerierung. Das 4K-Framework und eine Bibliothek mit über 1000 Beispielen.",
+  },
+];
+---
+
+<section
+  class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+  >
+    <Reveal client:load>
+      <div class="md:sticky md:top-[98px]">
+        <p
+          class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase mb-4"
+        >
+          Was ich baue
+        </p>
+        <p
+          class="text-sm font-light leading-[1.6] text-[#737373] max-w-[180px] hidden md:block"
+        >
+          Drei eigene Projekte, jedes aus echtem Bedarf entstanden.
+        </p>
+      </div>
+    </Reveal>
+
+    <div>
+      <Reveal client:load>
+        <h2
+          class="text-3xl sm:text-4xl md:text-[clamp(34px,4.5vw,60px)] font-black leading-[0.95] tracking-[-0.025em] mb-5 md:mb-6"
+        >
+          Meine Projekte<Dot />
+        </h2>
+      </Reveal>
+
+      <Reveal client:load delay={0.06}>
+        <p
+          class="text-base sm:text-lg font-light leading-[1.7] text-[#525252] max-w-[560px] mb-10 md:mb-12"
+        >
+          Ich denke nicht nur über KI. Ich baue auch. Drei eigenständige Wege,
+          KI praktisch nutzbar zu machen.
+        </p>
+      </Reveal>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+        {
+          projects.map((p, i) => (
+            <Reveal client:load delay={0.1 + i * 0.06}>
+              <a
+                href={p.href}
+                class="group block p-5 md:p-6 border border-[#e5e5e5] bg-white hover:border-accent transition-colors duration-300 h-full flex flex-col"
+              >
+                <div class="mb-4 min-h-[44px] flex items-center">
+                  {p.wordmark ? (
+                    <p class="font-serif text-2xl md:text-[28px] leading-[1]">
+                      <span class="text-dark">{p.wordmark.dark}</span>
+                      <span class="italic" style={`color: ${p.wordmark.color}`}>
+                        {p.wordmark.italic}
+                      </span>
+                    </p>
+                  ) : (
+                    <img
+                      src={p.logo}
+                      alt="AI-Design.Guide"
+                      class="h-9 sm:h-10 w-auto"
+                      loading="lazy"
+                    />
+                  )}
+                </div>
+                <p class="text-sm sm:text-[15px] font-light leading-[1.65] text-[#525252] mb-5 flex-1">
+                  {p.teaser}
+                </p>
+                <span class="text-xs font-medium text-accent tracking-[0.02em] uppercase border-b border-transparent group-hover:border-accent self-start transition-colors duration-250">
+                  Mehr ansehen →
+                </span>
+              </a>
+            </Reveal>
+          ))
+        }
+      </div>
+
+      <Reveal client:load delay={0.32}>
+        <div class="mt-10 md:mt-12">
+          <a
+            href="/arbeit"
+            class="inline-block py-3 text-sm sm:text-base font-medium text-accent border-b border-transparent hover:border-accent transition-colors duration-250"
+          >
+            Alle Projekte ansehen →
+          </a>
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

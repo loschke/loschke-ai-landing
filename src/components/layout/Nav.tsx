@@ -38,9 +38,10 @@ export function Nav() {
 
   const navLinks = [
     { label: "Blog", href: "/blog" },
-    { label: "Manifest", href: "/manifest" },
+    { label: "Arbeit", href: "/arbeit" },
+    { label: "Beratung", href: "/beratung" },
     { label: "Speaking", href: "/speaking" },
-    { label: "Austausch", href: "/contact" },
+    { label: "Manifest", href: "/manifest" },
   ];
 
   // Check if link is active (exact match or starts with for nested routes like /blog/*)
