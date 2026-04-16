@@ -1,0 +1,18 @@
+---
+import FrameLayout from "@layouts/FrameLayout.astro";
+import Hero from "@components/sections/arbeit/Hero.astro";
+import Projects from "@components/sections/arbeit/Projects.astro";
+import CTA from "@components/sections/CTA.astro";
+---
+
+<FrameLayout
+  title="Arbeit – Was ich baue"
+  description="Drei Projekte aus eigenem Bedarf: build.jetzt als agentische KI-Plattform, lernen.diy als kostenlose Lernplattform, das 4K-Framework für KI-Bildgenerierung. Keine Hochglanz-Cases, sondern ehrliche Bau-Geschichten."
+>
+  <Hero />
+  <Projects />
+  <CTA
+    headline="Mitdenken,\noder mitbauen"
+    text="Du nutzt eines der Projekte und hast Feedback? Du willst dich anschließen, Anregungen geben oder über etwas eigenes reden? Schreib mir direkt."
+  />
+</FrameLayout>

@@ -1,0 +1,146 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+import { Dot } from "@components/ui/Dot";
+---
+
+<section
+  id="projekte"
+  class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+  >
+    <Reveal client:load>
+      <p
+        class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase md:sticky md:top-[98px]"
+      >
+        Meine Projekte
+      </p>
+    </Reveal>
+
+    <div>
+      <Reveal client:load>
+        <h2
+          class="text-3xl sm:text-4xl md:text-[clamp(34px,4.5vw,60px)] font-black leading-[0.95] tracking-[-0.025em] mb-5 md:mb-6"
+        >
+          Meine Projekte<Dot />
+        </h2>
+      </Reveal>
+
+      <Reveal client:load delay={0.06}>
+        <p
+          class="text-base sm:text-lg font-light leading-[1.7] text-[#525252] max-w-[560px] mb-10 md:mb-12"
+        >
+          Kein Portfolio mit Hochglanz-Screenshots. Eigenständige Wege, KI
+          praktisch nutzbar zu machen. Aus echtem Bedarf entstanden. Weitere
+          folgen.
+        </p>
+      </Reveal>
+
+      <!-- Projekt 1: build.jetzt -->
+      <Reveal client:load delay={0.1}>
+        <a
+          href="/arbeit/build-jetzt"
+          class="group block py-10 md:py-12 border-t border-[#e5e5e5] transition-all duration-400 ease-out hover:pl-3"
+        >
+          <div class="max-w-[680px]">
+            <p
+              class="font-serif text-2xl sm:text-3xl md:text-[clamp(28px,3.4vw,40px)] mb-3 leading-[1.1]"
+            >
+              <span class="text-dark">build</span><span class="italic text-[#4A7AE5]">.jetzt</span>
+            </p>
+            <p
+              class="text-lg sm:text-xl font-serif italic text-[#737373] mb-5 leading-[1.4]"
+            >
+              Eine agentische KI-Plattform. Selbst gebaut.
+            </p>
+            <p
+              class="text-base sm:text-[17px] font-light leading-[1.7] text-[#525252] mb-5"
+            >
+              Aus täglichem Wechseln zwischen Claude und Gemini entstand ein
+              eigener Arbeitsplatz. Recherche, Schreiben, Sprachausgabe und
+              Asset-Produktion an einem Ort. Plus die Dinge, die den großen
+              Tools fehlen: Review-Modus für lange Texte und Datenschutz, der
+              mitdenkt.
+            </p>
+            <span
+              class="text-sm font-medium text-accent border-b border-transparent group-hover:border-accent transition-colors duration-250"
+            >
+              Mehr über build.jetzt →
+            </span>
+          </div>
+        </a>
+      </Reveal>
+
+      <!-- Projekt 2: lernen.diy -->
+      <Reveal client:load delay={0.16}>
+        <a
+          href="/arbeit/lernen-diy"
+          class="group block py-10 md:py-12 border-t border-[#e5e5e5] transition-all duration-400 ease-out hover:pl-3"
+        >
+          <div class="max-w-[680px]">
+            <p
+              class="font-serif text-2xl sm:text-3xl md:text-[clamp(28px,3.4vw,40px)] mb-3 leading-[1.1]"
+            >
+              <span class="text-dark">lernen</span><span class="italic text-[#0F766E]">.diy</span>
+            </p>
+            <p
+              class="text-lg sm:text-xl font-serif italic text-[#737373] mb-5 leading-[1.4]"
+            >
+              Eine Lernplattform. Kostenlos, offen, im eigenen Tempo.
+            </p>
+            <p
+              class="text-base sm:text-[17px] font-light leading-[1.7] text-[#525252] mb-5"
+            >
+              Workshops bei Haufe Akademie, IHK und Fraunhofer brauchen
+              Nachlese. Daraus wurde ein eigenes Wissenssystem, geöffnet für
+              alle. Interaktive Lessons zu KI: Prompting, Bildgenerierung,
+              KI-Agenten, strategischer Einsatz. Ohne Vorwissen, im eigenen
+              Tempo.
+            </p>
+            <span
+              class="text-sm font-medium text-accent border-b border-transparent group-hover:border-accent transition-colors duration-250"
+            >
+              Mehr über lernen.diy →
+            </span>
+          </div>
+        </a>
+      </Reveal>
+
+      <!-- Projekt 3: ai-design.guide -->
+      <Reveal client:load delay={0.22}>
+        <a
+          href="/arbeit/ai-design-guide"
+          class="group block py-10 md:py-12 border-t border-b border-[#e5e5e5] transition-all duration-400 ease-out hover:pl-3"
+        >
+          <div class="max-w-[680px]">
+            <img
+              src="/Logo_AI-Design_Guide_RicoLoschke.png"
+              alt="AI-Design.Guide"
+              class="h-12 sm:h-14 md:h-16 w-auto mb-4"
+              loading="lazy"
+            />
+            <p
+              class="text-lg sm:text-xl font-serif italic text-[#737373] mb-5 leading-[1.4]"
+            >
+              Strukturierte Methoden für KI-Bildgenerierung.
+            </p>
+            <p
+              class="text-base sm:text-[17px] font-light leading-[1.7] text-[#525252] mb-5"
+            >
+              2023 das Muster hinter guten Bild-Prompts erkannt und als
+              Framework formalisiert. Vier Dimensionen, toolunabhängig und
+              stabil: läuft 2026 noch in jeder Schulung. Dazu eine kuratierte
+              Prompt-Bibliothek als nächste Stufe.
+            </p>
+            <span
+              class="text-sm font-medium text-accent border-b border-transparent group-hover:border-accent transition-colors duration-250"
+            >
+              Mehr über AI-Design.Guide →
+            </span>
+          </div>
+        </a>
+      </Reveal>
+    </div>
+  </div>
+</section>

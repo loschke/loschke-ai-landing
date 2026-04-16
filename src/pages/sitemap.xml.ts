@@ -7,11 +7,16 @@ export const prerender = true;
 const staticPages = [
   '/',
   '/blog/',
+  '/arbeit/',
+  '/arbeit/build-jetzt/',
+  '/arbeit/lernen-diy/',
+  '/arbeit/ai-design-guide/',
+  '/beratung/',
+  '/speaking/',
+  '/manifest/',
   '/contact/',
   '/datenschutz/',
   '/impressum/',
-  '/manifest/',
-  '/speaking/',
 ];
 
 const SITE = 'https://loschke.ai';

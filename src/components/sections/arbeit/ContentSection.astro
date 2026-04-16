@@ -1,0 +1,225 @@
+---
+import { Reveal } from "@components/ui/Reveal";
+import { Dot } from "@components/ui/Dot";
+
+interface Props {
+  /** Sidebar-Label links (sticky) */
+  label: string;
+  /** Section-Headline rechts (im Content-Bereich) */
+  title: string;
+  /** Optionale Anker-ID auf der Section */
+  id?: string;
+  /** Hintergrund-Variante: default = weiß, soft = #fafafa, divider = mit Top-Border */
+  variant?: "default" | "soft" | "divider";
+}
+
+const { label, title, id, variant = "default" } = Astro.props;
+
+const sectionClass = [
+  "py-16 md:py-24 lg:py-[100px]",
+  "px-6 sm:px-10 md:px-16 lg:px-20",
+  variant === "soft" && "bg-[#fafafa]",
+  variant === "divider" && "border-t border-[#e5e5e5]",
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<section id={id} class={sectionClass}>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+  >
+    <Reveal client:load>
+      <p
+        class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase md:sticky md:top-[98px]"
+      >
+        {label}
+      </p>
+    </Reveal>
+
+    <div class="max-w-full md:max-w-[680px]">
+      <Reveal client:load>
+        <h2
+          class="text-3xl sm:text-4xl md:text-[clamp(34px,4.5vw,60px)] font-black leading-[0.95] tracking-[-0.025em] mb-7 md:mb-9"
+        >
+          {title}<Dot />
+        </h2>
+      </Reveal>
+
+      <Reveal client:load delay={0.08}>
+        <div
+          class="arbeit-prose text-base sm:text-lg font-light leading-[1.75] text-[#525252]"
+        >
+          <slot />
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .arbeit-prose p {
+    margin-bottom: 1.25em;
+  }
+  .arbeit-prose p:last-child {
+    margin-bottom: 0;
+  }
+  .arbeit-prose strong {
+    color: #151416;
+    font-weight: 600;
+  }
+  .arbeit-prose blockquote {
+    border-left: 3px solid #fc2d01;
+    padding-left: 1.5rem;
+    margin: 1.75em 0;
+    font-style: italic;
+    font-family: "Instrument Serif", serif;
+    font-size: 1.4em;
+    line-height: 1.45;
+    color: #151416;
+    font-weight: 400;
+  }
+  .arbeit-prose blockquote p {
+    margin-bottom: 0;
+  }
+  .arbeit-prose h3 {
+    color: #151416;
+    font-weight: 700;
+    font-size: 1.2em;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+  }
+  .arbeit-prose ul {
+    margin: 1.25em 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  .arbeit-prose ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5em;
+  }
+  .arbeit-prose ul li::before {
+    content: "·";
+    color: #fc2d01;
+    font-weight: 700;
+    position: absolute;
+    left: 0.4rem;
+    top: -0.05em;
+    font-size: 1.4em;
+    line-height: 1;
+  }
+  .arbeit-prose table {
+    width: 100%;
+    margin: 1.75em 0;
+    border-collapse: collapse;
+    font-size: 0.95em;
+  }
+  .arbeit-prose th {
+    text-align: left;
+    font-weight: 600;
+    color: #151416;
+    padding: 0.75rem 1rem 0.75rem 0;
+    border-bottom: 2px solid #151416;
+    font-size: 0.85em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .arbeit-prose td {
+    padding: 0.85rem 1rem 0.85rem 0;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .arbeit-prose td:first-child {
+    font-weight: 600;
+    color: #151416;
+  }
+  .arbeit-prose a {
+    color: #fc2d01;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s;
+  }
+  .arbeit-prose a:hover {
+    border-bottom-color: #fc2d01;
+  }
+  .arbeit-prose pre {
+    margin: 1.5em 0;
+    padding: 1.1rem 1.25rem;
+    background: #151416;
+    color: #f5f5f5;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.85em;
+    line-height: 1.55;
+  }
+  .arbeit-prose pre code {
+    font-family: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
+    color: inherit;
+    background: transparent;
+    padding: 0;
+    white-space: pre;
+  }
+  .arbeit-prose code {
+    font-family: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
+    background: #f5f5f5;
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: #151416;
+  }
+  .arbeit-prose .code-label {
+    margin-bottom: 0.4em;
+    font-size: 0.78em;
+    font-weight: 600;
+    color: #737373;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .arbeit-prose .image-grid {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1.5em 0;
+  }
+  .arbeit-prose .image-grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .arbeit-prose .image-grid.cols-2x2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 768px) {
+    .arbeit-prose .image-grid.cols-2x2 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .arbeit-prose .image-grid figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .arbeit-prose .image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    display: block;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+  .arbeit-prose .image-grid figcaption {
+    margin-top: 0.5em;
+    font-size: 0.75em;
+    color: #737373;
+    line-height: 1.4;
+    font-family: "Instrument Serif", serif;
+    font-style: italic;
+  }
+  .arbeit-prose .example-caption {
+    margin-top: 0.5em;
+    font-size: 0.95em;
+    color: #525252;
+    font-style: italic;
+    font-family: "Instrument Serif", serif;
+  }
+</style>

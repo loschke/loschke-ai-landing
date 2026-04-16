@@ -1,0 +1,204 @@
+---
+import FrameLayout from "@layouts/FrameLayout.astro";
+import { HeroLine } from "@components/ui/HeroLine";
+import { Dot } from "@components/ui/Dot";
+import ContentSection from "@components/sections/arbeit/ContentSection.astro";
+import CTA from "@components/sections/CTA.astro";
+---
+
+<FrameLayout
+  title="lernen.diy – Eine offene Lernplattform für KI"
+  description="Offene Lernplattform für KI. Aus Workshop-Begleitmaterial gewachsen, als Wissensbasis genutzt, frei zugänglich für alle. Methoden statt Tool-Tutorials, im eigenen Tempo."
+>
+  <!-- Hero: Wortmarke als Brand-Mark, beschreibende Headline -->
+  <section
+    class="min-h-[calc(100vh-36px)] flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20"
+  >
+    <div class="max-w-none">
+      <HeroLine client:load delay={0.15}>
+        <p
+          class="font-serif text-3xl sm:text-4xl md:text-[clamp(36px,4.5vw,56px)] mb-8 sm:mb-10 md:mb-12 leading-[1]"
+        >
+          <span class="text-dark">lernen</span><span class="italic text-[#0F766E]">.diy</span>
+        </p>
+      </HeroLine>
+
+      <h1
+        class="text-5xl sm:text-6xl md:text-[clamp(64px,9vw,140px)] font-sans font-black leading-[0.88] tracking-[-0.04em] mb-8 sm:mb-10 text-dark"
+      >
+        <HeroLine client:load delay={0.3}>
+          Wissen,<br />das ich teile<Dot />
+        </HeroLine>
+      </h1>
+
+      <div class="max-w-full sm:max-w-[600px] md:max-w-[800px] mb-8 sm:mb-10">
+        <HeroLine client:load delay={0.55}>
+          <p
+            class="text-xl sm:text-2xl md:text-[clamp(22px,2.6vw,32px)] font-serif font-normal leading-[1.4] text-[#525252]"
+          >
+            Eine offene Lernplattform für KI. Aus Workshop-Begleitmaterial
+            gewachsen, als Wissensbasis genutzt, frei zugänglich für alle.
+            Methoden statt Tool-Tutorials, im eigenen Tempo.
+          </p>
+        </HeroLine>
+      </div>
+
+      <div>
+        <HeroLine client:load delay={0.7}>
+          <a
+            href="#warum-diy"
+            class="inline-block py-3 sm:py-4 text-sm sm:text-base font-medium text-accent border-b border-transparent hover:border-accent transition-colors duration-250"
+          >
+            Warum DIY ↓
+          </a>
+        </HeroLine>
+      </div>
+    </div>
+  </section>
+
+  <ContentSection
+    label="Auslöser"
+    title="Drei Gründe"
+    id="warum-diy"
+    variant="divider"
+  >
+    <p>
+      lernen.diy ist nicht aus einer Idee entstanden, sondern aus drei
+      konkreten Bedürfnissen, die zusammenkamen.
+    </p>
+    <p>
+      <strong>Wissen teilen.</strong> Ich habe selbst viel von kostenlosen
+      Quellen gelernt — YouTube, Open-Source-Projekte, Community-Wissen. Ohne
+      Menschen, die ihr Wissen frei teilen, wäre ich heute nicht da, wo ich
+      bin. lernen.diy ist mein Beitrag zurück.
+    </p>
+    <p>
+      <strong>Begleitmaterial für Schulungen.</strong> Ich gebe Workshops bei
+      Haufe Akademie, IHK und Fraunhofer. Ein Workshop-Tag reicht nicht, um KI
+      wirklich zu verankern. Teilnehmer brauchen eine strukturierte Nachlese,
+      die mitwächst und nicht in einem PDF versandet.
+    </p>
+    <p>
+      <strong>Eine zentrale Wissensbasis.</strong> Das Thema KI ist riesig, mein
+      Wissen wächst ständig mit. lernen.diy ist die Stelle, an der das, was ich
+      lerne und einsetze, geordnet bleibt — gleichzeitig für mich und für
+      alle, die Anschluss suchen.
+    </p>
+  </ContentSection>
+
+  <ContentSection label="Haltung" title="Kostenlos als Prinzip" variant="soft">
+    <blockquote>
+      Wenn du im Business erfolgreich sein willst, mach dein kostenloses Angebot
+      so gut, wo andere Geld dafür verlangen.
+    </blockquote>
+    <p>
+      Das ist kein Marketingspruch. Es ist eine Überzeugung. Was offen
+      verfügbar ist, soll auch wirklich nutzbar sein. Kein Lockangebot mit
+      Paywall im zweiten Schritt.
+    </p>
+    <p>
+      Das Ergebnis: Obwohl alles frei zugänglich ist, buchen Menschen trotzdem
+      die Schulung. Weil jemand erklärt, Erfahrungen einbringt und mehr hängen
+      bleibt. Das offene Angebot ersetzt das Seminar nicht. Es macht den
+      Einstieg leichter und die Vertiefung möglich.
+    </p>
+  </ContentSection>
+
+  <ContentSection label="Inhalt" title="Methoden, nicht Tutorials">
+    <p>
+      Eine bewusste Entscheidung: lernen.diy erklärt Prinzipien und Methoden.
+      Keine Klick-für-Klick-Anleitungen für ein bestimmtes Tool.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Was lernen.diy macht</th>
+          <th>Was lernen.diy nicht macht</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Wie du einen guten Prompt baust</td>
+          <td>Wo du bei ChatGPT auf „Einstellungen" klickst</td>
+        </tr>
+        <tr>
+          <td>Wie du KI-Output kritisch bewertest</td>
+          <td>Welches Tool gerade am besten rankt</td>
+        </tr>
+        <tr>
+          <td>Wie das 4K-Framework für Bilder funktioniert</td>
+          <td>Midjourney vs. DALL-E Vergleichstest</td>
+        </tr>
+        <tr>
+          <td>Was agentische Systeme ausmacht</td>
+          <td>Schritt-für-Schritt n8n-Setup</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Tools ändern sich alle paar Monate. Prinzipien halten. Wer versteht, wie
+      KI denkt, wie Kontext funktioniert, wie man Aufgaben strukturiert,
+      braucht keine Prompt-Sammlung. Wer das Prinzip versteht, kann selbst
+      denken.
+    </p>
+    <p>
+      Ich urteile dabei nicht über andere Angebote. Es gibt gute
+      Tool-Tutorials, gute Vergleichstests, gute Plattformen. lernen.diy macht
+      etwas anderes. Nicht besser, anders.
+    </p>
+  </ContentSection>
+
+  <ContentSection
+    label="Format"
+    title="Lessons statt Artikel"
+    variant="soft"
+  >
+    <p>
+      Ich hätte das als Blogposts machen können. Habe ich bewusst nicht.
+    </p>
+    <p>
+      Lessons sind strukturiert. Schritt für Schritt, im eigenen Tempo. Klare
+      Progression von einfach zu komplex, von Einstieg über Fortgeschritten bis
+      Profi. Jede Lesson steht für sich, aber sie bauen aufeinander auf.
+    </p>
+    <p>
+      Das Format orientiert sich an Google Codelabs. Interaktiv, nicht passiv.
+      Du liest nicht nur, du machst mit. Jede Lesson dauert eine knappe halbe
+      Stunde und braucht kein Vorwissen.
+    </p>
+    <h3>Themenfelder, kontinuierlich wachsend</h3>
+    <ul>
+      <li>
+        <strong>KI verstehen &amp; prompten.</strong> Von den Grundlagen bis zu
+        fortgeschrittenen Techniken und Compliance.
+      </li>
+      <li>
+        <strong>Bilder &amp; Videos erstellen.</strong> Vom 4K-Framework über
+        Bildbearbeitung bis zu Bild-KI im Business.
+      </li>
+      <li>
+        <strong>KI strategisch einsetzen.</strong> Von Use Cases über Agenten
+        bis zur technischen Vertiefung.
+      </li>
+      <li>
+        <strong>Das richtige Tool finden.</strong> Ein strukturierter Weg statt
+        eines Rankings.
+      </li>
+    </ul>
+    <p>
+      Die Themenpalette wächst mit dem Feld. Was ich neu lerne und in
+      Workshops weitergebe, landet hier in strukturierter Form.
+    </p>
+  </ContentSection>
+
+  <CTA
+    variant="dark"
+    headline="Reinschauen,\nausprobieren"
+    text="Such dir eine Lesson, die zu deinem Stand passt. Frei zugänglich, kein Login, kein Newsletter im Weg."
+    primaryHref="https://lernen.diy"
+    primaryLabel="Zu lernen.diy →"
+    primaryExternal={true}
+    secondaryHref="/arbeit"
+    secondaryLabel="← Zurück zur Arbeit"
+  />
+</FrameLayout>

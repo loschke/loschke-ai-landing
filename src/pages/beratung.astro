@@ -1,0 +1,26 @@
+---
+import FrameLayout from "@layouts/FrameLayout.astro";
+import Hero from "@components/sections/beratung/Hero.astro";
+import Approach from "@components/sections/beratung/Approach.astro";
+import Kathrin from "@components/sections/beratung/Kathrin.astro";
+import CTA from "@components/sections/CTA.astro";
+---
+
+<FrameLayout
+  title="Beratung – KI-Transformation, die zusammenspielt"
+  description="Wie ich KI-Transformation begleite: Drei Ebenen, die ineinander greifen — Verstehen, Befähigen und mitgebrachte Werkzeuge. Mit Kathrin Boden ergänzt zu KI-Tiefe und Change-Systematik."
+>
+  <Hero />
+  <Approach />
+  <Kathrin />
+  <CTA
+    variant="dark"
+    headline="Lass uns\nreden"
+    text="Du willst wissen, wo dein Unternehmen steht und was als Erstes Sinn ergibt? Kein Pitch, kein Standard-Angebot. Ein Gespräch, in dem wir klären, was bei euch gerade der richtige Hebel ist."
+    primaryHref="https://unlearn.how/contact"
+    primaryLabel="Erstgespräch auf unlearn.how →"
+    primaryExternal={true}
+    secondaryHref="/arbeit"
+    secondaryLabel="Was ich baue →"
+  />
+</FrameLayout>

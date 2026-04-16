@@ -1,22 +1,19 @@
 ---
 import FrameLayout from "@layouts/FrameLayout.astro";
 import Hero from "@components/sections/homepage/Hero.astro";
-import About from "@components/sections/homepage/About.astro";
+import AuthorSection from "@components/sections/homepage/AuthorSection.astro";
 import BlogPreview from "@components/sections/homepage/BlogPreviewV2.astro";
+import ArbeitSpotlight from "@components/sections/homepage/ArbeitSpotlight.astro";
 import ManifestTeaser from "@components/sections/homepage/ManifestTeaser.astro";
-import Topics from "@components/sections/homepage/Topics.astro";
-import Ecosystem from "@components/sections/homepage/Ecosystem.astro";
-import UnlearnBanner from "@components/sections/homepage/UnlearnBanner.astro";
 import CTA from "@components/sections/CTA.astro";
 import { SITE } from "@/config";
 ---
 
 <FrameLayout title="Home" description={SITE.description}>
   <Hero />
-  <About />
-  <Topics />
+  <AuthorSection />
   <BlogPreview />
+  <ArbeitSpotlight />
   <ManifestTeaser />
-  <Ecosystem />
-  <CTA />
+  <CTA variant="dark" />
 </FrameLayout>

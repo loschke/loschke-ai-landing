@@ -5,19 +5,46 @@ import { Dot } from "@components/ui/Dot";
 interface Props {
   headline?: string;
   text?: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  /** Wenn true, öffnet primary in neuem Tab */
+  primaryExternal?: boolean;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  /** Visuelle Variante: default (heller bg) oder dark (dunkler bg) */
+  variant?: "default" | "dark";
 }
 
 const {
   headline = "Lass uns\nreden",
   text = "Du willst mich für eine Keynote buchen, hast eine Frage zu einem Artikel, oder willst einfach Hallo sagen? Schreib mir.",
+  primaryHref = "/contact",
+  primaryLabel = "Schreib mir",
+  primaryExternal = false,
+  secondaryHref = "https://www.linkedin.com/in/rico-loschke/",
+  secondaryLabel = "LinkedIn →",
+  variant = "default",
 } = Astro.props;
 
 // Split headline by \n for line breaks
 const headlineLines = headline.split("\n");
+
+const secondaryIsExternal = secondaryHref.startsWith("http");
+
+const isDark = variant === "dark";
+const sectionBg = isDark ? "bg-dark" : "bg-[#fafafa]";
+const headlineColor = isDark ? "text-white" : "";
+const textColor = isDark ? "text-white/70" : "text-[#525252]";
+const primaryButtonClass = isDark
+  ? "inline-block bg-accent text-white px-7 py-3.5 text-sm font-medium tracking-wide transition-colors duration-300 hover:bg-white hover:text-dark"
+  : "inline-block bg-dark text-white px-7 py-3.5 text-sm font-medium tracking-wide transition-colors duration-300 hover:bg-accent";
+const secondaryClass = isDark
+  ? "text-sm font-medium text-white/80 border-b border-transparent hover:text-accent hover:border-accent transition-colors duration-250"
+  : "text-sm font-medium text-accent border-b border-transparent hover:border-accent transition-colors duration-250";
 ---
 
 <section
-  class="py-24 md:py-32 lg:py-[140px] px-6 sm:px-10 md:px-16 lg:px-20 bg-[#fafafa]"
+  class={`py-24 md:py-32 lg:py-[140px] px-6 sm:px-10 md:px-16 lg:px-20 ${sectionBg}`}
 >
   <Reveal client:load>
     <div
@@ -26,7 +53,7 @@ const headlineLines = headline.split("\n");
       <div></div>
       <div class="max-w-full md:max-w-[700px]">
         <h2
-          class="text-4xl sm:text-5xl md:text-[clamp(38px,5.5vw,76px)] font-black leading-[0.92] tracking-[-0.03em] mb-6 md:mb-7"
+          class={`text-4xl sm:text-5xl md:text-[clamp(38px,5.5vw,76px)] font-black leading-[0.92] tracking-[-0.03em] mb-6 md:mb-7 ${headlineColor}`}
         >
           {
             headlineLines.map((line, i) => (
@@ -38,25 +65,31 @@ const headlineLines = headline.split("\n");
           }<Dot />
         </h2>
         <p
-          class="text-base sm:text-lg font-light leading-[1.75] text-[#525252] max-w-full md:max-w-[440px] mb-8 md:mb-9"
+          class={`text-base sm:text-lg font-light leading-[1.75] max-w-full md:max-w-[440px] mb-8 md:mb-9 ${textColor}`}
         >
           {text}
         </p>
         <div class="flex flex-wrap gap-6 md:gap-7 items-center">
           <a
-            href="/contact"
-            class="inline-block bg-dark text-white px-7 py-3.5 text-sm font-medium tracking-wide transition-colors duration-300 hover:bg-accent"
+            href={primaryHref}
+            target={primaryExternal ? "_blank" : undefined}
+            rel={primaryExternal ? "noopener" : undefined}
+            class={primaryButtonClass}
           >
-            Schreib mir
+            {primaryLabel}
           </a>
-          <a
-            href="https://www.linkedin.com/in/rico-loschke/"
-            target="_blank"
-            rel="noopener"
-            class="text-sm font-medium text-accent border-b border-transparent hover:border-accent transition-colors duration-250"
-          >
-            LinkedIn →
-          </a>
+          {
+            secondaryHref && secondaryLabel && (
+              <a
+                href={secondaryHref}
+                target={secondaryIsExternal ? "_blank" : undefined}
+                rel={secondaryIsExternal ? "noopener" : undefined}
+                class={secondaryClass}
+              >
+                {secondaryLabel}
+              </a>
+            )
+          }
         </div>
       </div>
     </div>
