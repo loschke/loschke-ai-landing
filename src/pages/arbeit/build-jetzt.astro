@@ -1,8 +1,10 @@
 ---
 import FrameLayout from "@layouts/FrameLayout.astro";
 import { HeroLine } from "@components/ui/HeroLine";
+import { Reveal } from "@components/ui/Reveal";
 import { Dot } from "@components/ui/Dot";
 import ContentSection from "@components/sections/arbeit/ContentSection.astro";
+import ScreenshotGrid from "@components/sections/arbeit/ScreenshotGrid.astro";
 import CTA from "@components/sections/CTA.astro";
 ---
 
@@ -51,6 +53,88 @@ import CTA from "@components/sections/CTA.astro";
             Wie es entstand ↓
           </a>
         </HeroLine>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshot-Galerie: Einblicke in die Plattform -->
+  <section
+    id="einblicke"
+    class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]"
+  >
+    <div
+      class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+    >
+      <Reveal client:load>
+        <p
+          class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase md:sticky md:top-[98px]"
+        >
+          Einblicke
+        </p>
+      </Reveal>
+
+      <div>
+        <Reveal client:load>
+          <h2
+            class="text-3xl sm:text-4xl md:text-[clamp(34px,4.5vw,60px)] font-black leading-[0.95] tracking-[-0.025em] mb-7 md:mb-9"
+          >
+            So sieht es aus<Dot />
+          </h2>
+        </Reveal>
+
+        <Reveal client:load delay={0.08}>
+          <p
+            class="text-base sm:text-lg font-light leading-[1.7] text-[#525252] max-w-[680px] mb-10 md:mb-12"
+          >
+            Sechs Ansichten aus der Plattform: vom Chat-Arbeitsplatz mit
+            Rückfragen und Vorlagen bis zur strukturierten Ablage und dem
+            Admin-Bereich. Klick aufs Bild für Vollbild.
+          </p>
+        </Reveal>
+
+        <Reveal client:load delay={0.12}>
+          <ScreenshotGrid
+            cols={3}
+            items={[
+              {
+                src: "/images/arbeit/build-app.png",
+                alt: "build.jetzt Chat-Interface mit Tool-Calls, Tabelle und Artifact-Panel mit generiertem Präsentations-Deck",
+                caption:
+                  "Chat-Arbeitsplatz – Tool-Calls laufen inline, Ergebnisse landen als versionierte Artifacts im Seitenpanel.",
+              },
+              {
+                src: "/images/arbeit/build-ask-user.png",
+                alt: "build.jetzt Ask-User-Modul: strukturierte Rückfrage mit Tabs, Auswahlliste und Freitextfeld",
+                caption:
+                  "Strukturierte Rückfragen – der Assistent fragt gezielt nach, bevor er entscheidet: Tabs, Auswahl, Freitext.",
+              },
+              {
+                src: "/images/arbeit/build-quicktasks.png",
+                alt: "build.jetzt Quicktasks-Übersicht mit kuratierten Aufgaben-Vorlagen",
+                caption:
+                  "Quicktasks – kuratierte Vorlagen für wiederkehrende Aufgaben: Brief schreiben, SWOT-Analyse, Landing Page.",
+              },
+              {
+                src: "/images/arbeit/build-design-library.png",
+                alt: "build.jetzt Design Library mit Bildstilen und Presets für KI-Bildgenerierung",
+                caption:
+                  "Design-Library – erprobte Bildstile und Presets, die sich direkt aus dem Chat ansteuern lassen.",
+              },
+              {
+                src: "/images/arbeit/build-artifacts.png",
+                alt: "build.jetzt Meine Dateien: strukturierte Ablage aller Artifacts, filterbar nach Typ",
+                caption:
+                  "Meine Dateien – alles, was im Chat entsteht, landet hier filterbar: Research, Dokumente, Bilder, Code.",
+              },
+              {
+                src: "/images/arbeit/build-admin.png",
+                alt: "build.jetzt Admin-Bereich: Tabelle mit 34 Skills, Kategorien und Konfigurationen",
+                caption:
+                  "Admin-Bereich – Skills, Experten, Modelle und Features werden hier zentral konfiguriert.",
+              },
+            ]}
+          />
+        </Reveal>
       </div>
     </div>
   </section>
