@@ -4,23 +4,22 @@ import { Dot } from "@components/ui/Dot";
 
 const projects = [
   {
+    href: "/beratung",
+    wordmark: { first: "unlearn", second: ".how", firstItalic: true, color: "#a855f7" },
+    teaser:
+      "Arbeit mit Kunden. Strategie, Befähigung und Werkzeuge für KI-Transformation, die im Alltag funktioniert.",
+  },
+  {
     href: "/arbeit/build-jetzt",
-    wordmark: { dark: "build", italic: ".jetzt", color: "#4A7AE5" },
+    wordmark: { first: "build", second: ".jetzt", firstItalic: false, color: "#4A7AE5" },
     teaser:
       "Eine agentische KI-Plattform, selbst gebaut. Aus dem Switchen zwischen Claude und Gemini wurde ein eigener Arbeitsplatz.",
   },
   {
     href: "/arbeit/lernen-diy",
-    wordmark: { dark: "lernen", italic: ".diy", color: "#0F766E" },
+    wordmark: { first: "lernen", second: ".diy", firstItalic: false, color: "#0F766E" },
     teaser:
       "Eine offene Lernplattform für KI. Aus Workshop-Begleitmaterial gewachsen, frei zugänglich für alle.",
-  },
-  {
-    href: "/arbeit/ai-design-guide",
-    wordmark: null,
-    logo: "/Logo_AI-Design_Guide_RicoLoschke.png",
-    teaser:
-      "Strukturierte Methoden für KI-Bildgenerierung. Das 4K-Framework und eine Bibliothek mit über 1000 Beispielen.",
   },
 ];
 ---
@@ -73,21 +72,17 @@ const projects = [
                 class="group block p-5 md:p-6 border border-[#e5e5e5] bg-white hover:border-accent transition-colors duration-300 h-full flex flex-col"
               >
                 <div class="mb-4 min-h-[44px] flex items-center">
-                  {p.wordmark ? (
-                    <p class="font-serif text-2xl md:text-[28px] leading-[1]">
-                      <span class="text-dark">{p.wordmark.dark}</span>
-                      <span class="italic" style={`color: ${p.wordmark.color}`}>
-                        {p.wordmark.italic}
-                      </span>
-                    </p>
-                  ) : (
-                    <img
-                      src={p.logo}
-                      alt="AI-Design.Guide"
-                      class="h-9 sm:h-10 w-auto"
-                      loading="lazy"
-                    />
-                  )}
+                  <p class="font-serif text-2xl md:text-[28px] leading-[1]">
+                    <span class={p.wordmark.firstItalic ? "italic text-dark" : "text-dark"}>
+                      {p.wordmark.first}
+                    </span>
+                    <span
+                      class={p.wordmark.firstItalic ? "" : "italic"}
+                      style={`color: ${p.wordmark.color}`}
+                    >
+                      {p.wordmark.second}
+                    </span>
+                  </p>
                 </div>
                 <p class="text-sm sm:text-[15px] font-light leading-[1.65] text-[#525252] mb-5 flex-1">
                   {p.teaser}
