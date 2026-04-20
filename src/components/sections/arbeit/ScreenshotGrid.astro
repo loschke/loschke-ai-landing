@@ -1,0 +1,174 @@
+---
+interface Item {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  items: Item[];
+  /** Anzahl Spalten auf Desktop (md+). Default: 3 */
+  cols?: 2 | 3;
+}
+
+const { items, cols = 3 } = Astro.props;
+
+const gridCols =
+  cols === 2
+    ? "grid-cols-1 md:grid-cols-2"
+    : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+---
+
+<div class={`screenshot-grid grid gap-5 md:gap-6 ${gridCols}`}>
+  {
+    items.map((item, i) => (
+      <figure class="m-0">
+        <button
+          type="button"
+          class="screenshot-trigger group block w-full overflow-hidden rounded-lg border border-[#e5e5e5] bg-[#f5f5f5] cursor-zoom-in transition-all duration-300 hover:border-[#525252] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+          data-src={item.src}
+          data-alt={item.alt}
+          data-caption={item.caption ?? ""}
+          data-index={i}
+          aria-label={`${item.alt} vergrößern`}
+        >
+          <img
+            src={item.src}
+            alt={item.alt}
+            width="1440"
+            height="900"
+            loading="lazy"
+            class="block w-full h-auto transition-transform duration-400 group-hover:scale-[1.02]"
+          />
+        </button>
+        {item.caption && (
+          <figcaption class="mt-3 text-sm font-serif italic text-[#737373] leading-[1.4]">
+            {item.caption}
+          </figcaption>
+        )}
+      </figure>
+    ))
+  }
+</div>
+
+<!-- Lightbox (einmalig auf der Seite) -->
+<div
+  class="screenshot-lightbox fixed inset-0 z-[1000] hidden items-center justify-center bg-black/85 backdrop-blur-sm p-4 sm:p-8"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Screenshot vergrößert"
+>
+  <button
+    type="button"
+    class="lightbox-close absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white text-2xl leading-none transition-colors"
+    aria-label="Schließen"
+  >
+    ×
+  </button>
+
+  <button
+    type="button"
+    class="lightbox-prev absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white text-2xl leading-none transition-colors"
+    aria-label="Vorheriges Bild"
+  >
+    ‹
+  </button>
+
+  <button
+    type="button"
+    class="lightbox-next absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white text-2xl leading-none transition-colors"
+    aria-label="Nächstes Bild"
+  >
+    ›
+  </button>
+
+  <figure class="m-0 flex flex-col items-center gap-4 max-w-[1400px] w-full">
+    <img
+      class="lightbox-image block max-h-[80vh] w-auto max-w-full h-auto rounded-md shadow-2xl"
+      src=""
+      alt=""
+    />
+    <figcaption
+      class="lightbox-caption text-sm sm:text-base font-serif italic text-white/80 text-center max-w-[800px] leading-[1.5]"
+    >
+    </figcaption>
+  </figure>
+</div>
+
+<style>
+  .screenshot-lightbox.is-open {
+    display: flex;
+  }
+  .screenshot-lightbox .lightbox-image {
+    object-fit: contain;
+  }
+</style>
+
+<script>
+  function initScreenshotGallery() {
+    const triggers = document.querySelectorAll<HTMLButtonElement>(
+      ".screenshot-trigger"
+    );
+    const lightbox = document.querySelector<HTMLElement>(".screenshot-lightbox");
+    if (!lightbox || triggers.length === 0) return;
+
+    // Escape containing-block ancestors (z.B. Reveal mit transform)
+    if (lightbox.parentElement !== document.body) {
+      document.body.appendChild(lightbox);
+    }
+
+    const img = lightbox.querySelector<HTMLImageElement>(".lightbox-image");
+    const caption = lightbox.querySelector<HTMLElement>(".lightbox-caption");
+    const closeBtn = lightbox.querySelector<HTMLButtonElement>(".lightbox-close");
+    const prevBtn = lightbox.querySelector<HTMLButtonElement>(".lightbox-prev");
+    const nextBtn = lightbox.querySelector<HTMLButtonElement>(".lightbox-next");
+    if (!img || !caption || !closeBtn || !prevBtn || !nextBtn) return;
+
+    const items = Array.from(triggers).map((t) => ({
+      src: t.dataset.src ?? "",
+      alt: t.dataset.alt ?? "",
+      caption: t.dataset.caption ?? "",
+    }));
+
+    let current = 0;
+
+    function show(index: number) {
+      const item = items[(index + items.length) % items.length];
+      if (!item || !img || !caption) return;
+      current = (index + items.length) % items.length;
+      img.src = item.src;
+      img.alt = item.alt;
+      caption.textContent = item.caption;
+      lightbox?.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function close() {
+      lightbox?.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+
+    triggers.forEach((trigger, idx) => {
+      trigger.addEventListener("click", () => show(idx));
+    });
+
+    closeBtn.addEventListener("click", close);
+    prevBtn.addEventListener("click", () => show(current - 1));
+    nextBtn.addEventListener("click", () => show(current + 1));
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) close();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!lightbox?.classList.contains("is-open")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") show(current - 1);
+      if (e.key === "ArrowRight") show(current + 1);
+    });
+  }
+
+  // Initial + View-Transition-Support (Astro ClientRouter)
+  initScreenshotGallery();
+  document.addEventListener("astro:page-load", initScreenshotGallery);
+</script>

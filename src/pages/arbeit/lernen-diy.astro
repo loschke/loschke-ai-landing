@@ -1,8 +1,10 @@
 ---
 import FrameLayout from "@layouts/FrameLayout.astro";
 import { HeroLine } from "@components/ui/HeroLine";
+import { Reveal } from "@components/ui/Reveal";
 import { Dot } from "@components/ui/Dot";
 import ContentSection from "@components/sections/arbeit/ContentSection.astro";
+import ScreenshotGrid from "@components/sections/arbeit/ScreenshotGrid.astro";
 import CTA from "@components/sections/CTA.astro";
 ---
 
@@ -52,6 +54,87 @@ import CTA from "@components/sections/CTA.astro";
             Warum DIY ↓
           </a>
         </HeroLine>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshot-Galerie: Einblicke in die Plattform -->
+  <section
+    id="einblicke"
+    class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]"
+  >
+    <div
+      class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+    >
+      <Reveal client:load>
+        <p
+          class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase md:sticky md:top-[98px]"
+        >
+          Einblicke
+        </p>
+      </Reveal>
+
+      <div>
+        <Reveal client:load>
+          <h2
+            class="text-3xl sm:text-4xl md:text-[clamp(34px,4.5vw,60px)] font-black leading-[0.95] tracking-[-0.025em] mb-7 md:mb-9"
+          >
+            So sieht es aus<Dot />
+          </h2>
+        </Reveal>
+
+        <Reveal client:load delay={0.08}>
+          <p
+            class="text-base sm:text-lg font-light leading-[1.7] text-[#525252] max-w-[680px] mb-10 md:mb-12"
+          >
+            Sechs Ansichten aus der Plattform: von der Lesson-Übersicht über
+            Übungen bis hin zu FAQ und Glossar. Klick aufs Bild für Vollbild.
+          </p>
+        </Reveal>
+
+        <Reveal client:load delay={0.12}>
+          <ScreenshotGrid
+            cols={3}
+            items={[
+              {
+                src: "/images/arbeit/lernen-lessons.png",
+                alt: "lernen.diy Lessons-Übersicht mit Kategorien und Lesson-Cards",
+                caption:
+                  "Lessons-Übersicht – alle Themen in einem Blick, nach Kategorie und Schwierigkeit sortiert.",
+              },
+              {
+                src: "/images/arbeit/lernen-lesson.png",
+                alt: "lernen.diy Lesson-Ansicht mit Sidebar-Navigation und interaktivem Inhalt",
+                caption:
+                  "Lesson-Ansicht – Sidebar mit Kapiteln, interaktive Inhalte, Progress im eigenen Tempo.",
+              },
+              {
+                src: "/images/arbeit/lernen-uebungen.png",
+                alt: "lernen.diy Übungen-Seite mit konkreten Aufgaben zum Nachmachen",
+                caption:
+                  "Übungen – konkrete Aufgaben zum Nachmachen, sortiert nach Disziplin.",
+              },
+              {
+                src: "/images/arbeit/lernen-uebung-bildgen.png",
+                alt: "lernen.diy Bildgenerierung-Übung mit Schritt-für-Schritt-Sidebar und 4K-Framework",
+                caption:
+                  "Übung Bildgenerierung – 4K-Framework im Einsatz, Schritt für Schritt mit Bildbeispielen.",
+              },
+              {
+                src: "/images/arbeit/lernen-faq.png",
+                alt: "lernen.diy FAQ mit gesammelten Fragen nach Disziplinen gruppiert",
+                caption:
+                  "FAQ – 106 Antworten auf wiederkehrende Fragen aus Workshops und Slack-Kanälen.",
+              },
+              {
+                src: "/images/arbeit/lernen-glossar.png",
+                alt: "lernen.diy Glossar mit Begriffen der generativen KI, alphabetisch und nach Disziplin sortiert",
+                caption:
+                  "Glossar – 73 Begriffe rund um generative KI, ohne Fachjargon erklärt und mit Lessons verlinkt.",
+              },
+            ]}
+          />
+        </Reveal>
       </div>
     </div>
   </section>
