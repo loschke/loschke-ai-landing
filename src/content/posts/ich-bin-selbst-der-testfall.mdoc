@@ -1,0 +1,102 @@
+---
+title: "Ein KI-Agent macht meine Arbeit. Solange die Dokumente stimmen"
+excerpt: "Meine Ein-Personen-Firma läuft auf dokumentierten Regeln und einem Agenten, der darauf handelt. Genau das, was ich Organisationen empfehle. Was keiner draufschreibt: Der Aufwand verschwindet nicht, er zieht um. Aus der Abstimmung in die Pflege."
+summary: >-
+  Ich habe im Kleinen gebaut, was der Umbau großen Organisationen verspricht:
+  Koordination lebt in Dokumenten, ein Agent handelt darauf. Im kleinsten Maßstab
+  funktioniert das. Und es zeigt den Preis, den keine Methodenliste nennt.
+
+  - **Das System:** Entscheidungen und Regeln als Dokumente, Claude Code führt sie aus, Briefings statt mündlicher Übergabe
+  - **Greifbar gemacht:** Ein Vault aus nummerierten Ordnern, eine Voice-Datei mit echten Regeln, Ideen mit einem Status-Feld
+  - **Der Haken:** Wo eine Zeile veraltet oder zwei Dokumente sich widersprechen, handelt die Maschine falsch, und ich merke es erst am Ergebnis
+  - **Die Rechnung:** Die Abstimmung ist nicht weg, sie ist zur Pflege geworden. Dokumente aktuell zu halten ist die neue Arbeit
+pubDate: 2026-07-22
+category: takes
+featured: false
+ogImage: /images/og/og-ich-bin-selbst-der-testfall.png
+tags:
+  - KI-Transformation
+  - Dokumentation
+  - KI-Agenten
+  - Solo-Business
+readTime: 8 min
+audioSrc: /audio/ich-bin-selbst-der-testfall.mp3
+draft: false
+---
+
+Meine Firma besteht aus einer Person und einer Handvoll Dokumente. In den Dokumenten steht, wie ich schreibe, welche Farbe zu welcher Marke gehört, wie ein Blog-Beitrag aufgebaut sein muss, wer für was zuständig ist. Ein KI-Agent liest diese Dokumente und handelt darauf. Er baut Artikel, setzt die richtige Struktur, hält sich an meine Sprachregeln, ohne dass ich sie ihm jedes Mal erkläre.
+
+Das ist genau der Umbau, den ich Organisationen empfehle, nur im kleinsten Maßstab. Das Prinzip für ganze Firmen beschreibt der Produktstratege [Nate B. Jones](https://www.youtube.com/watch?v=hYcOFTMesGc). Ich habe es für eine Person gebaut. Und weil ich beide Seiten in einer Person bin, sehe ich den Preis genauer, als ihn eine Beratung je zeigt.
+
+## Was ich gebaut habe
+
+Das Herz ist ein Obsidian-Vault, den ich Brainsidian nenne. Er ist mehr als eine Notizsammlung. Er ist der Ort, an dem meine Entscheidungen liegen, sortiert nach einem festen Gerüst von System und Identität über Wissen und Projekte bis zu Content und Archiv.
+
+```
+Brainsidian/
+├── 00_SYSTEM/       Runbooks, Templates, Struktur-Guides
+├── 01_ABOUT/        Positionierung, Manifest, Profil, Visual Identity
+├── 02_KNOWLEDGE/    Wissen nach Disziplin
+│   ├── AI-Strategy/
+│   ├── AI-Agents/
+│   ├── AI-Coding/
+│   └── AI-Transformation/   und weitere Disziplinen
+├── 03_PROJECTS/     Clients, Side Projects, Produkte
+├── 04_BUSINESS/     Firma, Zahlen, Steuer
+├── 05_CONTENT/      Strategie, Briefings, Samples, Register
+│   └── Referenz/    Voice-Reference.md, Blog-Schema.md, Hook-Patterns.md
+├── 06_RESOURCES/    Papers, Articles, Tools, Assets
+└── 99_ARCHIVE/      erledigt oder überholt
+```
+
+Kein Ordner ist zufällig da. Jede Datei existiert, damit eine Entscheidung nur einmal getroffen werden muss.
+
+Die zweite Hälfte ist Claude Code, ein Agent auf der Kommandozeile, der auf diesen Dokumenten arbeitet. Ich gebe ihm kein Gespräch, ich gebe ihm ein Briefing. Er liest die passenden Dateien und produziert daraufhin. Wenn ich es gut gemacht habe, muss ich nichts erklären. Das Dokument erklärt.
+
+## Wie eine Entscheidung zur Notiz wird
+
+Ein Beispiel. Vor einer Weile habe ich festgelegt, wie meine Texte klingen sollen. Das steht heute in einer Datei namens Voice-Reference, und es ist keine Stimmung, sondern eine Liste, an die sich auch die Maschine hält. Darin steht zum Beispiel, dass Klartext den Fachbegriff schlägt und dass Gedankenstriche als Stilmittel nichts zu suchen haben. Dazu eine schwarze Liste von Wörtern, die nach Maschine klingen, von bahnbrechend bis nahtlos. Der Agent liest diese Regeln vor jedem Text. Was früher mein Bauchgefühl war, ist jetzt nachschlagbar.
+
+Genauso liegen Prozesse dort, nicht nur Regeln. Meine Ideen sammle ich in einzelnen Notizen, jede mit einem Status.
+
+```
+---
+titel: "Warum Marken austauschbar werden"
+brand: loschke.ai
+status: idee        # idee = liegen lassen, bereit = produzieren
+---
+```
+
+Solange eine Idee auf `idee` steht, fasst der Agent sie nicht an. Erst wenn ich sie auf `bereit` setze, darf daraus etwas werden. Dieses eine Feld entscheidet, was produziert wird und was liegen bleibt. Ich muss nichts sagen, das Feld sagt es.
+
+Sogar die Namen der Dateien sind geregelt, damit nichts doppelt entsteht oder unauffindbar wird. Das klingt kleinlich. Für einen Menschen wäre es das auch. Für ein System, das ohne Rückfrage handeln soll, ist es die Bedingung, dass es überhaupt läuft.
+
+Solange diese Dokumente stimmen, läuft die Maschine rund. Ein Briefing rein, ein fertiger Artikel raus, in meiner Sprache und in meinem Format. Der Teil, der früher Tage kostete, kostet jetzt Minuten. Genau hier endet meistens die schöne Geschichte.
+
+## Wo die Dokumente lügen
+
+Dokumente veralten, ohne sich dabei zu ändern. In einer Datei stehen die Pfade zu all meinen Projektordnern, damit der Agent weiß, wo was liegt. Benenne ich einen Ordner um und vergesse diese eine Zeile, zeigt sie ins Leere. Für mich ist das eine Kleinigkeit. Für den Agenten ist es die Wahrheit. Er sucht brav an der dokumentierten Stelle, findet nichts und arbeitet trotzdem weiter, nur auf der falschen Grundlage.
+
+Der unangenehmere Fall sind zwei Dokumente, die dasselbe beschreiben und sich widersprechen. Für das Schema eines Blog-Beitrags habe ich zwei Quellen. Die eine ist das, was die Website beim Bauen wirklich prüft. Die andere ist die Konfiguration des Editors, vor Monaten aufgesetzt und seitdem nicht angefasst. Sie listet Kategorien, die es längst nicht mehr gibt. Ein Agent, der die falsche von beiden erwischt, baut etwas, das plausibel aussieht und trotzdem an der echten Regel vorbeigeht. Gemerkt habe ich es erst, als ich genau hingesehen habe.
+
+Und dann ist da die Pflege, die niemand als Arbeit verbucht. Jede Regel, die ich aufschreibe, muss ich aktuell halten. Jede Umbenennung, jede neue Konvention zieht eine Spur durch die Dokumente, die ich nachziehen muss. Vergesse ich es, lügt das Dokument beim nächsten Mal. Nicht böswillig. Es sagt nur weiter, was gestern galt.
+
+## Was das über den Engpass sagt
+
+Das ist der Teil, den ich unterschätzt habe, als ich anfing. Ich dachte, ich verlagere die Abstimmung aus meinem Kopf in Dokumente und bin sie damit los. Los bin ich sie nicht. Ich habe sie in eine andere Form gebracht.
+
+| Früher | Heute |
+| --- | --- |
+| Ich merke es mir oder erkläre es neu | Ich schreibe es einmal auf |
+| Der Aufwand steckt in der Abstimmung | Der Aufwand steckt in der Pflege |
+| Ein vergessenes Detail bremst ein Projekt | Eine veraltete Zeile schickt den Agenten in die Irre |
+
+> Die Abstimmung ist nicht verschwunden. Sie ist zur Pflege geworden.
+
+Für eine Person ist das ein guter Tausch. Ein veralteter Pfad ist billiger als ein vergessenes Detail in jedem zweiten Projekt. Gratis ist der Tausch aber nicht, und das gehört auf den Tisch, bevor eine Organisation denselben Weg geht. Wer Meetings abschafft und Dokumente einführt, tauscht die eine Arbeit gegen eine andere. Die neue Arbeit heißt: dafür sorgen, dass die Dokumente die Wahrheit sagen.
+
+Ein System aus Dokumenten ist so gut wie seine schlechteste veraltete Zeile. Das ist kein Grund, es nicht zu bauen. Es ist der Grund, es ernst zu pflegen.
+
+{% cta title="Willst du dir so ein System selbst bauen?" link="https://lernen.diy/lessons/second-brain-selbst-bauen" linkText="Second Brain selbst bauen →" brand="lernen" %}
+Auf lernen.diy gehe ich das Schritt für Schritt durch: wie ein Vault entsteht, in dem dein Wissen zum Mitdenker wird. Und für den Sprung von der eigenen Ablage zum Firmenwissen zeigt [Unternehmenswissen KI-ready machen](https://lernen.diy/lessons/unternehmenswissen-ki-ready), warum Content noch kein Context ist.
+{% /cta %}
