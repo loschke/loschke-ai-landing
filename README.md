@@ -1,16 +1,16 @@
 # Loschke Stack Boilerplate
 
-A modern, minimalist starter template based on Astro, Tailwind v4, Keystatic, Resend, and Umami.
+A modern, minimalist starter template based on Astro, Tailwind v4, Resend, and Umami.
 Optimized for developer experience, performance, and GDPR compliance.
 
 ## 🚀 Features
 
-*   **Astro v5** - Fast static site generation.
+*   **Astro v7** - Fast static site generation.
 *   **Tailwind CSS v4** - Styling via `@tailwindcss/vite`.
-*   **Keystatic** - Git-based CMS for managing content.
+*   **Markdoc** - Content collections from `.mdoc` files in the repo.
 *   **Umami Analytics** - Privacy-friendly analytics (no cookie banner required).
 *   **Resend** - Email sending for contact forms.
-*   **React** - For interactive components (Contact Form, Keystatic).
+*   **React** - For interactive components (Contact Form, Blog filters).
 *   **SEO Optimized** - Meta tags, OG images, Sitemap.
 
 ## 🛠 Setup
@@ -40,7 +40,7 @@ Optimized for developer experience, performance, and GDPR compliance.
 ## ⚙️ Configuration
 
 *   **Site Info:** Edit `src/config.ts` to change the site name, description, and navigation.
-*   **Content:** Manage posts via Keystatic at `/keystatic` (local mode by default).
+*   **Content:** Posts live as `.mdoc` files under `src/content/posts/`, schema in `src/content.config.ts`. No web CMS by design — content is authored in the repo and released by flipping `draft: false`.
 *   **Styles:** Edit `src/styles/global.css` or `astro.config.mjs` (Tailwind plugin) for design tokens.
 
 ## 📄 Pages included

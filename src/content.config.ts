@@ -1,18 +1,10 @@
-import { defineCollection, z } from 'astro:content';
-
-const categoryEnum = z.enum(['vision', 'takes', 'experiments', 'building', 'personal']);
-export type Category = z.infer<typeof categoryEnum>;
-
-// Category metadata mapping
-export const categoryMeta: Record<Category, { label: string; icon: string }> = {
-  vision: { label: 'Visionen', icon: '◎' },
-  takes: { label: 'Takes', icon: '◆' },
-  experiments: { label: 'Experimente', icon: '▲' },
-  building: { label: 'Building', icon: '◻' },
-  personal: { label: 'Persönlich', icon: '●' },
-};
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import * as z from 'zod';
+import { categoryEnum } from '@content/categories';
 
 const posts = defineCollection({
+  loader: glob({ pattern: '**/*.mdoc', base: './src/content/posts' }),
   schema: ({ image }) => z.object({
     title: z.string(),
     excerpt: z.string().optional(),

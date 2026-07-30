@@ -7,7 +7,7 @@ export const server = {
     accept: 'json',
     input: z.object({
       name: z.string().min(2, "Name muss mindestens 2 Zeichen lang sein"),
-      email: z.string().email("Ungültige E-Mail-Adresse"),
+      email: z.email("Ungültige E-Mail-Adresse"),
       message: z.string().min(10, "Nachricht muss mindestens 10 Zeichen lang sein"),
     }),
     handler: async (input) => {

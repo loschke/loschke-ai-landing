@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { renderSimpleMarkdown } from "@utils/markdown";
 
 interface SummaryAudioBoxProps {
@@ -14,6 +14,8 @@ function AudioPlayer({ src }: { src: string }) {
   const [currentTime, setCurrentTime] = useState(0);
   const [speed, setSpeed] = useState(1);
   const audioRef = useRef<HTMLAudioElement>(null);
+  // Genau ein stiller Lade-Neustart, danach nicht weiter versuchen.
+  const reloadedRef = useRef(false);
 
   const speeds = [0.75, 1, 1.25, 1.5, 2];
 
@@ -23,14 +25,85 @@ function AudioPlayer({ src }: { src: string }) {
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (playing) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
+  // Das Audio-Element steht im vom Server gelieferten HTML und laedt seine
+  // Metadaten, bevor React diese Insel hydriert. `loadedmetadata` ist dann
+  // schon durch und erreicht keinen React-Handler mehr, die Dauer blieb auf
+  // 0:00 stehen. Deshalb hier direkt am Element ablesen und zusaetzlich
+  // lauschen. Play/Pause kommt ebenfalls vom Element, nicht aus geratenem
+  // State, damit der Button nie etwas anderes anzeigt als tatsaechlich laeuft.
+  useEffect(() => {
+    const el = audioRef.current;
+    if (!el) return;
+
+    const syncDuration = () => {
+      if (Number.isFinite(el.duration)) setDuration(el.duration);
+    };
+    const onPlay = () => setPlaying(true);
+    const onPause = () => setPlaying(false);
+
+    // Mehrere Events, weil die Reihenfolge je nach Cache-Zustand und
+    // Seitenwechsel variiert. Eines davon greift immer.
+    const durationEvents = [
+      "loadedmetadata",
+      "durationchange",
+      "loadeddata",
+      "canplay",
+    ] as const;
+
+    syncDuration();
+    for (const ev of durationEvents) el.addEventListener(ev, syncDuration);
+    el.addEventListener("play", onPlay);
+    el.addEventListener("pause", onPause);
+
+    // Zweiter Fall, der nur bei Client-Navigation auftritt: Der Astro
+    // ClientRouter parst die Zielseite in einem inaktiven Dokument und tauscht
+    // die Elemente dann ein. Ein Audio-Element von dort hat seinen Ladevorgang
+    // nie sauber gestartet, es hat error gesetzt oder keinen Netz-Zustand.
+    // Ein load() setzt es zurueck und laedt regulaer. Gleiches Muster wie im
+    // PodcastPlayer von lernen.diy, wo derselbe Fehler zuerst auftrat.
+    if (
+      el.error ||
+      el.networkState === HTMLMediaElement.NETWORK_NO_SOURCE ||
+      el.networkState === HTMLMediaElement.NETWORK_EMPTY
+    ) {
+      reloadedRef.current = true;
+      el.load();
+    }
+
+    return () => {
+      for (const ev of durationEvents) el.removeEventListener(ev, syncDuration);
+      el.removeEventListener("play", onPlay);
+      el.removeEventListener("pause", onPause);
+    };
+  }, []);
+
+  // Das error-Event kann erst nach dem Mount eintreffen, dann greift die
+  // Pruefung oben nicht mehr. Deshalb hier noch einmal still neu laden.
+  const handleError = () => {
+    const el = audioRef.current;
+    if (el && !reloadedRef.current) {
+      reloadedRef.current = true;
+      el.load();
+    }
+  };
+
+  const togglePlay = async () => {
+    const el = audioRef.current;
+    if (!el) return;
+
+    if (el.paused) {
+      try {
+        if (el.readyState === 0) el.load();
+        await el.play();
+      } catch (err) {
+        // Abgelehntes play() nicht verschlucken, sonst zeigt der Button
+        // "laeuft" an, waehrend nichts zu hoeren ist.
+        setPlaying(false);
+        if (err instanceof Error && err.name === "AbortError") return;
+        console.error("Audio konnte nicht gestartet werden:", err);
       }
-      setPlaying(!playing);
+    } else {
+      el.pause();
     }
   };
 
@@ -67,9 +140,7 @@ function AudioPlayer({ src }: { src: string }) {
         ref={audioRef}
         src={src}
         onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={() => {
-          if (audioRef.current) setDuration(audioRef.current.duration);
-        }}
+        onError={handleError}
         onEnded={() => {
           setPlaying(false);
           setProgress(0);

@@ -5,7 +5,7 @@ import { BlogContent } from "@components/sections/blog/BlogContent";
 import Newsletter from "@components/sections/Newsletter.astro";
 import CTA from "@components/sections/CTA.astro";
 import { getCollection } from "astro:content";
-import { categoryMeta, type Category } from "@content/config";
+import { categoryMeta, type Category } from "@content/categories";
 
 // Fetch and prepare posts
 const posts = (await getCollection("posts"))
@@ -22,7 +22,7 @@ const articles = posts.map((post) => {
   const meta = categoryMeta[cat] || categoryMeta.takes;
 
   return {
-    slug: post.slug,
+    slug: post.id,
     title: post.data.title,
     excerpt: post.data.excerpt || post.data.metaDescription || undefined,
     category: cat,
@@ -45,7 +45,7 @@ const articles = posts.map((post) => {
   <BlogContent client:load articles={articles} />
   <Newsletter />
   <CTA
-    headline="Lass uns\naustauschen"
+    headline={"Lass uns\naustauschen"}
     text="Du hast Gedanken zu einem Artikel oder eine Frage? Schreib mir — ich freue mich über den Dialog."
   />
 </FrameLayout>

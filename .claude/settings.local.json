@@ -39,7 +39,9 @@
       "Bash(cp public/images/arbeit/build-app.png public/images/arbeit/build-ask-user.png public/images/arbeit/build-quicktasks.png public/images/arbeit/build-design-library.png public/images/arbeit/build-artifacts.png public/images/arbeit/build-admin.png ../build-jetzt/public/screenshots/)",
       "Bash(git checkout *)",
       "Bash(git restore *)",
-      "Bash(git merge *)"
+      "Bash(git merge *)",
+      "Bash(git commit -m '@ *)",
+      "Bash(git commit --amend -m 'content: neuer Blog-Post \"Doch, man kann in die Zukunft schauen\" mit Audio *)"
     ]
   }
 }

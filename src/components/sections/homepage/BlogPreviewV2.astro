@@ -2,7 +2,7 @@
 import { Reveal } from "@components/ui/Reveal";
 import { Dot } from "@components/ui/Dot";
 import { getCollection } from "astro:content";
-import { categoryMeta, type Category } from "@content/config";
+import { categoryMeta, type Category } from "@content/categories";
 
 // Format date as quarter (e.g. "Q3 2025")
 function formatQuarter(date?: Date): string {
@@ -28,7 +28,7 @@ function mapPost(post: (typeof allPosts)[0]) {
     title: post.data.title,
     categoryLabel: meta.label,
     categoryIcon: meta.icon,
-    href: `/blog/${post.slug}`,
+    href: `/blog/${post.id}`,
     featured: post.data.featured,
   };
 }
