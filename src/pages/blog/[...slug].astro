@@ -1,20 +1,20 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import FrameLayout from "@layouts/FrameLayout.astro";
-import { categoryMeta, type Category } from "@content/config";
+import { categoryMeta, type Category } from "@content/categories";
 import ArticleHeader from "@components/sections/blog/ArticleHeader.astro";
 import ArticleBody from "@components/sections/blog/ArticleBody.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: post,
   }));
 }
 
 const post = Astro.props;
-const { Content, headings } = await post.render();
+const { Content, headings } = await render(post);
 
 const cat = post.data.category as Category;
 const meta = categoryMeta[cat] || categoryMeta.takes;
@@ -43,7 +43,7 @@ const seoDescription = post.data.metaDescription || post.data.excerpt || "";
     summary={post.data.summary}
     audioSrc={post.data.audioSrc}
     headings={headings}
-    slug={post.slug}
+    slug={post.id}
   >
     <Content />
   </ArticleBody>

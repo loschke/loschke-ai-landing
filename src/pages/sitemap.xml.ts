@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 export const prerender = true;
 
-// All static pages (excluding 404, sitemap, keystatic admin)
+// All static pages (excluding 404 and sitemap)
 const staticPages = [
   '/',
   '/blog/',
@@ -26,7 +26,7 @@ export const GET: APIRoute = async () => {
 
   const blogUrls = posts.map(
     (post) => `  <url>
-    <loc>${SITE}/blog/${post.slug}/</loc>${post.data.pubDate ? `\n    <lastmod>${post.data.pubDate.toISOString().split('T')[0]}</lastmod>` : ''}
+    <loc>${SITE}/blog/${post.id}/</loc>${post.data.pubDate ? `\n    <lastmod>${post.data.pubDate.toISOString().split('T')[0]}</lastmod>` : ''}
   </url>`
   );
 
