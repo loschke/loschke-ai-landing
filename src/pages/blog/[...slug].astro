@@ -4,6 +4,7 @@ import FrameLayout from "@layouts/FrameLayout.astro";
 import { categoryMeta, type Category } from "@content/categories";
 import ArticleHeader from "@components/sections/blog/ArticleHeader.astro";
 import ArticleBody from "@components/sections/blog/ArticleBody.astro";
+import { ReviewLayer } from "@components/blog/review/ReviewLayer";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -47,4 +48,5 @@ const seoDescription = post.data.metaDescription || post.data.excerpt || "";
   >
     <Content />
   </ArticleBody>
+  <ReviewLayer client:load postSlug={post.id} />
 </FrameLayout>

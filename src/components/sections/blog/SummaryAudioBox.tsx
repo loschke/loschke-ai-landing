@@ -169,7 +169,7 @@ function AudioPlayer({ src }: { src: string }) {
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between mb-2 gap-2">
           <span className="text-[11px] sm:text-xs font-medium text-dark truncate">
-            Audio-Zusammenfassung
+            KI-Audio-Zusammenfassung
           </span>
           <span className="text-[10px] sm:text-[11px] text-[#a3a3a3] tabular-nums shrink-0">
             {formatTime(currentTime)} / {formatTime(duration || 0)}

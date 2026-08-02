@@ -76,19 +76,22 @@ const hasToc = tocItems.length > 0;
       <!-- Summary + Audio Box (Variante B1) -->
       {
         hasSummaryOrAudio && (
-          <Reveal client:load>
-            <SummaryAudioBox
-              client:load
-              summary={summary}
-              audioSrc={audioSrc}
-            />
-          </Reveal>
+          <div data-review-block="zusammenfassung">
+            <Reveal client:load>
+              <SummaryAudioBox
+                client:load
+                summary={summary}
+                audioSrc={audioSrc}
+              />
+            </Reveal>
+          </div>
         )
       }
 
       <!-- Prose Content -->
       <Reveal client:load delay={0.1}>
         <div
+          data-article-body
           class:list={[
             "prose prose-lg max-w-none",
             // Headings
