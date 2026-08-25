@@ -1,0 +1,357 @@
+---
+import FrameLayout from "@layouts/FrameLayout.astro";
+import { HeroLine } from "@components/ui/HeroLine";
+import { Reveal } from "@components/ui/Reveal";
+import { Dot } from "@components/ui/Dot";
+import ContentSection from "@components/sections/arbeit/ContentSection.astro";
+import CTA from "@components/sections/CTA.astro";
+
+/* Medium-Symbole für die Kreis-Galerie: schlichte Strich-Icons, eines je
+   Werkstück-Typ, damit das Medium schneller erfasst wird als über das Label. */
+const iconAttrs = 'width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
+const icons: Record<string, string> = {
+  wissensbasis: `<svg ${iconAttrs}><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"/><path d="M4.5 12v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/></svg>`,
+  cheatsheet: `<svg ${iconAttrs}><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>`,
+  carousel: `<svg ${iconAttrs}><rect x="4" y="7" width="13" height="14" rx="2"/><path d="M9 3.5h9A2.5 2.5 0 0 1 20.5 6v11"/></svg>`,
+  praesentation: `<svg ${iconAttrs}><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8.5 20.5h7"/></svg>`,
+  lesson: `<svg ${iconAttrs}><path d="M12 5.5C10 4 7.5 3.5 4.5 3.5V19c3 0 5.5.5 7.5 2 2-1.5 4.5-2 7.5-2V3.5c-3 0-5.5.5-7.5 2z"/><path d="M12 5.5V21"/></svg>`,
+  film: `<svg ${iconAttrs}><rect x="3" y="4.5" width="18" height="15" rx="3"/><path d="M10.2 9.2l4.8 2.8-4.8 2.8z" fill="currentColor"/></svg>`,
+  diagramm: `<svg ${iconAttrs}><rect x="3" y="3" width="7" height="6" rx="1.5"/><rect x="14" y="9" width="7" height="6" rx="1.5"/><rect x="3" y="15" width="7" height="6" rx="1.5"/><path d="M10 6h7v3M10 18h7v-3"/></svg>`,
+  infografik: `<svg ${iconAttrs}><path d="M12 4l4 8H8z" fill="currentColor" stroke="none"/><path d="M3 12h18"/><path d="M12 12l5.5 8h-11z"/></svg>`,
+  flipbook: `<svg ${iconAttrs}><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v17H7.5A2.5 2.5 0 0 0 5 21.5V4.5z"/><path d="M5 19.5A2.5 2.5 0 0 1 7.5 17H19"/></svg>`,
+  audio: `<svg ${iconAttrs}><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>`,
+  /* Absprung-Marker oben rechts in jeder klickbaren Karte. */
+  extern: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>`,
+};
+---
+
+<FrameLayout
+  title="factory.casa – Eine Content-Werkstatt, die misst statt hofft"
+  description="Aus einer Wissensbasis entstehen Cheatsheets, Decks, Diagramme, Video und Audio. Jede Ausgabe gemessen, markenkonform, von Hand freigegeben. Eine Bau-Geschichte auf dem Weg zum Service."
+>
+  <!-- Hero: Wortmarke als Brand-Mark, beschreibende Headline -->
+  <section
+    class="min-h-[calc(100vh-36px)] flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20"
+  >
+    <div class="max-w-none">
+      <HeroLine client:load delay={0.15}>
+        <p
+          class="font-serif text-3xl sm:text-4xl md:text-[clamp(36px,4.5vw,56px)] mb-8 sm:mb-10 md:mb-12 leading-[1]"
+        >
+          <span class="text-dark">factory</span><span class="text-[#FC2D01]">.casa</span>
+        </p>
+      </HeroLine>
+
+      <h1
+        class="text-5xl sm:text-6xl md:text-[clamp(64px,9vw,140px)] font-sans font-black leading-[0.88] tracking-[-0.04em] mb-8 sm:mb-10 text-dark"
+      >
+        <HeroLine client:load delay={0.3}>
+          Eine Wissensbasis,<br />viele Werkstücke<Dot />
+        </HeroLine>
+      </h1>
+
+      <div class="max-w-full sm:max-w-[600px] md:max-w-[800px] mb-8 sm:mb-10">
+        <HeroLine client:load delay={0.55}>
+          <p
+            class="text-xl sm:text-2xl md:text-[clamp(22px,2.6vw,32px)] font-serif font-normal leading-[1.4] text-[#525252]"
+          >
+            Eine Content-Werkstatt, die misst statt hofft. Für den eigenen
+            Betrieb gebaut, auf dem Weg zum Service.
+          </p>
+        </HeroLine>
+      </div>
+
+      <div>
+        <HeroLine client:load delay={0.7}>
+          <a
+            href="#film"
+            class="inline-block py-3 sm:py-4 text-sm sm:text-base font-medium text-accent border-b border-transparent hover:border-accent transition-colors duration-250"
+          >
+            Der Film erklärt es ↓
+          </a>
+        </HeroLine>
+      </div>
+    </div>
+  </section>
+
+  <!-- Der Film: das Zielbild in zweieinhalb Minuten -->
+  <section
+    id="film"
+    class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]"
+  >
+    <div
+      class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+    >
+      <Reveal client:load>
+        <p
+          class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase md:sticky md:top-[98px]"
+        >
+          Der Film
+        </p>
+      </Reveal>
+
+      <div>
+        <Reveal client:load>
+          <h2
+            class="text-3xl sm:text-4xl md:text-[clamp(34px,4.5vw,60px)] font-black leading-[0.95] tracking-[-0.025em] mb-7 md:mb-9"
+          >
+            Zweieinhalb Minuten, das ganze Bild<Dot />
+          </h2>
+        </Reveal>
+
+        <Reveal client:load delay={0.08}>
+          <p
+            class="text-base sm:text-lg font-light leading-[1.7] text-[#525252] max-w-[680px] mb-10 md:mb-12"
+          >
+            Schau zuerst, lies danach. Und der Film ist selbst ein Beleg: Die
+            Factory hat ihn produziert. Drehbuch, Stimme, Schnitt und Messung
+            kommen aus der eigenen Werkstatt.
+          </p>
+        </Reveal>
+
+        <Reveal client:load delay={0.12}>
+          <video
+            controls
+            preload="metadata"
+            poster="/images/arbeit/factory-film-poster.jpg"
+            src="/videos/factory-film.mp4"
+            class="block w-full max-w-[900px] rounded-lg border border-[#e5e5e5] bg-black"
+          ></video>
+          <p class="text-sm font-light text-[#737373] mt-4 max-w-[680px]">
+            2:39 min, mit Ton. KI-generiert, wie alles aus der Factory: die
+            Stimme aus Text, die Bilder aus Daten, die Schnittzeiten aus
+            Messung.
+          </p>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Der Kreis: eine Wissensbasis, daraus die Werkstücke, zum Öffnen -->
+  <section
+    id="beispiele"
+    class="py-16 md:py-24 lg:py-[100px] px-6 sm:px-10 md:px-16 lg:px-20 border-t border-[#e5e5e5]"
+  >
+    <div
+      class="grid grid-cols-1 md:grid-cols-[minmax(100px,240px)_1fr] gap-6 md:gap-12 lg:gap-15 items-start"
+    >
+      <Reveal client:load>
+        <p
+          class="text-xs sm:text-sm font-medium text-[#737373] tracking-[0.08em] uppercase md:sticky md:top-[98px]"
+        >
+          Der Kreis
+        </p>
+      </Reveal>
+
+      <div>
+        <Reveal client:load>
+          <h2
+            class="text-3xl sm:text-4xl md:text-[clamp(34px,4.5vw,60px)] font-black leading-[0.95] tracking-[-0.025em] mb-7 md:mb-9"
+          >
+            Eine Wissensbasis, neun Werkstücke<Dot />
+          </h2>
+        </Reveal>
+
+        <Reveal client:load delay={0.08}>
+          <p
+            class="text-base sm:text-lg font-light leading-[1.7] text-[#525252] max-w-[680px] mb-10 md:mb-12"
+          >
+            Kein Showreel, sondern der ganze Kreis an einem echten Fall: oben
+            die Wissensbasis, darunter die fertigen Dateien, die daraus
+            entstanden sind. Jede Karte öffnet die echte Datei, und bewusst in
+            drei Marken. Dieselbe Quelle trägt jeden Look.
+          </p>
+        </Reveal>
+
+        <!-- Die Quelle -->
+        <Reveal client:load delay={0.12}>
+          <a
+            href="/files/factory/ringmodell-wissensbasis.md"
+            target="_blank"
+            rel="noopener"
+            class="group relative block max-w-[880px] rounded-lg border border-dark bg-[#fafafa] p-6 sm:p-8 transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)] hover:-translate-y-0.5"
+          >
+            <span class="absolute top-5 right-5 text-[#b8b3ae] transition-colors duration-250 group-hover:text-[#1a1918]" set:html={icons.extern} />
+            <p class="flex items-center gap-2.5 text-xs font-medium tracking-[0.16em] uppercase text-[#737373] mb-3">
+              <span class="text-[#1a1918]" set:html={icons.wissensbasis} />
+              Wissensbasis
+            </p>
+            <p class="text-xl sm:text-2xl font-black tracking-[-0.02em] mb-3">
+              Das Agent-Ringmodell
+            </p>
+            <p class="text-[15px] sm:text-base font-light leading-[1.7] text-[#525252] mb-4">
+              Geprüftes Wissen zu einem Thema, einmal verdichtet: sieben
+              Kernaussagen, ein Begriffsapparat, drei Quellen aus meiner
+              Wissenssammlung. Die zentrale Aussage: Ein Agent ist keine
+              Blackbox, sondern drei Ringe. Kern, Ausstattung, Rahmen.
+            </p>
+            <p class="text-sm font-mono text-[#737373]">
+              3 Quellen · Stand 21.08.2026 · Markdown-Quelle im Wortlaut
+            </p>
+          </a>
+          <div class="my-8 max-w-[880px]">
+            <p class="text-sm font-medium text-[#737373] mb-5 pl-2">
+              ↓ daraus entstanden, und zwar so:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-b border-[#e5e5e5] py-6 px-2">
+              <div>
+                <p class="text-[15px] font-black tracking-[-0.01em] mb-1.5">Ein kurzer Dialog</p>
+                <p class="text-sm font-light leading-[1.6] text-[#525252]">
+                  Jedes Werkstück entsteht aus ein paar Prompts im Chat. Mehr
+                  Eingabe gibt es nicht.
+                </p>
+              </div>
+              <div>
+                <p class="text-[15px] font-black tracking-[-0.01em] mb-1.5">Kein Programm im Einsatz</p>
+                <p class="text-sm font-light leading-[1.6] text-[#525252]">
+                  Kein Canva, kein PowerPoint, kein Visio, kein Schnitt- oder
+                  Audio-Programm. Die Factory setzt, misst und rendert selbst.
+                </p>
+              </div>
+              <div>
+                <p class="text-[15px] font-black tracking-[-0.01em] mb-1.5">Sekunden bis Minuten</p>
+                <p class="text-sm font-light leading-[1.6] text-[#525252]">
+                  Ein Cheatsheet in Sekunden, das vertonte Video in wenigen
+                  Minuten. Je nach Medium.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        <!-- Die Werkstücke -->
+        <Reveal client:load delay={0.16}>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-[880px]">
+            {
+              [
+                { name: "Cheatsheet", icon: "cheatsheet", brand: "loschke.ai", farbe: "#FC2D01", meta: "PDF · 2 Seiten", href: "/files/factory/ringmodell-cheatsheet.pdf" },
+                { name: "Carousel", icon: "carousel", brand: "unlearn.how", farbe: "#a855f7", meta: "PDF · 10 Slides", href: "/files/factory/ringmodell-carousel.pdf" },
+                { name: "Präsentation", icon: "praesentation", brand: "unlearn.how", farbe: "#a855f7", meta: "PPTX · 16:9", href: "/files/factory/ringmodell-praesentation.pptx" },
+                { name: "Diagramm", icon: "diagramm", brand: "neutral", farbe: "#737373", meta: "SVG · 6 Schritte", href: "/files/factory/ringmodell-diagramm.svg" },
+                { name: "Infografik", icon: "infografik", brand: "lernen.diy", farbe: "#0F766E", meta: "PNG · 4:5", href: "/files/factory/ringmodell-infografik.png" },
+                { name: "Flipbook", icon: "flipbook", brand: "loschke.ai", farbe: "#FC2D01", meta: "HTML · 12 Seiten", href: "/files/factory/ringmodell-flipbook.html" },
+                { name: "Lesson", icon: "lesson", brand: "lernen.diy", farbe: "#0F766E", meta: "HTML · begehbar", href: "/files/factory/ringmodell-lesson.html" },
+                { name: "Erklärfilm", icon: "film", brand: "lernen.diy", farbe: "#0F766E", meta: "MP4 · 0:32", href: "/files/factory/ringmodell-erklaerfilm.mp4" },
+                { name: "Audio", icon: "audio", brand: "loschke.ai", farbe: "#FC2D01", meta: "MP3 · 1:51", href: "/files/factory/ringmodell-audio.mp3" },
+              ].map((w) => (
+                <a
+                  href={w.href}
+                  target="_blank"
+                  rel="noopener"
+                  class="group relative flex flex-col gap-3 rounded-lg border border-[#e5e5e5] p-5 sm:p-6 transition-all duration-300 hover:border-[#525252] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-0.5"
+                >
+                  <span class="absolute top-4 right-4 text-[#b8b3ae] transition-colors duration-250 group-hover:text-[#1a1918]" set:html={icons.extern} />
+                  <span class="text-[#1a1918]" set:html={icons[w.icon]} />
+                  <p class="text-lg font-black tracking-[-0.01em] leading-none">{w.name}</p>
+                  <p class="text-[13px] font-mono text-[#737373]">
+                    <span style={`color: ${w.farbe}`}>{w.brand}</span> · {w.meta}
+                  </p>
+                </a>
+              ))
+            }
+          </div>
+        </Reveal>
+
+        <Reveal client:load delay={0.2}>
+          <p class="mt-8 text-[15px] font-light leading-[1.7] text-[#525252] max-w-[680px]">
+            Neun Medien, drei Marken, eine Quelle. Jedes weitere Thema läuft
+            denselben Kreis.
+          </p>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <ContentSection
+    label="Auslöser"
+    title="Jedes Format war Handarbeit"
+    id="ausloeser"
+    variant="divider"
+  >
+    <p>
+      Ich betreibe vier Marken mit eigenem Content: Blog, LinkedIn, Lessons,
+      Workshops. Das Wissen dafür ist da. Aber jedes Format war ein eigenes
+      Werkzeug mit eigener Lernkurve: Folien hier, PDFs dort, Diagramme im
+      dritten Tool, Audio und Video im vierten.
+    </p>
+    <p>
+      Irgendwann war klar: Das Problem ist nicht das Wissen. Das Problem ist
+      die Handarbeit pro Format. Also habe ich angefangen, eine Werkstatt zu
+      bauen, in der Werkstücke aus einer Quelle entstehen. Heute laufen dort
+      zwölf Werkstatt-Bereiche, vom Cheatsheet über Diagramme und
+      Geschäftsdokumente bis zum vertonten Erklärfilm.
+    </p>
+    <p>
+      <strong>Alles, was du auf dieser Seite siehst, kommt aus dieser
+      Werkstatt.</strong> Der Film, die Diagramme, das Zielbild-Dokument.
+    </p>
+  </ContentSection>
+
+  <ContentSection label="Das Prinzip" title="Gemessen, nicht geglaubt" variant="soft">
+    <p>
+      Am Anfang steht eine Wissensbasis: geprüftes Wissen zu einem Thema, einmal
+      verdichtet. Daraus entstehen alle Werkstücke. Weil alles aus derselben
+      Quelle schöpft, passt es zusammen.
+    </p>
+    <p>
+      Der Inhalt liegt als Daten ohne eine einzige Layoutzahl. Daraus baut ein
+      Generator die Gestalt, und jede Ausgabe wird vermessen, bevor sie
+      jemanden erreicht: Maße, Textluft, Kontraste, im Browser nachgeprüft.
+      Wenn eine Überschrift überläuft oder ein Kontrast unter die Vorgabe
+      fällt, bricht der Lauf ab und sagt warum.
+    </p>
+    <blockquote>
+      Das letzte Wort hat kein Modell. Das letzte Wort hat ein Mensch.
+    </blockquote>
+    <p>
+      Vor jeder Auslieferung steht eine Freigabe: Der Entwurf kommt als Link,
+      Anmerkungen landen direkt am Auftrag, die nächste Version kommt zum
+      Vergleich. Erst der Klick auf Freigeben startet die fertigen Formate.
+    </p>
+  </ContentSection>
+
+  <ContentSection label="Zielbild" title="Vom Eigenwerkzeug zum Service">
+    <p>
+      Gerade wächst aus der Werkstatt ein Service: die Factory als Backend
+      hinter einer offenen Schnittstelle, ohne eigene Gesamtanwendung
+      drumherum. Wer sie nutzt, beauftragt aus dem Werkzeug, in dem er ohnehin
+      arbeitet: im Chat, in Slack, in Teams. Möglich macht das MCP, das Model
+      Context Protocol, der offene Standard, über den KI-Assistenten Werkzeuge
+      und Dienste ansprechen.
+    </p>
+    <p>
+      Die eigene Marke ist dabei kein Nachgedanke: Farbe, Schriften und Logo
+      rein, die Factory rendert alles im eigenen Look. Und die Messung bleibt:
+      Auch ein fremdes Branding wird geprüft, bevor es trägt.
+    </p>
+    <p>
+      <strong>Ehrlich eingeordnet:</strong> Die Werkstatt läuft heute im
+      Eigenbetrieb, der Machbarkeitsnachweis für den Online-Betrieb ist
+      erbracht. Der Service selbst ist das Zielbild, an dem ich baue: erst die
+      Review-Seite und die MCP-Schnittstelle, dann Mandanten mit eigenem
+      Branding.
+    </p>
+  </ContentSection>
+
+  <ContentSection label="Status" title="Wie es weitergeht">
+    <p>
+      Die Factory ist ein Solo-Projekt aus dem eigenen Bedarf, wie alles
+      hier. Sie ist zugleich mein tiefstes Lernprojekt zu agentischen
+      Systemen: Skills, Messung, Human-in-the-Loop, MCP. Dieses Wissen fließt
+      direkt in meine Beratung.
+    </p>
+    <p>
+      Wenn du Content-Produktion im eigenen Unternehmen neu denken willst,
+      oder einfach sehen möchtest, wie so eine Werkstatt arbeitet: Lass uns
+      reden.
+    </p>
+  </ContentSection>
+
+  <CTA
+    variant="dark"
+    headline={"Die Factory\nim Gespräch"}
+    text="Das vollständige Zielbild mit Architektur und Ausbaupfad zeige ich gern persönlich. Schreib mir, wenn dich die Werkstatt oder der Weg dorthin interessiert."
+    secondaryHref="/arbeit"
+    secondaryLabel="← Zurück zur Arbeit"
+  />
+</FrameLayout>
